@@ -1,0 +1,1033 @@
+
+DigitCounter.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000702  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000e  00800060  00000702  00000796  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000004e  0080006e  0080006e  000007a4  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000007a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000e70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000c0  00000000  00000000  00000ef8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000733  00000000  00000000  00000fb8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000001b5  00000000  00000000  000016eb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000435  00000000  00000000  000018a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000158  00000000  00000000  00001cd8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000014f  00000000  00000000  00001e30  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000002cf  00000000  00000000  00001f7f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 14 03 	jmp	0x628	; 0x628 <__vector_10>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 e0       	ldi	r30, 0x02	; 2
+  68:	f7 e0       	ldi	r31, 0x07	; 7
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ae 36       	cpi	r26, 0x6E	; 110
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	ae e6       	ldi	r26, 0x6E	; 110
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ac 3b       	cpi	r26, 0xBC	; 188
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 3e 03 	call	0x67c	; 0x67c <main>
+  8a:	0c 94 7f 03 	jmp	0x6fe	; 0x6fe <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <addTask>:
+	} Task;
+	
+	 Task tasksTab[size]; //tablica taskow
+	
+	//dodawanie pojedynczego tasku wykonujacego sie cyknicznie co okreslony czas - period
+	void addTask(Task_PTR t,int period){  
+  92:	cf 93       	push	r28
+  94:	df 93       	push	r29
+  96:	00 d0       	rcall	.+0      	; 0x98 <addTask+0x6>
+  98:	00 d0       	rcall	.+0      	; 0x9a <addTask+0x8>
+  9a:	cd b7       	in	r28, 0x3d	; 61
+  9c:	de b7       	in	r29, 0x3e	; 62
+  9e:	9a 83       	std	Y+2, r25	; 0x02
+  a0:	89 83       	std	Y+1, r24	; 0x01
+  a2:	7c 83       	std	Y+4, r23	; 0x04
+  a4:	6b 83       	std	Y+3, r22	; 0x03
+		if(taskCount<size){
+  a6:	80 91 74 00 	lds	r24, 0x0074
+  aa:	90 91 75 00 	lds	r25, 0x0075
+  ae:	8a 30       	cpi	r24, 0x0A	; 10
+  b0:	91 05       	cpc	r25, r1
+  b2:	0c f0       	brlt	.+2      	; 0xb6 <addTask+0x24>
+  b4:	56 c0       	rjmp	.+172    	; 0x162 <addTask+0xd0>
+			
+			tasksTab[taskCount].toGo = period;
+  b6:	20 91 74 00 	lds	r18, 0x0074
+  ba:	30 91 75 00 	lds	r19, 0x0075
+  be:	4b 81       	ldd	r20, Y+3	; 0x03
+  c0:	5c 81       	ldd	r21, Y+4	; 0x04
+  c2:	c9 01       	movw	r24, r18
+  c4:	88 0f       	add	r24, r24
+  c6:	99 1f       	adc	r25, r25
+  c8:	88 0f       	add	r24, r24
+  ca:	99 1f       	adc	r25, r25
+  cc:	88 0f       	add	r24, r24
+  ce:	99 1f       	adc	r25, r25
+  d0:	82 1b       	sub	r24, r18
+  d2:	93 0b       	sbc	r25, r19
+  d4:	88 58       	subi	r24, 0x88	; 136
+  d6:	9f 4f       	sbci	r25, 0xFF	; 255
+  d8:	fc 01       	movw	r30, r24
+  da:	51 83       	std	Z+1, r21	; 0x01
+  dc:	40 83       	st	Z, r20
+			tasksTab[taskCount].interval = period;
+  de:	20 91 74 00 	lds	r18, 0x0074
+  e2:	30 91 75 00 	lds	r19, 0x0075
+  e6:	4b 81       	ldd	r20, Y+3	; 0x03
+  e8:	5c 81       	ldd	r21, Y+4	; 0x04
+  ea:	c9 01       	movw	r24, r18
+  ec:	88 0f       	add	r24, r24
+  ee:	99 1f       	adc	r25, r25
+  f0:	88 0f       	add	r24, r24
+  f2:	99 1f       	adc	r25, r25
+  f4:	88 0f       	add	r24, r24
+  f6:	99 1f       	adc	r25, r25
+  f8:	82 1b       	sub	r24, r18
+  fa:	93 0b       	sbc	r25, r19
+  fc:	86 58       	subi	r24, 0x86	; 134
+  fe:	9f 4f       	sbci	r25, 0xFF	; 255
+ 100:	fc 01       	movw	r30, r24
+ 102:	51 83       	std	Z+1, r21	; 0x01
+ 104:	40 83       	st	Z, r20
+			tasksTab[taskCount].ready = 0;
+ 106:	20 91 74 00 	lds	r18, 0x0074
+ 10a:	30 91 75 00 	lds	r19, 0x0075
+ 10e:	c9 01       	movw	r24, r18
+ 110:	88 0f       	add	r24, r24
+ 112:	99 1f       	adc	r25, r25
+ 114:	88 0f       	add	r24, r24
+ 116:	99 1f       	adc	r25, r25
+ 118:	88 0f       	add	r24, r24
+ 11a:	99 1f       	adc	r25, r25
+ 11c:	82 1b       	sub	r24, r18
+ 11e:	93 0b       	sbc	r25, r19
+ 120:	84 58       	subi	r24, 0x84	; 132
+ 122:	9f 4f       	sbci	r25, 0xFF	; 255
+ 124:	fc 01       	movw	r30, r24
+ 126:	10 82       	st	Z, r1
+			tasksTab[taskCount].taskPtr = t;
+ 128:	20 91 74 00 	lds	r18, 0x0074
+ 12c:	30 91 75 00 	lds	r19, 0x0075
+ 130:	c9 01       	movw	r24, r18
+ 132:	88 0f       	add	r24, r24
+ 134:	99 1f       	adc	r25, r25
+ 136:	88 0f       	add	r24, r24
+ 138:	99 1f       	adc	r25, r25
+ 13a:	88 0f       	add	r24, r24
+ 13c:	99 1f       	adc	r25, r25
+ 13e:	82 1b       	sub	r24, r18
+ 140:	93 0b       	sbc	r25, r19
+ 142:	8a 58       	subi	r24, 0x8A	; 138
+ 144:	9f 4f       	sbci	r25, 0xFF	; 255
+ 146:	29 81       	ldd	r18, Y+1	; 0x01
+ 148:	3a 81       	ldd	r19, Y+2	; 0x02
+ 14a:	fc 01       	movw	r30, r24
+ 14c:	31 83       	std	Z+1, r19	; 0x01
+ 14e:	20 83       	st	Z, r18
+			taskCount++;
+ 150:	80 91 74 00 	lds	r24, 0x0074
+ 154:	90 91 75 00 	lds	r25, 0x0075
+ 158:	01 96       	adiw	r24, 0x01	; 1
+ 15a:	90 93 75 00 	sts	0x0075, r25
+ 15e:	80 93 74 00 	sts	0x0074, r24
+		}
+		
+	}
+ 162:	0f 90       	pop	r0
+ 164:	0f 90       	pop	r0
+ 166:	0f 90       	pop	r0
+ 168:	0f 90       	pop	r0
+ 16a:	df 91       	pop	r29
+ 16c:	cf 91       	pop	r28
+ 16e:	08 95       	ret
+
+00000170 <addOneShot>:
+	//task ktory wykonuje sie jedynie raz w momencie gdy uplynie okreslony czas - period
+	void addOneShot(Task_PTR t,int period){
+ 170:	cf 93       	push	r28
+ 172:	df 93       	push	r29
+ 174:	00 d0       	rcall	.+0      	; 0x176 <addOneShot+0x6>
+ 176:	00 d0       	rcall	.+0      	; 0x178 <addOneShot+0x8>
+ 178:	cd b7       	in	r28, 0x3d	; 61
+ 17a:	de b7       	in	r29, 0x3e	; 62
+ 17c:	9a 83       	std	Y+2, r25	; 0x02
+ 17e:	89 83       	std	Y+1, r24	; 0x01
+ 180:	7c 83       	std	Y+4, r23	; 0x04
+ 182:	6b 83       	std	Y+3, r22	; 0x03
+		if(taskCount<size){
+ 184:	80 91 74 00 	lds	r24, 0x0074
+ 188:	90 91 75 00 	lds	r25, 0x0075
+ 18c:	8a 30       	cpi	r24, 0x0A	; 10
+ 18e:	91 05       	cpc	r25, r1
+ 190:	0c f0       	brlt	.+2      	; 0x194 <addOneShot+0x24>
+ 192:	54 c0       	rjmp	.+168    	; 0x23c <addOneShot+0xcc>
+			tasksTab[taskCount].toGo = period;
+ 194:	20 91 74 00 	lds	r18, 0x0074
+ 198:	30 91 75 00 	lds	r19, 0x0075
+ 19c:	4b 81       	ldd	r20, Y+3	; 0x03
+ 19e:	5c 81       	ldd	r21, Y+4	; 0x04
+ 1a0:	c9 01       	movw	r24, r18
+ 1a2:	88 0f       	add	r24, r24
+ 1a4:	99 1f       	adc	r25, r25
+ 1a6:	88 0f       	add	r24, r24
+ 1a8:	99 1f       	adc	r25, r25
+ 1aa:	88 0f       	add	r24, r24
+ 1ac:	99 1f       	adc	r25, r25
+ 1ae:	82 1b       	sub	r24, r18
+ 1b0:	93 0b       	sbc	r25, r19
+ 1b2:	88 58       	subi	r24, 0x88	; 136
+ 1b4:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1b6:	fc 01       	movw	r30, r24
+ 1b8:	51 83       	std	Z+1, r21	; 0x01
+ 1ba:	40 83       	st	Z, r20
+			tasksTab[taskCount].interval = 0;
+ 1bc:	20 91 74 00 	lds	r18, 0x0074
+ 1c0:	30 91 75 00 	lds	r19, 0x0075
+ 1c4:	c9 01       	movw	r24, r18
+ 1c6:	88 0f       	add	r24, r24
+ 1c8:	99 1f       	adc	r25, r25
+ 1ca:	88 0f       	add	r24, r24
+ 1cc:	99 1f       	adc	r25, r25
+ 1ce:	88 0f       	add	r24, r24
+ 1d0:	99 1f       	adc	r25, r25
+ 1d2:	82 1b       	sub	r24, r18
+ 1d4:	93 0b       	sbc	r25, r19
+ 1d6:	86 58       	subi	r24, 0x86	; 134
+ 1d8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1da:	fc 01       	movw	r30, r24
+ 1dc:	11 82       	std	Z+1, r1	; 0x01
+ 1de:	10 82       	st	Z, r1
+			tasksTab[taskCount].ready = 0;
+ 1e0:	20 91 74 00 	lds	r18, 0x0074
+ 1e4:	30 91 75 00 	lds	r19, 0x0075
+ 1e8:	c9 01       	movw	r24, r18
+ 1ea:	88 0f       	add	r24, r24
+ 1ec:	99 1f       	adc	r25, r25
+ 1ee:	88 0f       	add	r24, r24
+ 1f0:	99 1f       	adc	r25, r25
+ 1f2:	88 0f       	add	r24, r24
+ 1f4:	99 1f       	adc	r25, r25
+ 1f6:	82 1b       	sub	r24, r18
+ 1f8:	93 0b       	sbc	r25, r19
+ 1fa:	84 58       	subi	r24, 0x84	; 132
+ 1fc:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1fe:	fc 01       	movw	r30, r24
+ 200:	10 82       	st	Z, r1
+			tasksTab[taskCount].taskPtr = t;
+ 202:	20 91 74 00 	lds	r18, 0x0074
+ 206:	30 91 75 00 	lds	r19, 0x0075
+ 20a:	c9 01       	movw	r24, r18
+ 20c:	88 0f       	add	r24, r24
+ 20e:	99 1f       	adc	r25, r25
+ 210:	88 0f       	add	r24, r24
+ 212:	99 1f       	adc	r25, r25
+ 214:	88 0f       	add	r24, r24
+ 216:	99 1f       	adc	r25, r25
+ 218:	82 1b       	sub	r24, r18
+ 21a:	93 0b       	sbc	r25, r19
+ 21c:	8a 58       	subi	r24, 0x8A	; 138
+ 21e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 220:	29 81       	ldd	r18, Y+1	; 0x01
+ 222:	3a 81       	ldd	r19, Y+2	; 0x02
+ 224:	fc 01       	movw	r30, r24
+ 226:	31 83       	std	Z+1, r19	; 0x01
+ 228:	20 83       	st	Z, r18
+			taskCount++;
+ 22a:	80 91 74 00 	lds	r24, 0x0074
+ 22e:	90 91 75 00 	lds	r25, 0x0075
+ 232:	01 96       	adiw	r24, 0x01	; 1
+ 234:	90 93 75 00 	sts	0x0075, r25
+ 238:	80 93 74 00 	sts	0x0074, r24
+		}
+	}
+ 23c:	0f 90       	pop	r0
+ 23e:	0f 90       	pop	r0
+ 240:	0f 90       	pop	r0
+ 242:	0f 90       	pop	r0
+ 244:	df 91       	pop	r29
+ 246:	cf 91       	pop	r28
+ 248:	08 95       	ret
+
+0000024a <schedule>:
+	
+	//scheduler uruchamia sie podczas obslugi przerwania jego czas dzialania to 1ms
+	//funkcja nadzoruje liczniki czasu jaki czekaja poszczegolne zadania
+	void schedule(){
+ 24a:	cf 93       	push	r28
+ 24c:	df 93       	push	r29
+ 24e:	00 d0       	rcall	.+0      	; 0x250 <schedule+0x6>
+ 250:	cd b7       	in	r28, 0x3d	; 61
+ 252:	de b7       	in	r29, 0x3e	; 62
+		int k=0;
+ 254:	1a 82       	std	Y+2, r1	; 0x02
+ 256:	19 82       	std	Y+1, r1	; 0x01
+		//ten ustawia taskom ready tym ktore interval maja juz 0
+		for(k=0;k<size;k++){
+ 258:	1a 82       	std	Y+2, r1	; 0x02
+ 25a:	19 82       	std	Y+1, r1	; 0x01
+ 25c:	7b c0       	rjmp	.+246    	; 0x354 <schedule+0x10a>
+			tasksTab[k].toGo--;
+ 25e:	29 81       	ldd	r18, Y+1	; 0x01
+ 260:	3a 81       	ldd	r19, Y+2	; 0x02
+ 262:	c9 01       	movw	r24, r18
+ 264:	88 0f       	add	r24, r24
+ 266:	99 1f       	adc	r25, r25
+ 268:	88 0f       	add	r24, r24
+ 26a:	99 1f       	adc	r25, r25
+ 26c:	88 0f       	add	r24, r24
+ 26e:	99 1f       	adc	r25, r25
+ 270:	82 1b       	sub	r24, r18
+ 272:	93 0b       	sbc	r25, r19
+ 274:	88 58       	subi	r24, 0x88	; 136
+ 276:	9f 4f       	sbci	r25, 0xFF	; 255
+ 278:	fc 01       	movw	r30, r24
+ 27a:	80 81       	ld	r24, Z
+ 27c:	91 81       	ldd	r25, Z+1	; 0x01
+ 27e:	ac 01       	movw	r20, r24
+ 280:	41 50       	subi	r20, 0x01	; 1
+ 282:	50 40       	sbci	r21, 0x00	; 0
+ 284:	29 81       	ldd	r18, Y+1	; 0x01
+ 286:	3a 81       	ldd	r19, Y+2	; 0x02
+ 288:	c9 01       	movw	r24, r18
+ 28a:	88 0f       	add	r24, r24
+ 28c:	99 1f       	adc	r25, r25
+ 28e:	88 0f       	add	r24, r24
+ 290:	99 1f       	adc	r25, r25
+ 292:	88 0f       	add	r24, r24
+ 294:	99 1f       	adc	r25, r25
+ 296:	82 1b       	sub	r24, r18
+ 298:	93 0b       	sbc	r25, r19
+ 29a:	88 58       	subi	r24, 0x88	; 136
+ 29c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 29e:	fc 01       	movw	r30, r24
+ 2a0:	51 83       	std	Z+1, r21	; 0x01
+ 2a2:	40 83       	st	Z, r20
+			if(tasksTab[k].toGo==0){
+ 2a4:	29 81       	ldd	r18, Y+1	; 0x01
+ 2a6:	3a 81       	ldd	r19, Y+2	; 0x02
+ 2a8:	c9 01       	movw	r24, r18
+ 2aa:	88 0f       	add	r24, r24
+ 2ac:	99 1f       	adc	r25, r25
+ 2ae:	88 0f       	add	r24, r24
+ 2b0:	99 1f       	adc	r25, r25
+ 2b2:	88 0f       	add	r24, r24
+ 2b4:	99 1f       	adc	r25, r25
+ 2b6:	82 1b       	sub	r24, r18
+ 2b8:	93 0b       	sbc	r25, r19
+ 2ba:	88 58       	subi	r24, 0x88	; 136
+ 2bc:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2be:	fc 01       	movw	r30, r24
+ 2c0:	80 81       	ld	r24, Z
+ 2c2:	91 81       	ldd	r25, Z+1	; 0x01
+ 2c4:	00 97       	sbiw	r24, 0x00	; 0
+ 2c6:	09 f0       	breq	.+2      	; 0x2ca <schedule+0x80>
+ 2c8:	40 c0       	rjmp	.+128    	; 0x34a <schedule+0x100>
+				tasksTab[k].ready++;
+ 2ca:	29 81       	ldd	r18, Y+1	; 0x01
+ 2cc:	3a 81       	ldd	r19, Y+2	; 0x02
+ 2ce:	c9 01       	movw	r24, r18
+ 2d0:	88 0f       	add	r24, r24
+ 2d2:	99 1f       	adc	r25, r25
+ 2d4:	88 0f       	add	r24, r24
+ 2d6:	99 1f       	adc	r25, r25
+ 2d8:	88 0f       	add	r24, r24
+ 2da:	99 1f       	adc	r25, r25
+ 2dc:	82 1b       	sub	r24, r18
+ 2de:	93 0b       	sbc	r25, r19
+ 2e0:	84 58       	subi	r24, 0x84	; 132
+ 2e2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2e4:	fc 01       	movw	r30, r24
+ 2e6:	80 81       	ld	r24, Z
+ 2e8:	48 2f       	mov	r20, r24
+ 2ea:	4f 5f       	subi	r20, 0xFF	; 255
+ 2ec:	29 81       	ldd	r18, Y+1	; 0x01
+ 2ee:	3a 81       	ldd	r19, Y+2	; 0x02
+ 2f0:	c9 01       	movw	r24, r18
+ 2f2:	88 0f       	add	r24, r24
+ 2f4:	99 1f       	adc	r25, r25
+ 2f6:	88 0f       	add	r24, r24
+ 2f8:	99 1f       	adc	r25, r25
+ 2fa:	88 0f       	add	r24, r24
+ 2fc:	99 1f       	adc	r25, r25
+ 2fe:	82 1b       	sub	r24, r18
+ 300:	93 0b       	sbc	r25, r19
+ 302:	84 58       	subi	r24, 0x84	; 132
+ 304:	9f 4f       	sbci	r25, 0xFF	; 255
+ 306:	fc 01       	movw	r30, r24
+ 308:	40 83       	st	Z, r20
+				tasksTab[k].toGo = tasksTab[k].interval;
+ 30a:	29 81       	ldd	r18, Y+1	; 0x01
+ 30c:	3a 81       	ldd	r19, Y+2	; 0x02
+ 30e:	c9 01       	movw	r24, r18
+ 310:	88 0f       	add	r24, r24
+ 312:	99 1f       	adc	r25, r25
+ 314:	88 0f       	add	r24, r24
+ 316:	99 1f       	adc	r25, r25
+ 318:	88 0f       	add	r24, r24
+ 31a:	99 1f       	adc	r25, r25
+ 31c:	82 1b       	sub	r24, r18
+ 31e:	93 0b       	sbc	r25, r19
+ 320:	86 58       	subi	r24, 0x86	; 134
+ 322:	9f 4f       	sbci	r25, 0xFF	; 255
+ 324:	fc 01       	movw	r30, r24
+ 326:	40 81       	ld	r20, Z
+ 328:	51 81       	ldd	r21, Z+1	; 0x01
+ 32a:	29 81       	ldd	r18, Y+1	; 0x01
+ 32c:	3a 81       	ldd	r19, Y+2	; 0x02
+ 32e:	c9 01       	movw	r24, r18
+ 330:	88 0f       	add	r24, r24
+ 332:	99 1f       	adc	r25, r25
+ 334:	88 0f       	add	r24, r24
+ 336:	99 1f       	adc	r25, r25
+ 338:	88 0f       	add	r24, r24
+ 33a:	99 1f       	adc	r25, r25
+ 33c:	82 1b       	sub	r24, r18
+ 33e:	93 0b       	sbc	r25, r19
+ 340:	88 58       	subi	r24, 0x88	; 136
+ 342:	9f 4f       	sbci	r25, 0xFF	; 255
+ 344:	fc 01       	movw	r30, r24
+ 346:	51 83       	std	Z+1, r21	; 0x01
+ 348:	40 83       	st	Z, r20
+	//scheduler uruchamia sie podczas obslugi przerwania jego czas dzialania to 1ms
+	//funkcja nadzoruje liczniki czasu jaki czekaja poszczegolne zadania
+	void schedule(){
+		int k=0;
+		//ten ustawia taskom ready tym ktore interval maja juz 0
+		for(k=0;k<size;k++){
+ 34a:	89 81       	ldd	r24, Y+1	; 0x01
+ 34c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 34e:	01 96       	adiw	r24, 0x01	; 1
+ 350:	9a 83       	std	Y+2, r25	; 0x02
+ 352:	89 83       	std	Y+1, r24	; 0x01
+ 354:	89 81       	ldd	r24, Y+1	; 0x01
+ 356:	9a 81       	ldd	r25, Y+2	; 0x02
+ 358:	8a 30       	cpi	r24, 0x0A	; 10
+ 35a:	91 05       	cpc	r25, r1
+ 35c:	0c f4       	brge	.+2      	; 0x360 <schedule+0x116>
+ 35e:	7f cf       	rjmp	.-258    	; 0x25e <schedule+0x14>
+				tasksTab[k].ready++;
+				tasksTab[k].toGo = tasksTab[k].interval;
+			}
+		}
+		
+	}
+ 360:	0f 90       	pop	r0
+ 362:	0f 90       	pop	r0
+ 364:	df 91       	pop	r29
+ 366:	cf 91       	pop	r28
+ 368:	08 95       	ret
+
+0000036a <execute>:
+	
+	//egzekutor ktory uruchamia poszczegolne zadania
+	void execute(){
+ 36a:	cf 93       	push	r28
+ 36c:	df 93       	push	r29
+ 36e:	00 d0       	rcall	.+0      	; 0x370 <execute+0x6>
+ 370:	cd b7       	in	r28, 0x3d	; 61
+ 372:	de b7       	in	r29, 0x3e	; 62
+			int cur = 0;
+ 374:	1a 82       	std	Y+2, r1	; 0x02
+ 376:	19 82       	std	Y+1, r1	; 0x01
+			for(cur=0;cur<size;cur++){
+ 378:	1a 82       	std	Y+2, r1	; 0x02
+ 37a:	19 82       	std	Y+1, r1	; 0x01
+ 37c:	8f c0       	rjmp	.+286    	; 0x49c <execute+0x132>
+				if(tasksTab[cur].ready>0 && tasksTab[cur].interval>=0){
+ 37e:	29 81       	ldd	r18, Y+1	; 0x01
+ 380:	3a 81       	ldd	r19, Y+2	; 0x02
+ 382:	c9 01       	movw	r24, r18
+ 384:	88 0f       	add	r24, r24
+ 386:	99 1f       	adc	r25, r25
+ 388:	88 0f       	add	r24, r24
+ 38a:	99 1f       	adc	r25, r25
+ 38c:	88 0f       	add	r24, r24
+ 38e:	99 1f       	adc	r25, r25
+ 390:	82 1b       	sub	r24, r18
+ 392:	93 0b       	sbc	r25, r19
+ 394:	84 58       	subi	r24, 0x84	; 132
+ 396:	9f 4f       	sbci	r25, 0xFF	; 255
+ 398:	fc 01       	movw	r30, r24
+ 39a:	80 81       	ld	r24, Z
+ 39c:	88 23       	and	r24, r24
+ 39e:	09 f4       	brne	.+2      	; 0x3a2 <execute+0x38>
+ 3a0:	78 c0       	rjmp	.+240    	; 0x492 <execute+0x128>
+					tasksTab[cur].toGo = tasksTab[cur].interval;
+ 3a2:	29 81       	ldd	r18, Y+1	; 0x01
+ 3a4:	3a 81       	ldd	r19, Y+2	; 0x02
+ 3a6:	c9 01       	movw	r24, r18
+ 3a8:	88 0f       	add	r24, r24
+ 3aa:	99 1f       	adc	r25, r25
+ 3ac:	88 0f       	add	r24, r24
+ 3ae:	99 1f       	adc	r25, r25
+ 3b0:	88 0f       	add	r24, r24
+ 3b2:	99 1f       	adc	r25, r25
+ 3b4:	82 1b       	sub	r24, r18
+ 3b6:	93 0b       	sbc	r25, r19
+ 3b8:	86 58       	subi	r24, 0x86	; 134
+ 3ba:	9f 4f       	sbci	r25, 0xFF	; 255
+ 3bc:	fc 01       	movw	r30, r24
+ 3be:	40 81       	ld	r20, Z
+ 3c0:	51 81       	ldd	r21, Z+1	; 0x01
+ 3c2:	29 81       	ldd	r18, Y+1	; 0x01
+ 3c4:	3a 81       	ldd	r19, Y+2	; 0x02
+ 3c6:	c9 01       	movw	r24, r18
+ 3c8:	88 0f       	add	r24, r24
+ 3ca:	99 1f       	adc	r25, r25
+ 3cc:	88 0f       	add	r24, r24
+ 3ce:	99 1f       	adc	r25, r25
+ 3d0:	88 0f       	add	r24, r24
+ 3d2:	99 1f       	adc	r25, r25
+ 3d4:	82 1b       	sub	r24, r18
+ 3d6:	93 0b       	sbc	r25, r19
+ 3d8:	88 58       	subi	r24, 0x88	; 136
+ 3da:	9f 4f       	sbci	r25, 0xFF	; 255
+ 3dc:	fc 01       	movw	r30, r24
+ 3de:	51 83       	std	Z+1, r21	; 0x01
+ 3e0:	40 83       	st	Z, r20
+					tasksTab[cur].taskPtr();
+ 3e2:	29 81       	ldd	r18, Y+1	; 0x01
+ 3e4:	3a 81       	ldd	r19, Y+2	; 0x02
+ 3e6:	c9 01       	movw	r24, r18
+ 3e8:	88 0f       	add	r24, r24
+ 3ea:	99 1f       	adc	r25, r25
+ 3ec:	88 0f       	add	r24, r24
+ 3ee:	99 1f       	adc	r25, r25
+ 3f0:	88 0f       	add	r24, r24
+ 3f2:	99 1f       	adc	r25, r25
+ 3f4:	82 1b       	sub	r24, r18
+ 3f6:	93 0b       	sbc	r25, r19
+ 3f8:	8a 58       	subi	r24, 0x8A	; 138
+ 3fa:	9f 4f       	sbci	r25, 0xFF	; 255
+ 3fc:	fc 01       	movw	r30, r24
+ 3fe:	80 81       	ld	r24, Z
+ 400:	91 81       	ldd	r25, Z+1	; 0x01
+ 402:	fc 01       	movw	r30, r24
+ 404:	09 95       	icall
+					tasksTab[cur].ready--;
+ 406:	29 81       	ldd	r18, Y+1	; 0x01
+ 408:	3a 81       	ldd	r19, Y+2	; 0x02
+ 40a:	c9 01       	movw	r24, r18
+ 40c:	88 0f       	add	r24, r24
+ 40e:	99 1f       	adc	r25, r25
+ 410:	88 0f       	add	r24, r24
+ 412:	99 1f       	adc	r25, r25
+ 414:	88 0f       	add	r24, r24
+ 416:	99 1f       	adc	r25, r25
+ 418:	82 1b       	sub	r24, r18
+ 41a:	93 0b       	sbc	r25, r19
+ 41c:	84 58       	subi	r24, 0x84	; 132
+ 41e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 420:	fc 01       	movw	r30, r24
+ 422:	80 81       	ld	r24, Z
+ 424:	48 2f       	mov	r20, r24
+ 426:	41 50       	subi	r20, 0x01	; 1
+ 428:	29 81       	ldd	r18, Y+1	; 0x01
+ 42a:	3a 81       	ldd	r19, Y+2	; 0x02
+ 42c:	c9 01       	movw	r24, r18
+ 42e:	88 0f       	add	r24, r24
+ 430:	99 1f       	adc	r25, r25
+ 432:	88 0f       	add	r24, r24
+ 434:	99 1f       	adc	r25, r25
+ 436:	88 0f       	add	r24, r24
+ 438:	99 1f       	adc	r25, r25
+ 43a:	82 1b       	sub	r24, r18
+ 43c:	93 0b       	sbc	r25, r19
+ 43e:	84 58       	subi	r24, 0x84	; 132
+ 440:	9f 4f       	sbci	r25, 0xFF	; 255
+ 442:	fc 01       	movw	r30, r24
+ 444:	40 83       	st	Z, r20
+					cur = 0;
+ 446:	1a 82       	std	Y+2, r1	; 0x02
+ 448:	19 82       	std	Y+1, r1	; 0x01
+					//ustawianie interwalu na -1 dla oneShotTask aby nie uruchamiac go ponownie
+					if(tasksTab[cur].interval == 0){
+ 44a:	29 81       	ldd	r18, Y+1	; 0x01
+ 44c:	3a 81       	ldd	r19, Y+2	; 0x02
+ 44e:	c9 01       	movw	r24, r18
+ 450:	88 0f       	add	r24, r24
+ 452:	99 1f       	adc	r25, r25
+ 454:	88 0f       	add	r24, r24
+ 456:	99 1f       	adc	r25, r25
+ 458:	88 0f       	add	r24, r24
+ 45a:	99 1f       	adc	r25, r25
+ 45c:	82 1b       	sub	r24, r18
+ 45e:	93 0b       	sbc	r25, r19
+ 460:	86 58       	subi	r24, 0x86	; 134
+ 462:	9f 4f       	sbci	r25, 0xFF	; 255
+ 464:	fc 01       	movw	r30, r24
+ 466:	80 81       	ld	r24, Z
+ 468:	91 81       	ldd	r25, Z+1	; 0x01
+ 46a:	00 97       	sbiw	r24, 0x00	; 0
+ 46c:	91 f4       	brne	.+36     	; 0x492 <execute+0x128>
+						tasksTab[cur].interval = -1;
+ 46e:	29 81       	ldd	r18, Y+1	; 0x01
+ 470:	3a 81       	ldd	r19, Y+2	; 0x02
+ 472:	c9 01       	movw	r24, r18
+ 474:	88 0f       	add	r24, r24
+ 476:	99 1f       	adc	r25, r25
+ 478:	88 0f       	add	r24, r24
+ 47a:	99 1f       	adc	r25, r25
+ 47c:	88 0f       	add	r24, r24
+ 47e:	99 1f       	adc	r25, r25
+ 480:	82 1b       	sub	r24, r18
+ 482:	93 0b       	sbc	r25, r19
+ 484:	86 58       	subi	r24, 0x86	; 134
+ 486:	9f 4f       	sbci	r25, 0xFF	; 255
+ 488:	2f ef       	ldi	r18, 0xFF	; 255
+ 48a:	3f ef       	ldi	r19, 0xFF	; 255
+ 48c:	fc 01       	movw	r30, r24
+ 48e:	31 83       	std	Z+1, r19	; 0x01
+ 490:	20 83       	st	Z, r18
+	}
+	
+	//egzekutor ktory uruchamia poszczegolne zadania
+	void execute(){
+			int cur = 0;
+			for(cur=0;cur<size;cur++){
+ 492:	89 81       	ldd	r24, Y+1	; 0x01
+ 494:	9a 81       	ldd	r25, Y+2	; 0x02
+ 496:	01 96       	adiw	r24, 0x01	; 1
+ 498:	9a 83       	std	Y+2, r25	; 0x02
+ 49a:	89 83       	std	Y+1, r24	; 0x01
+ 49c:	89 81       	ldd	r24, Y+1	; 0x01
+ 49e:	9a 81       	ldd	r25, Y+2	; 0x02
+ 4a0:	8a 30       	cpi	r24, 0x0A	; 10
+ 4a2:	91 05       	cpc	r25, r1
+ 4a4:	0c f4       	brge	.+2      	; 0x4a8 <execute+0x13e>
+ 4a6:	6b cf       	rjmp	.-298    	; 0x37e <execute+0x14>
+					if(tasksTab[cur].interval == 0){
+						tasksTab[cur].interval = -1;
+					}
+				}
+			}
+	}
+ 4a8:	0f 90       	pop	r0
+ 4aa:	0f 90       	pop	r0
+ 4ac:	df 91       	pop	r29
+ 4ae:	cf 91       	pop	r28
+ 4b0:	08 95       	ret
+
+000004b2 <init>:
+	
+	//inicjalizacja licznik
+	void init(){
+ 4b2:	cf 93       	push	r28
+ 4b4:	df 93       	push	r29
+ 4b6:	00 d0       	rcall	.+0      	; 0x4b8 <init+0x6>
+ 4b8:	cd b7       	in	r28, 0x3d	; 61
+ 4ba:	de b7       	in	r29, 0x3e	; 62
+		
+		TCCR0 |= (0<<WGM00) | (1<<WGM01); //ustawianie flag
+ 4bc:	83 e5       	ldi	r24, 0x53	; 83
+ 4be:	90 e0       	ldi	r25, 0x00	; 0
+ 4c0:	23 e5       	ldi	r18, 0x53	; 83
+ 4c2:	30 e0       	ldi	r19, 0x00	; 0
+ 4c4:	f9 01       	movw	r30, r18
+ 4c6:	20 81       	ld	r18, Z
+ 4c8:	28 60       	ori	r18, 0x08	; 8
+ 4ca:	fc 01       	movw	r30, r24
+ 4cc:	20 83       	st	Z, r18
+		TCCR0 |=(0<<COM00) | (0<<COM01); // ustawiamy flagi dla TCCRO
+ 4ce:	83 e5       	ldi	r24, 0x53	; 83
+ 4d0:	90 e0       	ldi	r25, 0x00	; 0
+ 4d2:	23 e5       	ldi	r18, 0x53	; 83
+ 4d4:	30 e0       	ldi	r19, 0x00	; 0
+ 4d6:	f9 01       	movw	r30, r18
+ 4d8:	20 81       	ld	r18, Z
+ 4da:	fc 01       	movw	r30, r24
+ 4dc:	20 83       	st	Z, r18
+		TCCR0 |=(1<<CS00) | (1<<CS01) | (0<<CS02);
+ 4de:	83 e5       	ldi	r24, 0x53	; 83
+ 4e0:	90 e0       	ldi	r25, 0x00	; 0
+ 4e2:	23 e5       	ldi	r18, 0x53	; 83
+ 4e4:	30 e0       	ldi	r19, 0x00	; 0
+ 4e6:	f9 01       	movw	r30, r18
+ 4e8:	20 81       	ld	r18, Z
+ 4ea:	23 60       	ori	r18, 0x03	; 3
+ 4ec:	fc 01       	movw	r30, r24
+ 4ee:	20 83       	st	Z, r18
+		TIMSK |=(1<<OCIE0);
+ 4f0:	89 e5       	ldi	r24, 0x59	; 89
+ 4f2:	90 e0       	ldi	r25, 0x00	; 0
+ 4f4:	29 e5       	ldi	r18, 0x59	; 89
+ 4f6:	30 e0       	ldi	r19, 0x00	; 0
+ 4f8:	f9 01       	movw	r30, r18
+ 4fa:	20 81       	ld	r18, Z
+ 4fc:	22 60       	ori	r18, 0x02	; 2
+ 4fe:	fc 01       	movw	r30, r24
+ 500:	20 83       	st	Z, r18
+		OCR0 = 250;
+ 502:	8c e5       	ldi	r24, 0x5C	; 92
+ 504:	90 e0       	ldi	r25, 0x00	; 0
+ 506:	2a ef       	ldi	r18, 0xFA	; 250
+ 508:	fc 01       	movw	r30, r24
+ 50a:	20 83       	st	Z, r18
+		int i=0;
+ 50c:	1a 82       	std	Y+2, r1	; 0x02
+ 50e:	19 82       	std	Y+1, r1	; 0x01
+		for(i=0;i<size;i++){
+ 510:	1a 82       	std	Y+2, r1	; 0x02
+ 512:	19 82       	std	Y+1, r1	; 0x01
+ 514:	34 c0       	rjmp	.+104    	; 0x57e <init+0xcc>
+			tasksTab[i].interval = 0;
+ 516:	29 81       	ldd	r18, Y+1	; 0x01
+ 518:	3a 81       	ldd	r19, Y+2	; 0x02
+ 51a:	c9 01       	movw	r24, r18
+ 51c:	88 0f       	add	r24, r24
+ 51e:	99 1f       	adc	r25, r25
+ 520:	88 0f       	add	r24, r24
+ 522:	99 1f       	adc	r25, r25
+ 524:	88 0f       	add	r24, r24
+ 526:	99 1f       	adc	r25, r25
+ 528:	82 1b       	sub	r24, r18
+ 52a:	93 0b       	sbc	r25, r19
+ 52c:	86 58       	subi	r24, 0x86	; 134
+ 52e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 530:	fc 01       	movw	r30, r24
+ 532:	11 82       	std	Z+1, r1	; 0x01
+ 534:	10 82       	st	Z, r1
+			tasksTab[i].toGo = 0;
+ 536:	29 81       	ldd	r18, Y+1	; 0x01
+ 538:	3a 81       	ldd	r19, Y+2	; 0x02
+ 53a:	c9 01       	movw	r24, r18
+ 53c:	88 0f       	add	r24, r24
+ 53e:	99 1f       	adc	r25, r25
+ 540:	88 0f       	add	r24, r24
+ 542:	99 1f       	adc	r25, r25
+ 544:	88 0f       	add	r24, r24
+ 546:	99 1f       	adc	r25, r25
+ 548:	82 1b       	sub	r24, r18
+ 54a:	93 0b       	sbc	r25, r19
+ 54c:	88 58       	subi	r24, 0x88	; 136
+ 54e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 550:	fc 01       	movw	r30, r24
+ 552:	11 82       	std	Z+1, r1	; 0x01
+ 554:	10 82       	st	Z, r1
+			tasksTab[i].ready=0;
+ 556:	29 81       	ldd	r18, Y+1	; 0x01
+ 558:	3a 81       	ldd	r19, Y+2	; 0x02
+ 55a:	c9 01       	movw	r24, r18
+ 55c:	88 0f       	add	r24, r24
+ 55e:	99 1f       	adc	r25, r25
+ 560:	88 0f       	add	r24, r24
+ 562:	99 1f       	adc	r25, r25
+ 564:	88 0f       	add	r24, r24
+ 566:	99 1f       	adc	r25, r25
+ 568:	82 1b       	sub	r24, r18
+ 56a:	93 0b       	sbc	r25, r19
+ 56c:	84 58       	subi	r24, 0x84	; 132
+ 56e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 570:	fc 01       	movw	r30, r24
+ 572:	10 82       	st	Z, r1
+		TCCR0 |=(0<<COM00) | (0<<COM01); // ustawiamy flagi dla TCCRO
+		TCCR0 |=(1<<CS00) | (1<<CS01) | (0<<CS02);
+		TIMSK |=(1<<OCIE0);
+		OCR0 = 250;
+		int i=0;
+		for(i=0;i<size;i++){
+ 574:	89 81       	ldd	r24, Y+1	; 0x01
+ 576:	9a 81       	ldd	r25, Y+2	; 0x02
+ 578:	01 96       	adiw	r24, 0x01	; 1
+ 57a:	9a 83       	std	Y+2, r25	; 0x02
+ 57c:	89 83       	std	Y+1, r24	; 0x01
+ 57e:	89 81       	ldd	r24, Y+1	; 0x01
+ 580:	9a 81       	ldd	r25, Y+2	; 0x02
+ 582:	8a 30       	cpi	r24, 0x0A	; 10
+ 584:	91 05       	cpc	r25, r1
+ 586:	3c f2       	brlt	.-114    	; 0x516 <init+0x64>
+			tasksTab[i].interval = 0;
+			tasksTab[i].toGo = 0;
+			tasksTab[i].ready=0;
+		}
+	}
+ 588:	0f 90       	pop	r0
+ 58a:	0f 90       	pop	r0
+ 58c:	df 91       	pop	r29
+ 58e:	cf 91       	pop	r28
+ 590:	08 95       	ret
+
+00000592 <turnOnOff>:
+	//funkcja uruchamiana w momencie obslugi przerwania
+	void turnOnOff(){
+ 592:	cf 93       	push	r28
+ 594:	df 93       	push	r29
+ 596:	cd b7       	in	r28, 0x3d	; 61
+ 598:	de b7       	in	r29, 0x3e	; 62
+		PORTB =col[c];
+ 59a:	88 e3       	ldi	r24, 0x38	; 56
+ 59c:	90 e0       	ldi	r25, 0x00	; 0
+ 59e:	20 91 70 00 	lds	r18, 0x0070
+ 5a2:	30 91 71 00 	lds	r19, 0x0071
+ 5a6:	26 59       	subi	r18, 0x96	; 150
+ 5a8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 5aa:	f9 01       	movw	r30, r18
+ 5ac:	20 81       	ld	r18, Z
+ 5ae:	fc 01       	movw	r30, r24
+ 5b0:	20 83       	st	Z, r18
+		PORTA = digit[k];
+ 5b2:	8b e3       	ldi	r24, 0x3B	; 59
+ 5b4:	90 e0       	ldi	r25, 0x00	; 0
+ 5b6:	20 91 72 00 	lds	r18, 0x0072
+ 5ba:	30 91 73 00 	lds	r19, 0x0073
+ 5be:	20 5a       	subi	r18, 0xA0	; 160
+ 5c0:	3f 4f       	sbci	r19, 0xFF	; 255
+ 5c2:	f9 01       	movw	r30, r18
+ 5c4:	20 81       	ld	r18, Z
+ 5c6:	fc 01       	movw	r30, r24
+ 5c8:	20 83       	st	Z, r18
+		k++;
+ 5ca:	80 91 72 00 	lds	r24, 0x0072
+ 5ce:	90 91 73 00 	lds	r25, 0x0073
+ 5d2:	01 96       	adiw	r24, 0x01	; 1
+ 5d4:	90 93 73 00 	sts	0x0073, r25
+ 5d8:	80 93 72 00 	sts	0x0072, r24
+		k=k%10;
+ 5dc:	80 91 72 00 	lds	r24, 0x0072
+ 5e0:	90 91 73 00 	lds	r25, 0x0073
+ 5e4:	2a e0       	ldi	r18, 0x0A	; 10
+ 5e6:	30 e0       	ldi	r19, 0x00	; 0
+ 5e8:	b9 01       	movw	r22, r18
+ 5ea:	0e 94 58 03 	call	0x6b0	; 0x6b0 <__divmodhi4>
+ 5ee:	90 93 73 00 	sts	0x0073, r25
+ 5f2:	80 93 72 00 	sts	0x0072, r24
+		c++;
+ 5f6:	80 91 70 00 	lds	r24, 0x0070
+ 5fa:	90 91 71 00 	lds	r25, 0x0071
+ 5fe:	01 96       	adiw	r24, 0x01	; 1
+ 600:	90 93 71 00 	sts	0x0071, r25
+ 604:	80 93 70 00 	sts	0x0070, r24
+		c = c %4;
+ 608:	80 91 70 00 	lds	r24, 0x0070
+ 60c:	90 91 71 00 	lds	r25, 0x0071
+ 610:	24 e0       	ldi	r18, 0x04	; 4
+ 612:	30 e0       	ldi	r19, 0x00	; 0
+ 614:	b9 01       	movw	r22, r18
+ 616:	0e 94 58 03 	call	0x6b0	; 0x6b0 <__divmodhi4>
+ 61a:	90 93 71 00 	sts	0x0071, r25
+ 61e:	80 93 70 00 	sts	0x0070, r24
+	}
+ 622:	df 91       	pop	r29
+ 624:	cf 91       	pop	r28
+ 626:	08 95       	ret
+
+00000628 <__vector_10>:
+	//obsluga przerwan przerwania
+	ISR(TIMER0_COMP_vect){ 
+ 628:	1f 92       	push	r1
+ 62a:	0f 92       	push	r0
+ 62c:	0f b6       	in	r0, 0x3f	; 63
+ 62e:	0f 92       	push	r0
+ 630:	11 24       	eor	r1, r1
+ 632:	2f 93       	push	r18
+ 634:	3f 93       	push	r19
+ 636:	4f 93       	push	r20
+ 638:	5f 93       	push	r21
+ 63a:	6f 93       	push	r22
+ 63c:	7f 93       	push	r23
+ 63e:	8f 93       	push	r24
+ 640:	9f 93       	push	r25
+ 642:	af 93       	push	r26
+ 644:	bf 93       	push	r27
+ 646:	ef 93       	push	r30
+ 648:	ff 93       	push	r31
+ 64a:	cf 93       	push	r28
+ 64c:	df 93       	push	r29
+ 64e:	cd b7       	in	r28, 0x3d	; 61
+ 650:	de b7       	in	r29, 0x3e	; 62
+		schedule();
+ 652:	0e 94 25 01 	call	0x24a	; 0x24a <schedule>
+	}
+ 656:	df 91       	pop	r29
+ 658:	cf 91       	pop	r28
+ 65a:	ff 91       	pop	r31
+ 65c:	ef 91       	pop	r30
+ 65e:	bf 91       	pop	r27
+ 660:	af 91       	pop	r26
+ 662:	9f 91       	pop	r25
+ 664:	8f 91       	pop	r24
+ 666:	7f 91       	pop	r23
+ 668:	6f 91       	pop	r22
+ 66a:	5f 91       	pop	r21
+ 66c:	4f 91       	pop	r20
+ 66e:	3f 91       	pop	r19
+ 670:	2f 91       	pop	r18
+ 672:	0f 90       	pop	r0
+ 674:	0f be       	out	0x3f, r0	; 63
+ 676:	0f 90       	pop	r0
+ 678:	1f 90       	pop	r1
+ 67a:	18 95       	reti
+
+0000067c <main>:
+
+	
+	
+
+int main(void)
+{
+ 67c:	cf 93       	push	r28
+ 67e:	df 93       	push	r29
+ 680:	cd b7       	in	r28, 0x3d	; 61
+ 682:	de b7       	in	r29, 0x3e	; 62
+	
+	init();
+ 684:	0e 94 59 02 	call	0x4b2	; 0x4b2 <init>
+	sei();
+ 688:	78 94       	sei
+	DDRB = 0xFF;
+ 68a:	87 e3       	ldi	r24, 0x37	; 55
+ 68c:	90 e0       	ldi	r25, 0x00	; 0
+ 68e:	2f ef       	ldi	r18, 0xFF	; 255
+ 690:	fc 01       	movw	r30, r24
+ 692:	20 83       	st	Z, r18
+	DDRA = 0xFF;
+ 694:	8a e3       	ldi	r24, 0x3A	; 58
+ 696:	90 e0       	ldi	r25, 0x00	; 0
+ 698:	2f ef       	ldi	r18, 0xFF	; 255
+ 69a:	fc 01       	movw	r30, r24
+ 69c:	20 83       	st	Z, r18
+	
+	
+	//dodawanie taskow
+	addTask(&turnOnOff,1000);
+ 69e:	89 ec       	ldi	r24, 0xC9	; 201
+ 6a0:	92 e0       	ldi	r25, 0x02	; 2
+ 6a2:	68 ee       	ldi	r22, 0xE8	; 232
+ 6a4:	73 e0       	ldi	r23, 0x03	; 3
+ 6a6:	0e 94 49 00 	call	0x92	; 0x92 <addTask>
+	
+	//wlaczenie globalnych przerwan
+	 
+    while(1)
+    {
+		execute();
+ 6aa:	0e 94 b5 01 	call	0x36a	; 0x36a <execute>
+        
+    }
+ 6ae:	fd cf       	rjmp	.-6      	; 0x6aa <main+0x2e>
+
+000006b0 <__divmodhi4>:
+ 6b0:	97 fb       	bst	r25, 7
+ 6b2:	09 2e       	mov	r0, r25
+ 6b4:	07 26       	eor	r0, r23
+ 6b6:	0a d0       	rcall	.+20     	; 0x6cc <__divmodhi4_neg1>
+ 6b8:	77 fd       	sbrc	r23, 7
+ 6ba:	04 d0       	rcall	.+8      	; 0x6c4 <__divmodhi4_neg2>
+ 6bc:	0c d0       	rcall	.+24     	; 0x6d6 <__udivmodhi4>
+ 6be:	06 d0       	rcall	.+12     	; 0x6cc <__divmodhi4_neg1>
+ 6c0:	00 20       	and	r0, r0
+ 6c2:	1a f4       	brpl	.+6      	; 0x6ca <__divmodhi4_exit>
+
+000006c4 <__divmodhi4_neg2>:
+ 6c4:	70 95       	com	r23
+ 6c6:	61 95       	neg	r22
+ 6c8:	7f 4f       	sbci	r23, 0xFF	; 255
+
+000006ca <__divmodhi4_exit>:
+ 6ca:	08 95       	ret
+
+000006cc <__divmodhi4_neg1>:
+ 6cc:	f6 f7       	brtc	.-4      	; 0x6ca <__divmodhi4_exit>
+ 6ce:	90 95       	com	r25
+ 6d0:	81 95       	neg	r24
+ 6d2:	9f 4f       	sbci	r25, 0xFF	; 255
+ 6d4:	08 95       	ret
+
+000006d6 <__udivmodhi4>:
+ 6d6:	aa 1b       	sub	r26, r26
+ 6d8:	bb 1b       	sub	r27, r27
+ 6da:	51 e1       	ldi	r21, 0x11	; 17
+ 6dc:	07 c0       	rjmp	.+14     	; 0x6ec <__udivmodhi4_ep>
+
+000006de <__udivmodhi4_loop>:
+ 6de:	aa 1f       	adc	r26, r26
+ 6e0:	bb 1f       	adc	r27, r27
+ 6e2:	a6 17       	cp	r26, r22
+ 6e4:	b7 07       	cpc	r27, r23
+ 6e6:	10 f0       	brcs	.+4      	; 0x6ec <__udivmodhi4_ep>
+ 6e8:	a6 1b       	sub	r26, r22
+ 6ea:	b7 0b       	sbc	r27, r23
+
+000006ec <__udivmodhi4_ep>:
+ 6ec:	88 1f       	adc	r24, r24
+ 6ee:	99 1f       	adc	r25, r25
+ 6f0:	5a 95       	dec	r21
+ 6f2:	a9 f7       	brne	.-22     	; 0x6de <__udivmodhi4_loop>
+ 6f4:	80 95       	com	r24
+ 6f6:	90 95       	com	r25
+ 6f8:	bc 01       	movw	r22, r24
+ 6fa:	cd 01       	movw	r24, r26
+ 6fc:	08 95       	ret
+
+000006fe <_exit>:
+ 6fe:	f8 94       	cli
+
+00000700 <__stop_program>:
+ 700:	ff cf       	rjmp	.-2      	; 0x700 <__stop_program>
