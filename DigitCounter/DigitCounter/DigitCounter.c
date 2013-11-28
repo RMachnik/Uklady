@@ -15,11 +15,11 @@
 #include <avr/io.h>
 #include <avr/interrupt.h> 
 	
-	uint8_t digit[10] = {0xC0,0xF9,0b10100100,0b10110000,0b10011011,0b10010010,0b0100010,0b10111000,0b00000000,0b10010000};
+	uint8_t digit[10] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F};
 	uint8_t col[4] ={0b11110111,0b11110011,0b11110001,0b11110000};
 	int counter =0;
 	int c=0;
-	int k=0;
+	int k=0;m
 	typedef void (*Task_PTR)(void); // definicja pointera do funkcji
 	int taskCount = 0; 
 	
@@ -108,8 +108,9 @@
 		PORTA = digit[k];
 		k++;
 		k=k%10;
+		
 		c++;
-		c = c %4;
+		c = c%4;
 	}
 	//obsluga przerwan przerwania
 	ISR(TIMER0_COMP_vect){ 
