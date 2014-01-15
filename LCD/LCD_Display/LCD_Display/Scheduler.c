@@ -4,9 +4,16 @@
  * Created: 1/8/2014 9:24:27 PM
  *  Author: SG0219139
  */ 
-#include "Scheduer.h"
+#include "Scheduler.h"
+
+
 	int counter =0;
+
+	
 	int taskCount = 0;
+	
+	
+	
 	Task tasksTab[size]; //tablica taskow
 	
 	//dodawanie pojedynczego tasku wykonujacego sie cyknicznie co okreslony czas - period
@@ -81,3 +88,8 @@
 		}
 	}
 	
+		//obsluga przerwan przerwania
+		int ISR(TIMER0_COMP_vect){
+			schedule();
+			return 0;
+		}

@@ -2,9 +2,9 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-DigitCounter.c
+HD44780.c
 
-Keyboard.c
+LCD_Display.c
 
 Scheduler.c
 

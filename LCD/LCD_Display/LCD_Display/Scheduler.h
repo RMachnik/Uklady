@@ -13,7 +13,6 @@
 
 typedef void (*Task_PTR)(void); // definicja pointera do funkcji
 
-
 typedef struct{
 	Task_PTR taskPtr;
 	uint16_t toGo;

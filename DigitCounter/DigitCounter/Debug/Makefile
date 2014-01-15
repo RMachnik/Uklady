@@ -37,6 +37,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../DigitCounter.c \
+../Keyboard.c \
 ../Scheduler.c
 
 
@@ -48,18 +49,22 @@ ASM_SRCS +=
 
 OBJS +=  \
 DigitCounter.o \
+Keyboard.o \
 Scheduler.o
 
 OBJS_AS_ARGS +=  \
 DigitCounter.o \
+Keyboard.o \
 Scheduler.o
 
 C_DEPS +=  \
 DigitCounter.d \
+Keyboard.d \
 Scheduler.d
 
 C_DEPS_AS_ARGS +=  \
 DigitCounter.d \
+Keyboard.d \
 Scheduler.d
 
 OUTPUT_FILE_PATH +=DigitCounter.elf
@@ -73,6 +78,8 @@ OUTPUT_FILE_DEP:= ./makedep.mk
 LIB_DEP+= 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

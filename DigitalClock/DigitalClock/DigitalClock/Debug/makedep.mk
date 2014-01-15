@@ -2,9 +2,9 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
-DigitCounter.c
+Clock.c
 
-Keyboard.c
+DigitalClock.c
 
 Scheduler.c
 

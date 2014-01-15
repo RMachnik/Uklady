@@ -103,6 +103,9 @@
     <Compile Include="DigitCounter.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Keyboard.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Scheduer.h">
       <SubType>compile</SubType>
     </Compile>
