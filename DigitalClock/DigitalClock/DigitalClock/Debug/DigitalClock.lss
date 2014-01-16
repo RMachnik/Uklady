@@ -3,33 +3,33 @@ DigitalClock.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000caa  00000000  00000000  00000094  2**1
+  0 .text         00000e70  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000010  00800060  00000caa  00000d3e  2**0
+  1 .data         00000010  00800060  00000e70  00000f04  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000054  00800070  00800070  00000d4e  2**0
+  2 .bss          00000056  00800070  00800070  00000f14  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  00000d50  2**2
+  3 .stab         000006cc  00000000  00000000  00000f14  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000097  00000000  00000000  0000141c  2**0
+  4 .stabstr      00000097  00000000  00000000  000015e0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .comment      0000002f  00000000  00000000  000014b3  2**0
+  5 .comment      0000002f  00000000  00000000  00001677  2**0
                   CONTENTS, READONLY
-  6 .debug_aranges 000000d0  00000000  00000000  000014e2  2**0
+  6 .debug_aranges 000000e0  00000000  00000000  000016a6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00000621  00000000  00000000  000015b2  2**0
+  7 .debug_info   0000065d  00000000  00000000  00001786  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 00000319  00000000  00000000  00001bd3  2**0
+  8 .debug_abbrev 00000319  00000000  00000000  00001de3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   000004ac  00000000  00000000  00001eec  2**0
+  9 .debug_line   000004b6  00000000  00000000  000020fc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  000002a0  00000000  00000000  00002398  2**2
+ 10 .debug_frame  000002e0  00000000  00000000  000025b4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    00000280  00000000  00000000  00002638  2**0
+ 11 .debug_str    00000275  00000000  00000000  00002894  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000520  00000000  00000000  000028b8  2**0
+ 12 .debug_loc    00000596  00000000  00000000  00002b09  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 000000a0  00000000  00000000  00002dd8  2**0
+ 13 .debug_ranges 000000b0  00000000  00000000  0000309f  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -45,7 +45,7 @@ Disassembly of section .text:
   1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
-  28:	0c 94 ff 05 	jmp	0xbfe	; 0xbfe <__vector_10>
+  28:	0c 94 e2 06 	jmp	0xdc4	; 0xdc4 <__vector_10>
   2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
   34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
@@ -69,8 +69,8 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ea ea       	ldi	r30, 0xAA	; 170
-  68:	fc e0       	ldi	r31, 0x0C	; 12
+  66:	e0 e7       	ldi	r30, 0x70	; 112
+  68:	fe e0       	ldi	r31, 0x0E	; 14
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
@@ -88,11 +88,11 @@ Disassembly of section .text:
   7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-  80:	a4 3c       	cpi	r26, 0xC4	; 196
+  80:	a6 3c       	cpi	r26, 0xC6	; 198
   82:	b2 07       	cpc	r27, r18
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-  86:	0e 94 50 03 	call	0x6a0	; 0x6a0 <main>
-  8a:	0c 94 53 06 	jmp	0xca6	; 0xca6 <_exit>
+  86:	0e 94 2c 04 	call	0x858	; 0x858 <main>
+  8a:	0c 94 36 07 	jmp	0xe6c	; 0xe6c <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -115,8 +115,8 @@ Disassembly of section .text:
   a0:	89 81       	ldd	r24, Y+1	; 0x01
   a2:	9a 81       	ldd	r25, Y+2	; 0x02
   a4:	00 97       	sbiw	r24, 0x00	; 0
-int i = 0;
-int j = 0;
+int i = 0; //obecna pozycja w tablicy cyfr
+int j = 0; //numer obecnej kolumny na wyswietlaczu 7-segm.
 
 int isPowerOfTwo(unsigned n)
 {
@@ -147,6 +147,7 @@ int isPowerOfTwo(unsigned n)
   d0:	08 95       	ret
 
 000000d2 <findPosition>:
+//sprawdza na ktorej pozycji w podanym bajcie bit jest niezerowy, jesli jest wiecej niz 1 niezerowy bit zwraca 0
 int findPosition(unsigned n)
 {
   d2:	cf 93       	push	r28
@@ -215,7 +216,6 @@ int findPosition(unsigned n)
  128:	08 95       	ret
 
 0000012a <getKeyNumber>:
-
 
 void getKeyNumber(){
  12a:	cf 93       	push	r28
@@ -413,1401 +413,1602 @@ void changeMode(){
  28c:	cf 91       	pop	r28
  28e:	08 95       	ret
 
-00000290 <displayMinutesAndSeconds>:
-	j = j % 4;
-}
+00000290 <setHoursAndMins>:
 
-
-
-void displayMinutesAndSeconds(){
+void setHoursAndMins(){ //zmiana czasu na ekranie HH:MM
  290:	cf 93       	push	r28
  292:	df 93       	push	r29
  294:	cd b7       	in	r28, 0x3d	; 61
  296:	de b7       	in	r29, 0x3e	; 62
- 298:	28 97       	sbiw	r28, 0x08	; 8
- 29a:	0f b6       	in	r0, 0x3f	; 63
- 29c:	f8 94       	cli
- 29e:	de bf       	out	0x3e, r29	; 62
- 2a0:	0f be       	out	0x3f, r0	; 63
- 2a2:	cd bf       	out	0x3d, r28	; 61
-	PORTB = 0xFF;
- 2a4:	88 e3       	ldi	r24, 0x38	; 56
- 2a6:	90 e0       	ldi	r25, 0x00	; 0
- 2a8:	2f ef       	ldi	r18, 0xFF	; 255
- 2aa:	fc 01       	movw	r30, r24
- 2ac:	20 83       	st	Z, r18
-	int dec = seconds / 10;
- 2ae:	80 91 72 00 	lds	r24, 0x0072
- 2b2:	90 91 73 00 	lds	r25, 0x0073
- 2b6:	2a e0       	ldi	r18, 0x0A	; 10
- 2b8:	30 e0       	ldi	r19, 0x00	; 0
- 2ba:	b9 01       	movw	r22, r18
- 2bc:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 2c0:	9b 01       	movw	r18, r22
- 2c2:	3a 83       	std	Y+2, r19	; 0x02
- 2c4:	29 83       	std	Y+1, r18	; 0x01
-	int one = seconds % 10;
- 2c6:	80 91 72 00 	lds	r24, 0x0072
- 2ca:	90 91 73 00 	lds	r25, 0x0073
- 2ce:	2a e0       	ldi	r18, 0x0A	; 10
- 2d0:	30 e0       	ldi	r19, 0x00	; 0
- 2d2:	b9 01       	movw	r22, r18
- 2d4:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 2d8:	9c 83       	std	Y+4, r25	; 0x04
- 2da:	8b 83       	std	Y+3, r24	; 0x03
-	int minDec = minutes / 10;
- 2dc:	80 91 74 00 	lds	r24, 0x0074
- 2e0:	90 91 75 00 	lds	r25, 0x0075
- 2e4:	2a e0       	ldi	r18, 0x0A	; 10
- 2e6:	30 e0       	ldi	r19, 0x00	; 0
- 2e8:	b9 01       	movw	r22, r18
- 2ea:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 2ee:	9b 01       	movw	r18, r22
- 2f0:	3e 83       	std	Y+6, r19	; 0x06
- 2f2:	2d 83       	std	Y+5, r18	; 0x05
-	int minOne = minutes % 10;
- 2f4:	80 91 74 00 	lds	r24, 0x0074
- 2f8:	90 91 75 00 	lds	r25, 0x0075
- 2fc:	2a e0       	ldi	r18, 0x0A	; 10
- 2fe:	30 e0       	ldi	r19, 0x00	; 0
- 300:	b9 01       	movw	r22, r18
- 302:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 306:	98 87       	std	Y+8, r25	; 0x08
- 308:	8f 83       	std	Y+7, r24	; 0x07
-	if(j == 0){
- 30a:	80 91 7a 00 	lds	r24, 0x007A
- 30e:	90 91 7b 00 	lds	r25, 0x007B
- 312:	00 97       	sbiw	r24, 0x00	; 0
- 314:	89 f4       	brne	.+34     	; 0x338 <displayMinutesAndSeconds+0xa8>
-		PORTB = Column[0];
- 316:	88 e3       	ldi	r24, 0x38	; 56
- 318:	90 e0       	ldi	r25, 0x00	; 0
- 31a:	20 91 6c 00 	lds	r18, 0x006C
- 31e:	fc 01       	movw	r30, r24
- 320:	20 83       	st	Z, r18
-		PORTA = Digits[one];
- 322:	8b e3       	ldi	r24, 0x3B	; 59
- 324:	90 e0       	ldi	r25, 0x00	; 0
- 326:	2b 81       	ldd	r18, Y+3	; 0x03
- 328:	3c 81       	ldd	r19, Y+4	; 0x04
- 32a:	2e 59       	subi	r18, 0x9E	; 158
- 32c:	3f 4f       	sbci	r19, 0xFF	; 255
- 32e:	f9 01       	movw	r30, r18
- 330:	20 81       	ld	r18, Z
- 332:	fc 01       	movw	r30, r24
- 334:	20 83       	st	Z, r18
- 336:	47 c0       	rjmp	.+142    	; 0x3c6 <displayMinutesAndSeconds+0x136>
-	}
-	else if(j == 1){
- 338:	80 91 7a 00 	lds	r24, 0x007A
- 33c:	90 91 7b 00 	lds	r25, 0x007B
- 340:	81 30       	cpi	r24, 0x01	; 1
- 342:	91 05       	cpc	r25, r1
- 344:	89 f4       	brne	.+34     	; 0x368 <displayMinutesAndSeconds+0xd8>
-		PORTB = Column[1];
- 346:	88 e3       	ldi	r24, 0x38	; 56
- 348:	90 e0       	ldi	r25, 0x00	; 0
- 34a:	20 91 6d 00 	lds	r18, 0x006D
- 34e:	fc 01       	movw	r30, r24
- 350:	20 83       	st	Z, r18
-		PORTA = Digits[dec];
- 352:	8b e3       	ldi	r24, 0x3B	; 59
- 354:	90 e0       	ldi	r25, 0x00	; 0
- 356:	29 81       	ldd	r18, Y+1	; 0x01
- 358:	3a 81       	ldd	r19, Y+2	; 0x02
- 35a:	2e 59       	subi	r18, 0x9E	; 158
- 35c:	3f 4f       	sbci	r19, 0xFF	; 255
- 35e:	f9 01       	movw	r30, r18
- 360:	20 81       	ld	r18, Z
- 362:	fc 01       	movw	r30, r24
- 364:	20 83       	st	Z, r18
- 366:	2f c0       	rjmp	.+94     	; 0x3c6 <displayMinutesAndSeconds+0x136>
-	}
-	else if(j == 2){
- 368:	80 91 7a 00 	lds	r24, 0x007A
- 36c:	90 91 7b 00 	lds	r25, 0x007B
- 370:	82 30       	cpi	r24, 0x02	; 2
- 372:	91 05       	cpc	r25, r1
- 374:	89 f4       	brne	.+34     	; 0x398 <displayMinutesAndSeconds+0x108>
-		PORTB = Column[2];
- 376:	88 e3       	ldi	r24, 0x38	; 56
- 378:	90 e0       	ldi	r25, 0x00	; 0
- 37a:	20 91 6e 00 	lds	r18, 0x006E
- 37e:	fc 01       	movw	r30, r24
- 380:	20 83       	st	Z, r18
-		PORTA = Digits[minOne];
- 382:	8b e3       	ldi	r24, 0x3B	; 59
- 384:	90 e0       	ldi	r25, 0x00	; 0
- 386:	2f 81       	ldd	r18, Y+7	; 0x07
- 388:	38 85       	ldd	r19, Y+8	; 0x08
- 38a:	2e 59       	subi	r18, 0x9E	; 158
- 38c:	3f 4f       	sbci	r19, 0xFF	; 255
- 38e:	f9 01       	movw	r30, r18
- 390:	20 81       	ld	r18, Z
- 392:	fc 01       	movw	r30, r24
- 394:	20 83       	st	Z, r18
- 396:	17 c0       	rjmp	.+46     	; 0x3c6 <displayMinutesAndSeconds+0x136>
-	}
-	else if(j == 3){
- 398:	80 91 7a 00 	lds	r24, 0x007A
- 39c:	90 91 7b 00 	lds	r25, 0x007B
- 3a0:	83 30       	cpi	r24, 0x03	; 3
- 3a2:	91 05       	cpc	r25, r1
- 3a4:	81 f4       	brne	.+32     	; 0x3c6 <displayMinutesAndSeconds+0x136>
-		PORTB = Column[3];
- 3a6:	88 e3       	ldi	r24, 0x38	; 56
- 3a8:	90 e0       	ldi	r25, 0x00	; 0
- 3aa:	20 91 6f 00 	lds	r18, 0x006F
- 3ae:	fc 01       	movw	r30, r24
- 3b0:	20 83       	st	Z, r18
-		PORTA = Digits[minDec];
- 3b2:	8b e3       	ldi	r24, 0x3B	; 59
- 3b4:	90 e0       	ldi	r25, 0x00	; 0
- 3b6:	2d 81       	ldd	r18, Y+5	; 0x05
- 3b8:	3e 81       	ldd	r19, Y+6	; 0x06
- 3ba:	2e 59       	subi	r18, 0x9E	; 158
- 3bc:	3f 4f       	sbci	r19, 0xFF	; 255
- 3be:	f9 01       	movw	r30, r18
- 3c0:	20 81       	ld	r18, Z
- 3c2:	fc 01       	movw	r30, r24
- 3c4:	20 83       	st	Z, r18
-	}
-
-	i++;
- 3c6:	80 91 78 00 	lds	r24, 0x0078
- 3ca:	90 91 79 00 	lds	r25, 0x0079
- 3ce:	01 96       	adiw	r24, 0x01	; 1
- 3d0:	90 93 79 00 	sts	0x0079, r25
- 3d4:	80 93 78 00 	sts	0x0078, r24
-	i = i % 10;
- 3d8:	80 91 78 00 	lds	r24, 0x0078
- 3dc:	90 91 79 00 	lds	r25, 0x0079
- 3e0:	2a e0       	ldi	r18, 0x0A	; 10
- 3e2:	30 e0       	ldi	r19, 0x00	; 0
- 3e4:	b9 01       	movw	r22, r18
- 3e6:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 3ea:	90 93 79 00 	sts	0x0079, r25
- 3ee:	80 93 78 00 	sts	0x0078, r24
-	j++;
- 3f2:	80 91 7a 00 	lds	r24, 0x007A
- 3f6:	90 91 7b 00 	lds	r25, 0x007B
- 3fa:	01 96       	adiw	r24, 0x01	; 1
- 3fc:	90 93 7b 00 	sts	0x007B, r25
- 400:	80 93 7a 00 	sts	0x007A, r24
-	j = j % 4;
- 404:	80 91 7a 00 	lds	r24, 0x007A
- 408:	90 91 7b 00 	lds	r25, 0x007B
- 40c:	83 70       	andi	r24, 0x03	; 3
- 40e:	90 78       	andi	r25, 0x80	; 128
- 410:	99 23       	and	r25, r25
- 412:	24 f4       	brge	.+8      	; 0x41c <displayMinutesAndSeconds+0x18c>
- 414:	01 97       	sbiw	r24, 0x01	; 1
- 416:	8c 6f       	ori	r24, 0xFC	; 252
- 418:	9f 6f       	ori	r25, 0xFF	; 255
- 41a:	01 96       	adiw	r24, 0x01	; 1
- 41c:	90 93 7b 00 	sts	0x007B, r25
- 420:	80 93 7a 00 	sts	0x007A, r24
-}
- 424:	28 96       	adiw	r28, 0x08	; 8
- 426:	0f b6       	in	r0, 0x3f	; 63
- 428:	f8 94       	cli
- 42a:	de bf       	out	0x3e, r29	; 62
- 42c:	0f be       	out	0x3f, r0	; 63
- 42e:	cd bf       	out	0x3d, r28	; 61
- 430:	df 91       	pop	r29
- 432:	cf 91       	pop	r28
- 434:	08 95       	ret
-
-00000436 <displayHoursAndMinutes>:
-
-void displayHoursAndMinutes(){
- 436:	cf 93       	push	r28
- 438:	df 93       	push	r29
- 43a:	cd b7       	in	r28, 0x3d	; 61
- 43c:	de b7       	in	r29, 0x3e	; 62
- 43e:	28 97       	sbiw	r28, 0x08	; 8
- 440:	0f b6       	in	r0, 0x3f	; 63
- 442:	f8 94       	cli
- 444:	de bf       	out	0x3e, r29	; 62
- 446:	0f be       	out	0x3f, r0	; 63
- 448:	cd bf       	out	0x3d, r28	; 61
-	PORTB = 0xFF;
- 44a:	88 e3       	ldi	r24, 0x38	; 56
- 44c:	90 e0       	ldi	r25, 0x00	; 0
- 44e:	2f ef       	ldi	r18, 0xFF	; 255
- 450:	fc 01       	movw	r30, r24
- 452:	20 83       	st	Z, r18
-	int dec = minutes / 10;
- 454:	80 91 74 00 	lds	r24, 0x0074
- 458:	90 91 75 00 	lds	r25, 0x0075
- 45c:	2a e0       	ldi	r18, 0x0A	; 10
- 45e:	30 e0       	ldi	r19, 0x00	; 0
- 460:	b9 01       	movw	r22, r18
- 462:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 466:	9b 01       	movw	r18, r22
- 468:	3a 83       	std	Y+2, r19	; 0x02
- 46a:	29 83       	std	Y+1, r18	; 0x01
-	int one = minutes % 10;
- 46c:	80 91 74 00 	lds	r24, 0x0074
- 470:	90 91 75 00 	lds	r25, 0x0075
- 474:	2a e0       	ldi	r18, 0x0A	; 10
- 476:	30 e0       	ldi	r19, 0x00	; 0
- 478:	b9 01       	movw	r22, r18
- 47a:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 47e:	9c 83       	std	Y+4, r25	; 0x04
- 480:	8b 83       	std	Y+3, r24	; 0x03
-	int HrsDec = hours / 10;
- 482:	80 91 76 00 	lds	r24, 0x0076
- 486:	90 91 77 00 	lds	r25, 0x0077
- 48a:	2a e0       	ldi	r18, 0x0A	; 10
- 48c:	30 e0       	ldi	r19, 0x00	; 0
- 48e:	b9 01       	movw	r22, r18
- 490:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 494:	9b 01       	movw	r18, r22
- 496:	3e 83       	std	Y+6, r19	; 0x06
- 498:	2d 83       	std	Y+5, r18	; 0x05
-	int HrsOne = hours % 10;
- 49a:	80 91 76 00 	lds	r24, 0x0076
- 49e:	90 91 77 00 	lds	r25, 0x0077
- 4a2:	2a e0       	ldi	r18, 0x0A	; 10
- 4a4:	30 e0       	ldi	r19, 0x00	; 0
- 4a6:	b9 01       	movw	r22, r18
- 4a8:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 4ac:	98 87       	std	Y+8, r25	; 0x08
- 4ae:	8f 83       	std	Y+7, r24	; 0x07
-	if(j == 0){
- 4b0:	80 91 7a 00 	lds	r24, 0x007A
- 4b4:	90 91 7b 00 	lds	r25, 0x007B
- 4b8:	00 97       	sbiw	r24, 0x00	; 0
- 4ba:	89 f4       	brne	.+34     	; 0x4de <displayHoursAndMinutes+0xa8>
-		PORTB = Column[0];
- 4bc:	88 e3       	ldi	r24, 0x38	; 56
- 4be:	90 e0       	ldi	r25, 0x00	; 0
- 4c0:	20 91 6c 00 	lds	r18, 0x006C
- 4c4:	fc 01       	movw	r30, r24
- 4c6:	20 83       	st	Z, r18
-		PORTA = Digits[one];
- 4c8:	8b e3       	ldi	r24, 0x3B	; 59
- 4ca:	90 e0       	ldi	r25, 0x00	; 0
- 4cc:	2b 81       	ldd	r18, Y+3	; 0x03
- 4ce:	3c 81       	ldd	r19, Y+4	; 0x04
- 4d0:	2e 59       	subi	r18, 0x9E	; 158
- 4d2:	3f 4f       	sbci	r19, 0xFF	; 255
- 4d4:	f9 01       	movw	r30, r18
- 4d6:	20 81       	ld	r18, Z
- 4d8:	fc 01       	movw	r30, r24
- 4da:	20 83       	st	Z, r18
- 4dc:	47 c0       	rjmp	.+142    	; 0x56c <displayHoursAndMinutes+0x136>
-	}
-	else if(j == 1){
- 4de:	80 91 7a 00 	lds	r24, 0x007A
- 4e2:	90 91 7b 00 	lds	r25, 0x007B
- 4e6:	81 30       	cpi	r24, 0x01	; 1
- 4e8:	91 05       	cpc	r25, r1
- 4ea:	89 f4       	brne	.+34     	; 0x50e <displayHoursAndMinutes+0xd8>
-		PORTB = Column[1];
- 4ec:	88 e3       	ldi	r24, 0x38	; 56
- 4ee:	90 e0       	ldi	r25, 0x00	; 0
- 4f0:	20 91 6d 00 	lds	r18, 0x006D
- 4f4:	fc 01       	movw	r30, r24
- 4f6:	20 83       	st	Z, r18
-		PORTA = Digits[dec];
- 4f8:	8b e3       	ldi	r24, 0x3B	; 59
- 4fa:	90 e0       	ldi	r25, 0x00	; 0
- 4fc:	29 81       	ldd	r18, Y+1	; 0x01
- 4fe:	3a 81       	ldd	r19, Y+2	; 0x02
- 500:	2e 59       	subi	r18, 0x9E	; 158
- 502:	3f 4f       	sbci	r19, 0xFF	; 255
- 504:	f9 01       	movw	r30, r18
- 506:	20 81       	ld	r18, Z
- 508:	fc 01       	movw	r30, r24
- 50a:	20 83       	st	Z, r18
- 50c:	2f c0       	rjmp	.+94     	; 0x56c <displayHoursAndMinutes+0x136>
-	}
-	else if(j == 2){
- 50e:	80 91 7a 00 	lds	r24, 0x007A
- 512:	90 91 7b 00 	lds	r25, 0x007B
- 516:	82 30       	cpi	r24, 0x02	; 2
- 518:	91 05       	cpc	r25, r1
- 51a:	89 f4       	brne	.+34     	; 0x53e <displayHoursAndMinutes+0x108>
-		PORTB = Column[2];
- 51c:	88 e3       	ldi	r24, 0x38	; 56
- 51e:	90 e0       	ldi	r25, 0x00	; 0
- 520:	20 91 6e 00 	lds	r18, 0x006E
- 524:	fc 01       	movw	r30, r24
- 526:	20 83       	st	Z, r18
-		PORTA = Digits[HrsOne];
- 528:	8b e3       	ldi	r24, 0x3B	; 59
- 52a:	90 e0       	ldi	r25, 0x00	; 0
- 52c:	2f 81       	ldd	r18, Y+7	; 0x07
- 52e:	38 85       	ldd	r19, Y+8	; 0x08
- 530:	2e 59       	subi	r18, 0x9E	; 158
- 532:	3f 4f       	sbci	r19, 0xFF	; 255
- 534:	f9 01       	movw	r30, r18
- 536:	20 81       	ld	r18, Z
- 538:	fc 01       	movw	r30, r24
- 53a:	20 83       	st	Z, r18
- 53c:	17 c0       	rjmp	.+46     	; 0x56c <displayHoursAndMinutes+0x136>
-	}
-	else if(j == 3){
- 53e:	80 91 7a 00 	lds	r24, 0x007A
- 542:	90 91 7b 00 	lds	r25, 0x007B
- 546:	83 30       	cpi	r24, 0x03	; 3
- 548:	91 05       	cpc	r25, r1
- 54a:	81 f4       	brne	.+32     	; 0x56c <displayHoursAndMinutes+0x136>
-		PORTB = Column[3];
- 54c:	88 e3       	ldi	r24, 0x38	; 56
- 54e:	90 e0       	ldi	r25, 0x00	; 0
- 550:	20 91 6f 00 	lds	r18, 0x006F
- 554:	fc 01       	movw	r30, r24
- 556:	20 83       	st	Z, r18
-		PORTA = Digits[HrsDec];
- 558:	8b e3       	ldi	r24, 0x3B	; 59
- 55a:	90 e0       	ldi	r25, 0x00	; 0
- 55c:	2d 81       	ldd	r18, Y+5	; 0x05
- 55e:	3e 81       	ldd	r19, Y+6	; 0x06
- 560:	2e 59       	subi	r18, 0x9E	; 158
- 562:	3f 4f       	sbci	r19, 0xFF	; 255
- 564:	f9 01       	movw	r30, r18
- 566:	20 81       	ld	r18, Z
- 568:	fc 01       	movw	r30, r24
- 56a:	20 83       	st	Z, r18
-	}
-
-	i++;
- 56c:	80 91 78 00 	lds	r24, 0x0078
- 570:	90 91 79 00 	lds	r25, 0x0079
- 574:	01 96       	adiw	r24, 0x01	; 1
- 576:	90 93 79 00 	sts	0x0079, r25
- 57a:	80 93 78 00 	sts	0x0078, r24
-	i = i % 10;
- 57e:	80 91 78 00 	lds	r24, 0x0078
- 582:	90 91 79 00 	lds	r25, 0x0079
- 586:	2a e0       	ldi	r18, 0x0A	; 10
- 588:	30 e0       	ldi	r19, 0x00	; 0
- 58a:	b9 01       	movw	r22, r18
- 58c:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 590:	90 93 79 00 	sts	0x0079, r25
- 594:	80 93 78 00 	sts	0x0078, r24
-	j++;
- 598:	80 91 7a 00 	lds	r24, 0x007A
- 59c:	90 91 7b 00 	lds	r25, 0x007B
- 5a0:	01 96       	adiw	r24, 0x01	; 1
- 5a2:	90 93 7b 00 	sts	0x007B, r25
- 5a6:	80 93 7a 00 	sts	0x007A, r24
-	j = j % 4;
- 5aa:	80 91 7a 00 	lds	r24, 0x007A
- 5ae:	90 91 7b 00 	lds	r25, 0x007B
- 5b2:	83 70       	andi	r24, 0x03	; 3
- 5b4:	90 78       	andi	r25, 0x80	; 128
- 5b6:	99 23       	and	r25, r25
- 5b8:	24 f4       	brge	.+8      	; 0x5c2 <displayHoursAndMinutes+0x18c>
- 5ba:	01 97       	sbiw	r24, 0x01	; 1
- 5bc:	8c 6f       	ori	r24, 0xFC	; 252
- 5be:	9f 6f       	ori	r25, 0xFF	; 255
- 5c0:	01 96       	adiw	r24, 0x01	; 1
- 5c2:	90 93 7b 00 	sts	0x007B, r25
- 5c6:	80 93 7a 00 	sts	0x007A, r24
-}
- 5ca:	28 96       	adiw	r28, 0x08	; 8
- 5cc:	0f b6       	in	r0, 0x3f	; 63
- 5ce:	f8 94       	cli
- 5d0:	de bf       	out	0x3e, r29	; 62
- 5d2:	0f be       	out	0x3f, r0	; 63
- 5d4:	cd bf       	out	0x3d, r28	; 61
- 5d6:	df 91       	pop	r29
- 5d8:	cf 91       	pop	r28
- 5da:	08 95       	ret
-
-000005dc <displayClock>:
-
-void displayClock(){
- 5dc:	cf 93       	push	r28
- 5de:	df 93       	push	r29
- 5e0:	cd b7       	in	r28, 0x3d	; 61
- 5e2:	de b7       	in	r29, 0x3e	; 62
-	if(displayMode == 1){
- 5e4:	80 91 60 00 	lds	r24, 0x0060
- 5e8:	90 91 61 00 	lds	r25, 0x0061
- 5ec:	81 30       	cpi	r24, 0x01	; 1
- 5ee:	91 05       	cpc	r25, r1
- 5f0:	11 f4       	brne	.+4      	; 0x5f6 <displayClock+0x1a>
-		displayMinutesAndSeconds();
- 5f2:	0e 94 48 01 	call	0x290	; 0x290 <displayMinutesAndSeconds>
-	}
-	if(displayMode == 0){
- 5f6:	80 91 60 00 	lds	r24, 0x0060
- 5fa:	90 91 61 00 	lds	r25, 0x0061
- 5fe:	00 97       	sbiw	r24, 0x00	; 0
- 600:	11 f4       	brne	.+4      	; 0x606 <displayClock+0x2a>
-		displayHoursAndMinutes();
- 602:	0e 94 1b 02 	call	0x436	; 0x436 <displayHoursAndMinutes>
-	}
-}
- 606:	df 91       	pop	r29
- 608:	cf 91       	pop	r28
- 60a:	08 95       	ret
-
-0000060c <manageClock>:
-
-void manageClock(){
- 60c:	cf 93       	push	r28
- 60e:	df 93       	push	r29
- 610:	cd b7       	in	r28, 0x3d	; 61
- 612:	de b7       	in	r29, 0x3e	; 62
-	seconds++;
- 614:	80 91 72 00 	lds	r24, 0x0072
- 618:	90 91 73 00 	lds	r25, 0x0073
- 61c:	01 96       	adiw	r24, 0x01	; 1
- 61e:	90 93 73 00 	sts	0x0073, r25
- 622:	80 93 72 00 	sts	0x0072, r24
-	if(seconds > 59){
- 626:	80 91 72 00 	lds	r24, 0x0072
- 62a:	90 91 73 00 	lds	r25, 0x0073
- 62e:	8c 33       	cpi	r24, 0x3C	; 60
- 630:	91 05       	cpc	r25, r1
- 632:	b4 f0       	brlt	.+44     	; 0x660 <manageClock+0x54>
-		minutes++;
- 634:	80 91 74 00 	lds	r24, 0x0074
- 638:	90 91 75 00 	lds	r25, 0x0075
- 63c:	01 96       	adiw	r24, 0x01	; 1
- 63e:	90 93 75 00 	sts	0x0075, r25
- 642:	80 93 74 00 	sts	0x0074, r24
-		seconds = seconds % 60;
- 646:	80 91 72 00 	lds	r24, 0x0072
- 64a:	90 91 73 00 	lds	r25, 0x0073
- 64e:	2c e3       	ldi	r18, 0x3C	; 60
- 650:	30 e0       	ldi	r19, 0x00	; 0
- 652:	b9 01       	movw	r22, r18
- 654:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 658:	90 93 73 00 	sts	0x0073, r25
- 65c:	80 93 72 00 	sts	0x0072, r24
-	}
-	if(minutes > 59){
- 660:	80 91 74 00 	lds	r24, 0x0074
- 664:	90 91 75 00 	lds	r25, 0x0075
- 668:	8c 33       	cpi	r24, 0x3C	; 60
- 66a:	91 05       	cpc	r25, r1
- 66c:	b4 f0       	brlt	.+44     	; 0x69a <manageClock+0x8e>
-		hours++;
- 66e:	80 91 76 00 	lds	r24, 0x0076
- 672:	90 91 77 00 	lds	r25, 0x0077
- 676:	01 96       	adiw	r24, 0x01	; 1
- 678:	90 93 77 00 	sts	0x0077, r25
- 67c:	80 93 76 00 	sts	0x0076, r24
-		minutes = minutes % 60;
- 680:	80 91 74 00 	lds	r24, 0x0074
- 684:	90 91 75 00 	lds	r25, 0x0075
- 688:	2c e3       	ldi	r18, 0x3C	; 60
- 68a:	30 e0       	ldi	r19, 0x00	; 0
- 68c:	b9 01       	movw	r22, r18
- 68e:	0e 94 2b 06 	call	0xc56	; 0xc56 <__divmodhi4>
- 692:	90 93 75 00 	sts	0x0075, r25
- 696:	80 93 74 00 	sts	0x0074, r24
-	}
- 69a:	df 91       	pop	r29
- 69c:	cf 91       	pop	r28
- 69e:	08 95       	ret
-
-000006a0 <main>:
-#include "Scheduler.h"
-#include "Clock.h"
-
-
-int main(void)
-{
- 6a0:	cf 93       	push	r28
- 6a2:	df 93       	push	r29
- 6a4:	cd b7       	in	r28, 0x3d	; 61
- 6a6:	de b7       	in	r29, 0x3e	; 62
-
-
-        init();
- 6a8:	0e 94 74 03 	call	0x6e8	; 0x6e8 <init>
-		initCounter();
- 6ac:	0e 94 cb 03 	call	0x796	; 0x796 <initCounter>
-
-        addTask(getKeyNumber, 1000);
- 6b0:	68 ee       	ldi	r22, 0xE8	; 232
- 6b2:	73 e0       	ldi	r23, 0x03	; 3
- 6b4:	85 e9       	ldi	r24, 0x95	; 149
- 6b6:	90 e0       	ldi	r25, 0x00	; 0
- 6b8:	0e 94 f8 03 	call	0x7f0	; 0x7f0 <addTask>
-        addTask(manageClock, 1000);
- 6bc:	68 ee       	ldi	r22, 0xE8	; 232
- 6be:	73 e0       	ldi	r23, 0x03	; 3
- 6c0:	86 e0       	ldi	r24, 0x06	; 6
- 6c2:	93 e0       	ldi	r25, 0x03	; 3
- 6c4:	0e 94 f8 03 	call	0x7f0	; 0x7f0 <addTask>
-        addTask(displayClock, 5);
- 6c8:	65 e0       	ldi	r22, 0x05	; 5
- 6ca:	70 e0       	ldi	r23, 0x00	; 0
- 6cc:	8e ee       	ldi	r24, 0xEE	; 238
- 6ce:	92 e0       	ldi	r25, 0x02	; 2
- 6d0:	0e 94 f8 03 	call	0x7f0	; 0x7f0 <addTask>
-        addTask(changeMode, 1000);
- 6d4:	68 ee       	ldi	r22, 0xE8	; 232
- 6d6:	73 e0       	ldi	r23, 0x03	; 3
- 6d8:	81 e2       	ldi	r24, 0x21	; 33
- 6da:	91 e0       	ldi	r25, 0x01	; 1
- 6dc:	0e 94 f8 03 	call	0x7f0	; 0x7f0 <addTask>
-        sei();
- 6e0:	78 94       	sei
-        while(1){
-                execute();
- 6e2:	0e 94 4f 05 	call	0xa9e	; 0xa9e <execute>
-        }
- 6e6:	fd cf       	rjmp	.-6      	; 0x6e2 <main+0x42>
-
-000006e8 <init>:
-
-#include "Scheduler.h"
-
-int tasks_num = 0;
-
-void init(){
- 6e8:	cf 93       	push	r28
- 6ea:	df 93       	push	r29
- 6ec:	00 d0       	rcall	.+0      	; 0x6ee <init+0x6>
- 6ee:	cd b7       	in	r28, 0x3d	; 61
- 6f0:	de b7       	in	r29, 0x3e	; 62
-
-	for(int i = 0; i < MAX_TASKS; i++){
- 6f2:	1a 82       	std	Y+2, r1	; 0x02
- 6f4:	19 82       	std	Y+1, r1	; 0x01
- 6f6:	44 c0       	rjmp	.+136    	; 0x780 <init+0x98>
-		tasks[i].Interval = 0;
- 6f8:	29 81       	ldd	r18, Y+1	; 0x01
- 6fa:	3a 81       	ldd	r19, Y+2	; 0x02
- 6fc:	c9 01       	movw	r24, r18
- 6fe:	88 0f       	add	r24, r24
- 700:	99 1f       	adc	r25, r25
- 702:	88 0f       	add	r24, r24
- 704:	99 1f       	adc	r25, r25
- 706:	88 0f       	add	r24, r24
- 708:	99 1f       	adc	r25, r25
- 70a:	82 1b       	sub	r24, r18
- 70c:	93 0b       	sbc	r25, r19
- 70e:	8e 57       	subi	r24, 0x7E	; 126
- 710:	9f 4f       	sbci	r25, 0xFF	; 255
- 712:	fc 01       	movw	r30, r24
- 714:	11 82       	std	Z+1, r1	; 0x01
- 716:	10 82       	st	Z, r1
-		tasks[i].ready = 0;
- 718:	29 81       	ldd	r18, Y+1	; 0x01
- 71a:	3a 81       	ldd	r19, Y+2	; 0x02
- 71c:	c9 01       	movw	r24, r18
- 71e:	88 0f       	add	r24, r24
- 720:	99 1f       	adc	r25, r25
- 722:	88 0f       	add	r24, r24
- 724:	99 1f       	adc	r25, r25
- 726:	88 0f       	add	r24, r24
- 728:	99 1f       	adc	r25, r25
- 72a:	82 1b       	sub	r24, r18
- 72c:	93 0b       	sbc	r25, r19
- 72e:	8c 57       	subi	r24, 0x7C	; 124
- 730:	9f 4f       	sbci	r25, 0xFF	; 255
- 732:	fc 01       	movw	r30, r24
- 734:	10 82       	st	Z, r1
-		tasks[i].t = 0;
- 736:	29 81       	ldd	r18, Y+1	; 0x01
- 738:	3a 81       	ldd	r19, Y+2	; 0x02
- 73a:	c9 01       	movw	r24, r18
- 73c:	88 0f       	add	r24, r24
- 73e:	99 1f       	adc	r25, r25
- 740:	88 0f       	add	r24, r24
- 742:	99 1f       	adc	r25, r25
- 744:	88 0f       	add	r24, r24
- 746:	99 1f       	adc	r25, r25
- 748:	82 1b       	sub	r24, r18
- 74a:	93 0b       	sbc	r25, r19
- 74c:	82 58       	subi	r24, 0x82	; 130
- 74e:	9f 4f       	sbci	r25, 0xFF	; 255
- 750:	fc 01       	movw	r30, r24
- 752:	11 82       	std	Z+1, r1	; 0x01
- 754:	10 82       	st	Z, r1
-		tasks[i].ToGo = 0;
- 756:	29 81       	ldd	r18, Y+1	; 0x01
- 758:	3a 81       	ldd	r19, Y+2	; 0x02
- 75a:	c9 01       	movw	r24, r18
- 75c:	88 0f       	add	r24, r24
- 75e:	99 1f       	adc	r25, r25
- 760:	88 0f       	add	r24, r24
- 762:	99 1f       	adc	r25, r25
- 764:	88 0f       	add	r24, r24
- 766:	99 1f       	adc	r25, r25
- 768:	82 1b       	sub	r24, r18
- 76a:	93 0b       	sbc	r25, r19
- 76c:	80 58       	subi	r24, 0x80	; 128
- 76e:	9f 4f       	sbci	r25, 0xFF	; 255
- 770:	fc 01       	movw	r30, r24
- 772:	11 82       	std	Z+1, r1	; 0x01
- 774:	10 82       	st	Z, r1
-
-int tasks_num = 0;
-
-void init(){
-
-	for(int i = 0; i < MAX_TASKS; i++){
- 776:	89 81       	ldd	r24, Y+1	; 0x01
- 778:	9a 81       	ldd	r25, Y+2	; 0x02
- 77a:	01 96       	adiw	r24, 0x01	; 1
- 77c:	9a 83       	std	Y+2, r25	; 0x02
- 77e:	89 83       	std	Y+1, r24	; 0x01
- 780:	89 81       	ldd	r24, Y+1	; 0x01
- 782:	9a 81       	ldd	r25, Y+2	; 0x02
- 784:	8a 30       	cpi	r24, 0x0A	; 10
- 786:	91 05       	cpc	r25, r1
- 788:	0c f4       	brge	.+2      	; 0x78c <init+0xa4>
- 78a:	b6 cf       	rjmp	.-148    	; 0x6f8 <init+0x10>
-		tasks[i].Interval = 0;
-		tasks[i].ready = 0;
-		tasks[i].t = 0;
-		tasks[i].ToGo = 0;
-	}
-}
- 78c:	0f 90       	pop	r0
- 78e:	0f 90       	pop	r0
- 790:	df 91       	pop	r29
- 792:	cf 91       	pop	r28
- 794:	08 95       	ret
-
-00000796 <initCounter>:
-
-void initCounter(){
- 796:	cf 93       	push	r28
- 798:	df 93       	push	r29
- 79a:	cd b7       	in	r28, 0x3d	; 61
- 79c:	de b7       	in	r29, 0x3e	; 62
-		// prescaler na 64
-		OCR0 = 250;
- 79e:	8c e5       	ldi	r24, 0x5C	; 92
- 7a0:	90 e0       	ldi	r25, 0x00	; 0
- 7a2:	2a ef       	ldi	r18, 0xFA	; 250
- 7a4:	fc 01       	movw	r30, r24
- 7a6:	20 83       	st	Z, r18
-		TCCR0 |= (0 << WGM00) | (1 << WGM01) | (0 << CS02) | (1 << CS01) | (1 << CS00) | (0 << COM01) | (0 << COM00);
- 7a8:	83 e5       	ldi	r24, 0x53	; 83
- 7aa:	90 e0       	ldi	r25, 0x00	; 0
- 7ac:	23 e5       	ldi	r18, 0x53	; 83
- 7ae:	30 e0       	ldi	r19, 0x00	; 0
- 7b0:	f9 01       	movw	r30, r18
- 7b2:	20 81       	ld	r18, Z
- 7b4:	2b 60       	ori	r18, 0x0B	; 11
- 7b6:	fc 01       	movw	r30, r24
- 7b8:	20 83       	st	Z, r18
-		TIMSK |= (1 << TOIE0) | (1 << OCIE0);
- 7ba:	89 e5       	ldi	r24, 0x59	; 89
- 7bc:	90 e0       	ldi	r25, 0x00	; 0
- 7be:	29 e5       	ldi	r18, 0x59	; 89
- 7c0:	30 e0       	ldi	r19, 0x00	; 0
- 7c2:	f9 01       	movw	r30, r18
- 7c4:	20 81       	ld	r18, Z
- 7c6:	23 60       	ori	r18, 0x03	; 3
- 7c8:	fc 01       	movw	r30, r24
- 7ca:	20 83       	st	Z, r18
-
-		DDRA = 0xFF;
- 7cc:	8a e3       	ldi	r24, 0x3A	; 58
- 7ce:	90 e0       	ldi	r25, 0x00	; 0
- 7d0:	2f ef       	ldi	r18, 0xFF	; 255
- 7d2:	fc 01       	movw	r30, r24
- 7d4:	20 83       	st	Z, r18
-		DDRB = 0xFF;
- 7d6:	87 e3       	ldi	r24, 0x37	; 55
- 7d8:	90 e0       	ldi	r25, 0x00	; 0
- 7da:	2f ef       	ldi	r18, 0xFF	; 255
- 7dc:	fc 01       	movw	r30, r24
- 7de:	20 83       	st	Z, r18
-		PORTC = 0b000000100;
- 7e0:	85 e3       	ldi	r24, 0x35	; 53
- 7e2:	90 e0       	ldi	r25, 0x00	; 0
- 7e4:	24 e0       	ldi	r18, 0x04	; 4
- 7e6:	fc 01       	movw	r30, r24
- 7e8:	20 83       	st	Z, r18
-}
- 7ea:	df 91       	pop	r29
- 7ec:	cf 91       	pop	r28
- 7ee:	08 95       	ret
-
-000007f0 <addTask>:
-
-void addTask(TASK_PTR task, uint16_t period){
- 7f0:	cf 93       	push	r28
- 7f2:	df 93       	push	r29
- 7f4:	00 d0       	rcall	.+0      	; 0x7f6 <addTask+0x6>
- 7f6:	00 d0       	rcall	.+0      	; 0x7f8 <addTask+0x8>
- 7f8:	cd b7       	in	r28, 0x3d	; 61
- 7fa:	de b7       	in	r29, 0x3e	; 62
- 7fc:	9a 83       	std	Y+2, r25	; 0x02
- 7fe:	89 83       	std	Y+1, r24	; 0x01
- 800:	7c 83       	std	Y+4, r23	; 0x04
- 802:	6b 83       	std	Y+3, r22	; 0x03
-	if(tasks_num < MAX_TASKS){
- 804:	80 91 7c 00 	lds	r24, 0x007C
- 808:	90 91 7d 00 	lds	r25, 0x007D
- 80c:	8a 30       	cpi	r24, 0x0A	; 10
- 80e:	91 05       	cpc	r25, r1
- 810:	0c f0       	brlt	.+2      	; 0x814 <addTask+0x24>
- 812:	45 c0       	rjmp	.+138    	; 0x89e <__stack+0x3f>
-		tasks[tasks_num].Interval = period;
- 814:	20 91 7c 00 	lds	r18, 0x007C
- 818:	30 91 7d 00 	lds	r19, 0x007D
- 81c:	c9 01       	movw	r24, r18
- 81e:	88 0f       	add	r24, r24
- 820:	99 1f       	adc	r25, r25
- 822:	88 0f       	add	r24, r24
- 824:	99 1f       	adc	r25, r25
- 826:	88 0f       	add	r24, r24
- 828:	99 1f       	adc	r25, r25
- 82a:	82 1b       	sub	r24, r18
- 82c:	93 0b       	sbc	r25, r19
- 82e:	8e 57       	subi	r24, 0x7E	; 126
- 830:	9f 4f       	sbci	r25, 0xFF	; 255
- 832:	2b 81       	ldd	r18, Y+3	; 0x03
- 834:	3c 81       	ldd	r19, Y+4	; 0x04
- 836:	fc 01       	movw	r30, r24
- 838:	31 83       	std	Z+1, r19	; 0x01
- 83a:	20 83       	st	Z, r18
-		tasks[tasks_num].ToGo = period;
- 83c:	20 91 7c 00 	lds	r18, 0x007C
- 840:	30 91 7d 00 	lds	r19, 0x007D
- 844:	c9 01       	movw	r24, r18
- 846:	88 0f       	add	r24, r24
- 848:	99 1f       	adc	r25, r25
- 84a:	88 0f       	add	r24, r24
- 84c:	99 1f       	adc	r25, r25
- 84e:	88 0f       	add	r24, r24
- 850:	99 1f       	adc	r25, r25
- 852:	82 1b       	sub	r24, r18
- 854:	93 0b       	sbc	r25, r19
- 856:	80 58       	subi	r24, 0x80	; 128
- 858:	9f 4f       	sbci	r25, 0xFF	; 255
- 85a:	2b 81       	ldd	r18, Y+3	; 0x03
- 85c:	3c 81       	ldd	r19, Y+4	; 0x04
- 85e:	fc 01       	movw	r30, r24
- 860:	31 83       	std	Z+1, r19	; 0x01
- 862:	20 83       	st	Z, r18
-		tasks[tasks_num].t = task;
- 864:	20 91 7c 00 	lds	r18, 0x007C
- 868:	30 91 7d 00 	lds	r19, 0x007D
- 86c:	c9 01       	movw	r24, r18
- 86e:	88 0f       	add	r24, r24
- 870:	99 1f       	adc	r25, r25
- 872:	88 0f       	add	r24, r24
- 874:	99 1f       	adc	r25, r25
- 876:	88 0f       	add	r24, r24
- 878:	99 1f       	adc	r25, r25
- 87a:	82 1b       	sub	r24, r18
- 87c:	93 0b       	sbc	r25, r19
- 87e:	82 58       	subi	r24, 0x82	; 130
- 880:	9f 4f       	sbci	r25, 0xFF	; 255
- 882:	29 81       	ldd	r18, Y+1	; 0x01
- 884:	3a 81       	ldd	r19, Y+2	; 0x02
- 886:	fc 01       	movw	r30, r24
- 888:	31 83       	std	Z+1, r19	; 0x01
- 88a:	20 83       	st	Z, r18
-		tasks_num++;
- 88c:	80 91 7c 00 	lds	r24, 0x007C
- 890:	90 91 7d 00 	lds	r25, 0x007D
- 894:	01 96       	adiw	r24, 0x01	; 1
- 896:	90 93 7d 00 	sts	0x007D, r25
- 89a:	80 93 7c 00 	sts	0x007C, r24
-	}
-}
- 89e:	0f 90       	pop	r0
- 8a0:	0f 90       	pop	r0
- 8a2:	0f 90       	pop	r0
- 8a4:	0f 90       	pop	r0
- 8a6:	df 91       	pop	r29
- 8a8:	cf 91       	pop	r28
- 8aa:	08 95       	ret
-
-000008ac <schedule>:
-		tasks_num++;
-	}
-}
-
-//wykonywana w przerwaniu
-void schedule(){
- 8ac:	cf 93       	push	r28
- 8ae:	df 93       	push	r29
- 8b0:	00 d0       	rcall	.+0      	; 0x8b2 <schedule+0x6>
- 8b2:	cd b7       	in	r28, 0x3d	; 61
- 8b4:	de b7       	in	r29, 0x3e	; 62
-	//int i = 0;
-	for(int i = 0; i < MAX_TASKS; i++){
- 8b6:	1a 82       	std	Y+2, r1	; 0x02
- 8b8:	19 82       	std	Y+1, r1	; 0x01
- 8ba:	e6 c0       	rjmp	.+460    	; 0xa88 <schedule+0x1dc>
-		//jesli task nie jest pusty zmiejszamy ToGo
-		if(tasks[i].t != 0){
- 8bc:	29 81       	ldd	r18, Y+1	; 0x01
- 8be:	3a 81       	ldd	r19, Y+2	; 0x02
- 8c0:	c9 01       	movw	r24, r18
- 8c2:	88 0f       	add	r24, r24
- 8c4:	99 1f       	adc	r25, r25
- 8c6:	88 0f       	add	r24, r24
- 8c8:	99 1f       	adc	r25, r25
- 8ca:	88 0f       	add	r24, r24
- 8cc:	99 1f       	adc	r25, r25
- 8ce:	82 1b       	sub	r24, r18
- 8d0:	93 0b       	sbc	r25, r19
- 8d2:	82 58       	subi	r24, 0x82	; 130
- 8d4:	9f 4f       	sbci	r25, 0xFF	; 255
- 8d6:	fc 01       	movw	r30, r24
- 8d8:	80 81       	ld	r24, Z
- 8da:	91 81       	ldd	r25, Z+1	; 0x01
- 8dc:	00 97       	sbiw	r24, 0x00	; 0
- 8de:	09 f4       	brne	.+2      	; 0x8e2 <schedule+0x36>
- 8e0:	ce c0       	rjmp	.+412    	; 0xa7e <schedule+0x1d2>
-			tasks[i].ToGo--;
- 8e2:	29 81       	ldd	r18, Y+1	; 0x01
- 8e4:	3a 81       	ldd	r19, Y+2	; 0x02
- 8e6:	c9 01       	movw	r24, r18
- 8e8:	88 0f       	add	r24, r24
- 8ea:	99 1f       	adc	r25, r25
- 8ec:	88 0f       	add	r24, r24
- 8ee:	99 1f       	adc	r25, r25
- 8f0:	88 0f       	add	r24, r24
- 8f2:	99 1f       	adc	r25, r25
- 8f4:	82 1b       	sub	r24, r18
- 8f6:	93 0b       	sbc	r25, r19
- 8f8:	80 58       	subi	r24, 0x80	; 128
- 8fa:	9f 4f       	sbci	r25, 0xFF	; 255
- 8fc:	fc 01       	movw	r30, r24
- 8fe:	80 81       	ld	r24, Z
- 900:	91 81       	ldd	r25, Z+1	; 0x01
- 902:	ac 01       	movw	r20, r24
- 904:	41 50       	subi	r20, 0x01	; 1
- 906:	51 09       	sbc	r21, r1
- 908:	29 81       	ldd	r18, Y+1	; 0x01
- 90a:	3a 81       	ldd	r19, Y+2	; 0x02
- 90c:	c9 01       	movw	r24, r18
- 90e:	88 0f       	add	r24, r24
- 910:	99 1f       	adc	r25, r25
- 912:	88 0f       	add	r24, r24
- 914:	99 1f       	adc	r25, r25
- 916:	88 0f       	add	r24, r24
- 918:	99 1f       	adc	r25, r25
- 91a:	82 1b       	sub	r24, r18
- 91c:	93 0b       	sbc	r25, r19
- 91e:	80 58       	subi	r24, 0x80	; 128
- 920:	9f 4f       	sbci	r25, 0xFF	; 255
- 922:	fc 01       	movw	r30, r24
- 924:	51 83       	std	Z+1, r21	; 0x01
- 926:	40 83       	st	Z, r20
-			//jesli ToGo = 0 zwiekszamy ready (periodyczny)
-			if(tasks[i].ToGo == 0 && tasks[i].Interval != 0){
- 928:	29 81       	ldd	r18, Y+1	; 0x01
- 92a:	3a 81       	ldd	r19, Y+2	; 0x02
- 92c:	c9 01       	movw	r24, r18
- 92e:	88 0f       	add	r24, r24
- 930:	99 1f       	adc	r25, r25
- 932:	88 0f       	add	r24, r24
- 934:	99 1f       	adc	r25, r25
- 936:	88 0f       	add	r24, r24
- 938:	99 1f       	adc	r25, r25
- 93a:	82 1b       	sub	r24, r18
- 93c:	93 0b       	sbc	r25, r19
- 93e:	80 58       	subi	r24, 0x80	; 128
- 940:	9f 4f       	sbci	r25, 0xFF	; 255
- 942:	fc 01       	movw	r30, r24
- 944:	80 81       	ld	r24, Z
- 946:	91 81       	ldd	r25, Z+1	; 0x01
- 948:	00 97       	sbiw	r24, 0x00	; 0
- 94a:	09 f0       	breq	.+2      	; 0x94e <schedule+0xa2>
- 94c:	54 c0       	rjmp	.+168    	; 0x9f6 <schedule+0x14a>
- 94e:	29 81       	ldd	r18, Y+1	; 0x01
- 950:	3a 81       	ldd	r19, Y+2	; 0x02
- 952:	c9 01       	movw	r24, r18
- 954:	88 0f       	add	r24, r24
- 956:	99 1f       	adc	r25, r25
- 958:	88 0f       	add	r24, r24
- 95a:	99 1f       	adc	r25, r25
- 95c:	88 0f       	add	r24, r24
- 95e:	99 1f       	adc	r25, r25
- 960:	82 1b       	sub	r24, r18
- 962:	93 0b       	sbc	r25, r19
- 964:	8e 57       	subi	r24, 0x7E	; 126
- 966:	9f 4f       	sbci	r25, 0xFF	; 255
- 968:	fc 01       	movw	r30, r24
- 96a:	80 81       	ld	r24, Z
- 96c:	91 81       	ldd	r25, Z+1	; 0x01
- 96e:	00 97       	sbiw	r24, 0x00	; 0
- 970:	09 f4       	brne	.+2      	; 0x974 <schedule+0xc8>
- 972:	41 c0       	rjmp	.+130    	; 0x9f6 <schedule+0x14a>
-				tasks[i].ready++;
- 974:	29 81       	ldd	r18, Y+1	; 0x01
- 976:	3a 81       	ldd	r19, Y+2	; 0x02
- 978:	c9 01       	movw	r24, r18
- 97a:	88 0f       	add	r24, r24
- 97c:	99 1f       	adc	r25, r25
- 97e:	88 0f       	add	r24, r24
- 980:	99 1f       	adc	r25, r25
- 982:	88 0f       	add	r24, r24
- 984:	99 1f       	adc	r25, r25
- 986:	82 1b       	sub	r24, r18
- 988:	93 0b       	sbc	r25, r19
- 98a:	8c 57       	subi	r24, 0x7C	; 124
- 98c:	9f 4f       	sbci	r25, 0xFF	; 255
- 98e:	fc 01       	movw	r30, r24
- 990:	80 81       	ld	r24, Z
- 992:	48 2f       	mov	r20, r24
- 994:	4f 5f       	subi	r20, 0xFF	; 255
- 996:	29 81       	ldd	r18, Y+1	; 0x01
- 998:	3a 81       	ldd	r19, Y+2	; 0x02
- 99a:	c9 01       	movw	r24, r18
- 99c:	88 0f       	add	r24, r24
- 99e:	99 1f       	adc	r25, r25
- 9a0:	88 0f       	add	r24, r24
- 9a2:	99 1f       	adc	r25, r25
- 9a4:	88 0f       	add	r24, r24
- 9a6:	99 1f       	adc	r25, r25
- 9a8:	82 1b       	sub	r24, r18
- 9aa:	93 0b       	sbc	r25, r19
- 9ac:	8c 57       	subi	r24, 0x7C	; 124
- 9ae:	9f 4f       	sbci	r25, 0xFF	; 255
- 9b0:	fc 01       	movw	r30, r24
- 9b2:	40 83       	st	Z, r20
-				tasks[i].ToGo = tasks[i].Interval;
- 9b4:	29 81       	ldd	r18, Y+1	; 0x01
- 9b6:	3a 81       	ldd	r19, Y+2	; 0x02
- 9b8:	c9 01       	movw	r24, r18
- 9ba:	88 0f       	add	r24, r24
- 9bc:	99 1f       	adc	r25, r25
- 9be:	88 0f       	add	r24, r24
- 9c0:	99 1f       	adc	r25, r25
- 9c2:	88 0f       	add	r24, r24
- 9c4:	99 1f       	adc	r25, r25
- 9c6:	82 1b       	sub	r24, r18
- 9c8:	93 0b       	sbc	r25, r19
- 9ca:	8e 57       	subi	r24, 0x7E	; 126
- 9cc:	9f 4f       	sbci	r25, 0xFF	; 255
- 9ce:	fc 01       	movw	r30, r24
- 9d0:	40 81       	ld	r20, Z
- 9d2:	51 81       	ldd	r21, Z+1	; 0x01
- 9d4:	29 81       	ldd	r18, Y+1	; 0x01
- 9d6:	3a 81       	ldd	r19, Y+2	; 0x02
- 9d8:	c9 01       	movw	r24, r18
- 9da:	88 0f       	add	r24, r24
- 9dc:	99 1f       	adc	r25, r25
- 9de:	88 0f       	add	r24, r24
- 9e0:	99 1f       	adc	r25, r25
- 9e2:	88 0f       	add	r24, r24
- 9e4:	99 1f       	adc	r25, r25
- 9e6:	82 1b       	sub	r24, r18
- 9e8:	93 0b       	sbc	r25, r19
- 9ea:	80 58       	subi	r24, 0x80	; 128
- 9ec:	9f 4f       	sbci	r25, 0xFF	; 255
- 9ee:	fc 01       	movw	r30, r24
- 9f0:	51 83       	std	Z+1, r21	; 0x01
- 9f2:	40 83       	st	Z, r20
- 9f4:	44 c0       	rjmp	.+136    	; 0xa7e <schedule+0x1d2>
+	stopClock = 1; //zatrzymaj odliczanie zegara
+ 298:	81 e0       	ldi	r24, 0x01	; 1
+ 29a:	90 e0       	ldi	r25, 0x00	; 0
+ 29c:	90 93 79 00 	sts	0x0079, r25
+ 2a0:	80 93 78 00 	sts	0x0078, r24
+	if(displayMode == 0){ //jesli wyswietlane jest HH:MM
+ 2a4:	80 91 60 00 	lds	r24, 0x0060
+ 2a8:	90 91 61 00 	lds	r25, 0x0061
+ 2ac:	00 97       	sbiw	r24, 0x00	; 0
+ 2ae:	09 f0       	breq	.+2      	; 0x2b2 <setHoursAndMins+0x22>
+ 2b0:	48 c0       	rjmp	.+144    	; 0x342 <setHoursAndMins+0xb2>
+		if(keyPressed == 3){ //zwieksz godziny
+ 2b2:	80 91 70 00 	lds	r24, 0x0070
+ 2b6:	90 91 71 00 	lds	r25, 0x0071
+ 2ba:	83 30       	cpi	r24, 0x03	; 3
+ 2bc:	91 05       	cpc	r25, r1
+ 2be:	e9 f4       	brne	.+58     	; 0x2fa <setHoursAndMins+0x6a>
+			hours++;
+ 2c0:	80 91 76 00 	lds	r24, 0x0076
+ 2c4:	90 91 77 00 	lds	r25, 0x0077
+ 2c8:	01 96       	adiw	r24, 0x01	; 1
+ 2ca:	90 93 77 00 	sts	0x0077, r25
+ 2ce:	80 93 76 00 	sts	0x0076, r24
+			if(hours > 23){
+ 2d2:	80 91 76 00 	lds	r24, 0x0076
+ 2d6:	90 91 77 00 	lds	r25, 0x0077
+ 2da:	88 31       	cpi	r24, 0x18	; 24
+ 2dc:	91 05       	cpc	r25, r1
+ 2de:	6c f0       	brlt	.+26     	; 0x2fa <setHoursAndMins+0x6a>
+				hours = hours % 24;
+ 2e0:	80 91 76 00 	lds	r24, 0x0076
+ 2e4:	90 91 77 00 	lds	r25, 0x0077
+ 2e8:	28 e1       	ldi	r18, 0x18	; 24
+ 2ea:	30 e0       	ldi	r19, 0x00	; 0
+ 2ec:	b9 01       	movw	r22, r18
+ 2ee:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 2f2:	90 93 77 00 	sts	0x0077, r25
+ 2f6:	80 93 76 00 	sts	0x0076, r24
 			}
-			//(nie jest periodyczny)
-			else if(tasks[i].ToGo == 0 && tasks[i].Interval == 0){
- 9f6:	29 81       	ldd	r18, Y+1	; 0x01
- 9f8:	3a 81       	ldd	r19, Y+2	; 0x02
- 9fa:	c9 01       	movw	r24, r18
- 9fc:	88 0f       	add	r24, r24
- 9fe:	99 1f       	adc	r25, r25
- a00:	88 0f       	add	r24, r24
- a02:	99 1f       	adc	r25, r25
- a04:	88 0f       	add	r24, r24
- a06:	99 1f       	adc	r25, r25
- a08:	82 1b       	sub	r24, r18
- a0a:	93 0b       	sbc	r25, r19
- a0c:	80 58       	subi	r24, 0x80	; 128
- a0e:	9f 4f       	sbci	r25, 0xFF	; 255
- a10:	fc 01       	movw	r30, r24
- a12:	80 81       	ld	r24, Z
- a14:	91 81       	ldd	r25, Z+1	; 0x01
- a16:	00 97       	sbiw	r24, 0x00	; 0
- a18:	91 f5       	brne	.+100    	; 0xa7e <schedule+0x1d2>
- a1a:	29 81       	ldd	r18, Y+1	; 0x01
- a1c:	3a 81       	ldd	r19, Y+2	; 0x02
- a1e:	c9 01       	movw	r24, r18
- a20:	88 0f       	add	r24, r24
- a22:	99 1f       	adc	r25, r25
- a24:	88 0f       	add	r24, r24
- a26:	99 1f       	adc	r25, r25
- a28:	88 0f       	add	r24, r24
- a2a:	99 1f       	adc	r25, r25
- a2c:	82 1b       	sub	r24, r18
- a2e:	93 0b       	sbc	r25, r19
- a30:	8e 57       	subi	r24, 0x7E	; 126
- a32:	9f 4f       	sbci	r25, 0xFF	; 255
- a34:	fc 01       	movw	r30, r24
- a36:	80 81       	ld	r24, Z
- a38:	91 81       	ldd	r25, Z+1	; 0x01
- a3a:	00 97       	sbiw	r24, 0x00	; 0
- a3c:	01 f5       	brne	.+64     	; 0xa7e <schedule+0x1d2>
-				tasks[i].ready++;
- a3e:	29 81       	ldd	r18, Y+1	; 0x01
- a40:	3a 81       	ldd	r19, Y+2	; 0x02
- a42:	c9 01       	movw	r24, r18
- a44:	88 0f       	add	r24, r24
- a46:	99 1f       	adc	r25, r25
- a48:	88 0f       	add	r24, r24
- a4a:	99 1f       	adc	r25, r25
- a4c:	88 0f       	add	r24, r24
- a4e:	99 1f       	adc	r25, r25
- a50:	82 1b       	sub	r24, r18
- a52:	93 0b       	sbc	r25, r19
- a54:	8c 57       	subi	r24, 0x7C	; 124
- a56:	9f 4f       	sbci	r25, 0xFF	; 255
- a58:	fc 01       	movw	r30, r24
- a5a:	80 81       	ld	r24, Z
- a5c:	48 2f       	mov	r20, r24
- a5e:	4f 5f       	subi	r20, 0xFF	; 255
- a60:	29 81       	ldd	r18, Y+1	; 0x01
- a62:	3a 81       	ldd	r19, Y+2	; 0x02
- a64:	c9 01       	movw	r24, r18
- a66:	88 0f       	add	r24, r24
- a68:	99 1f       	adc	r25, r25
- a6a:	88 0f       	add	r24, r24
- a6c:	99 1f       	adc	r25, r25
- a6e:	88 0f       	add	r24, r24
- a70:	99 1f       	adc	r25, r25
- a72:	82 1b       	sub	r24, r18
- a74:	93 0b       	sbc	r25, r19
- a76:	8c 57       	subi	r24, 0x7C	; 124
- a78:	9f 4f       	sbci	r25, 0xFF	; 255
- a7a:	fc 01       	movw	r30, r24
- a7c:	40 83       	st	Z, r20
+		}
+		if(keyPressed == 2){ //zwieksz minuty
+ 2fa:	80 91 70 00 	lds	r24, 0x0070
+ 2fe:	90 91 71 00 	lds	r25, 0x0071
+ 302:	82 30       	cpi	r24, 0x02	; 2
+ 304:	91 05       	cpc	r25, r1
+ 306:	e9 f4       	brne	.+58     	; 0x342 <setHoursAndMins+0xb2>
+			minutes++;
+ 308:	80 91 74 00 	lds	r24, 0x0074
+ 30c:	90 91 75 00 	lds	r25, 0x0075
+ 310:	01 96       	adiw	r24, 0x01	; 1
+ 312:	90 93 75 00 	sts	0x0075, r25
+ 316:	80 93 74 00 	sts	0x0074, r24
+			if(minutes > 59){
+ 31a:	80 91 74 00 	lds	r24, 0x0074
+ 31e:	90 91 75 00 	lds	r25, 0x0075
+ 322:	8c 33       	cpi	r24, 0x3C	; 60
+ 324:	91 05       	cpc	r25, r1
+ 326:	6c f0       	brlt	.+26     	; 0x342 <setHoursAndMins+0xb2>
+				minutes = minutes % 60;
+ 328:	80 91 74 00 	lds	r24, 0x0074
+ 32c:	90 91 75 00 	lds	r25, 0x0075
+ 330:	2c e3       	ldi	r18, 0x3C	; 60
+ 332:	30 e0       	ldi	r19, 0x00	; 0
+ 334:	b9 01       	movw	r22, r18
+ 336:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 33a:	90 93 75 00 	sts	0x0075, r25
+ 33e:	80 93 74 00 	sts	0x0074, r24
+			}
+		}
+	}	
+	stopClock = 0; //wznow prace zegara
+ 342:	10 92 79 00 	sts	0x0079, r1
+ 346:	10 92 78 00 	sts	0x0078, r1
 }
+ 34a:	df 91       	pop	r29
+ 34c:	cf 91       	pop	r28
+ 34e:	08 95       	ret
 
-//wykonywana w przerwaniu
-void schedule(){
-	//int i = 0;
-	for(int i = 0; i < MAX_TASKS; i++){
- a7e:	89 81       	ldd	r24, Y+1	; 0x01
- a80:	9a 81       	ldd	r25, Y+2	; 0x02
- a82:	01 96       	adiw	r24, 0x01	; 1
- a84:	9a 83       	std	Y+2, r25	; 0x02
- a86:	89 83       	std	Y+1, r24	; 0x01
- a88:	89 81       	ldd	r24, Y+1	; 0x01
- a8a:	9a 81       	ldd	r25, Y+2	; 0x02
- a8c:	8a 30       	cpi	r24, 0x0A	; 10
- a8e:	91 05       	cpc	r25, r1
- a90:	0c f4       	brge	.+2      	; 0xa94 <schedule+0x1e8>
- a92:	14 cf       	rjmp	.-472    	; 0x8bc <schedule+0x10>
-			else if(tasks[i].ToGo == 0 && tasks[i].Interval == 0){
-				tasks[i].ready++;
+00000350 <setMinsAndSecs>:
+
+void setMinsAndSecs(){ //zmiana czasu na ekranie MM:SS
+ 350:	cf 93       	push	r28
+ 352:	df 93       	push	r29
+ 354:	cd b7       	in	r28, 0x3d	; 61
+ 356:	de b7       	in	r29, 0x3e	; 62
+	stopClock = 1; //zatrzymaj odliczanie zegara
+ 358:	81 e0       	ldi	r24, 0x01	; 1
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	90 93 79 00 	sts	0x0079, r25
+ 360:	80 93 78 00 	sts	0x0078, r24
+	if(displayMode == 1){ //jesli wyswietlane jest MM:SS
+ 364:	80 91 60 00 	lds	r24, 0x0060
+ 368:	90 91 61 00 	lds	r25, 0x0061
+ 36c:	81 30       	cpi	r24, 0x01	; 1
+ 36e:	91 05       	cpc	r25, r1
+ 370:	09 f0       	breq	.+2      	; 0x374 <setMinsAndSecs+0x24>
+ 372:	48 c0       	rjmp	.+144    	; 0x404 <setMinsAndSecs+0xb4>
+		if(keyPressed == 3){ //zwieksz minuty
+ 374:	80 91 70 00 	lds	r24, 0x0070
+ 378:	90 91 71 00 	lds	r25, 0x0071
+ 37c:	83 30       	cpi	r24, 0x03	; 3
+ 37e:	91 05       	cpc	r25, r1
+ 380:	e9 f4       	brne	.+58     	; 0x3bc <setMinsAndSecs+0x6c>
+			minutes++;
+ 382:	80 91 74 00 	lds	r24, 0x0074
+ 386:	90 91 75 00 	lds	r25, 0x0075
+ 38a:	01 96       	adiw	r24, 0x01	; 1
+ 38c:	90 93 75 00 	sts	0x0075, r25
+ 390:	80 93 74 00 	sts	0x0074, r24
+			if(minutes > 59){
+ 394:	80 91 74 00 	lds	r24, 0x0074
+ 398:	90 91 75 00 	lds	r25, 0x0075
+ 39c:	8c 33       	cpi	r24, 0x3C	; 60
+ 39e:	91 05       	cpc	r25, r1
+ 3a0:	6c f0       	brlt	.+26     	; 0x3bc <setMinsAndSecs+0x6c>
+				minutes = minutes % 60;
+ 3a2:	80 91 74 00 	lds	r24, 0x0074
+ 3a6:	90 91 75 00 	lds	r25, 0x0075
+ 3aa:	2c e3       	ldi	r18, 0x3C	; 60
+ 3ac:	30 e0       	ldi	r19, 0x00	; 0
+ 3ae:	b9 01       	movw	r22, r18
+ 3b0:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 3b4:	90 93 75 00 	sts	0x0075, r25
+ 3b8:	80 93 74 00 	sts	0x0074, r24
+			}
+		}
+		if(keyPressed == 2){ //zwieksz sekundy
+ 3bc:	80 91 70 00 	lds	r24, 0x0070
+ 3c0:	90 91 71 00 	lds	r25, 0x0071
+ 3c4:	82 30       	cpi	r24, 0x02	; 2
+ 3c6:	91 05       	cpc	r25, r1
+ 3c8:	e9 f4       	brne	.+58     	; 0x404 <setMinsAndSecs+0xb4>
+			seconds++;
+ 3ca:	80 91 72 00 	lds	r24, 0x0072
+ 3ce:	90 91 73 00 	lds	r25, 0x0073
+ 3d2:	01 96       	adiw	r24, 0x01	; 1
+ 3d4:	90 93 73 00 	sts	0x0073, r25
+ 3d8:	80 93 72 00 	sts	0x0072, r24
+			if(seconds > 59){
+ 3dc:	80 91 72 00 	lds	r24, 0x0072
+ 3e0:	90 91 73 00 	lds	r25, 0x0073
+ 3e4:	8c 33       	cpi	r24, 0x3C	; 60
+ 3e6:	91 05       	cpc	r25, r1
+ 3e8:	6c f0       	brlt	.+26     	; 0x404 <setMinsAndSecs+0xb4>
+				seconds = seconds % 60;
+ 3ea:	80 91 72 00 	lds	r24, 0x0072
+ 3ee:	90 91 73 00 	lds	r25, 0x0073
+ 3f2:	2c e3       	ldi	r18, 0x3C	; 60
+ 3f4:	30 e0       	ldi	r19, 0x00	; 0
+ 3f6:	b9 01       	movw	r22, r18
+ 3f8:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 3fc:	90 93 73 00 	sts	0x0073, r25
+ 400:	80 93 72 00 	sts	0x0072, r24
 			}
 		}
 	}
+	stopClock = 0; //wznow prace zegara
+ 404:	10 92 79 00 	sts	0x0079, r1
+ 408:	10 92 78 00 	sts	0x0078, r1
 }
- a94:	0f 90       	pop	r0
- a96:	0f 90       	pop	r0
- a98:	df 91       	pop	r29
- a9a:	cf 91       	pop	r28
- a9c:	08 95       	ret
+ 40c:	df 91       	pop	r29
+ 40e:	cf 91       	pop	r28
+ 410:	08 95       	ret
 
-00000a9e <execute>:
+00000412 <displayMinutesAndSeconds>:
+	i = i % 10;
+	j++;
+	j = j % 4;
+}
 
-void execute(){
- a9e:	cf 93       	push	r28
- aa0:	df 93       	push	r29
- aa2:	00 d0       	rcall	.+0      	; 0xaa4 <execute+0x6>
- aa4:	cd b7       	in	r28, 0x3d	; 61
- aa6:	de b7       	in	r29, 0x3e	; 62
-	for(int i=0; i < MAX_TASKS; i++){
- aa8:	1a 82       	std	Y+2, r1	; 0x02
- aaa:	19 82       	std	Y+1, r1	; 0x01
- aac:	9d c0       	rjmp	.+314    	; 0xbe8 <execute+0x14a>
-		if(tasks[i].ready > 0){
- aae:	29 81       	ldd	r18, Y+1	; 0x01
- ab0:	3a 81       	ldd	r19, Y+2	; 0x02
- ab2:	c9 01       	movw	r24, r18
- ab4:	88 0f       	add	r24, r24
- ab6:	99 1f       	adc	r25, r25
- ab8:	88 0f       	add	r24, r24
- aba:	99 1f       	adc	r25, r25
- abc:	88 0f       	add	r24, r24
- abe:	99 1f       	adc	r25, r25
- ac0:	82 1b       	sub	r24, r18
- ac2:	93 0b       	sbc	r25, r19
- ac4:	8c 57       	subi	r24, 0x7C	; 124
- ac6:	9f 4f       	sbci	r25, 0xFF	; 255
- ac8:	fc 01       	movw	r30, r24
- aca:	80 81       	ld	r24, Z
- acc:	88 23       	and	r24, r24
- ace:	09 f4       	brne	.+2      	; 0xad2 <execute+0x34>
- ad0:	86 c0       	rjmp	.+268    	; 0xbde <execute+0x140>
-			tasks[i].t();
- ad2:	29 81       	ldd	r18, Y+1	; 0x01
- ad4:	3a 81       	ldd	r19, Y+2	; 0x02
- ad6:	c9 01       	movw	r24, r18
+void displayMinutesAndSeconds(){
+ 412:	cf 93       	push	r28
+ 414:	df 93       	push	r29
+ 416:	cd b7       	in	r28, 0x3d	; 61
+ 418:	de b7       	in	r29, 0x3e	; 62
+ 41a:	28 97       	sbiw	r28, 0x08	; 8
+ 41c:	0f b6       	in	r0, 0x3f	; 63
+ 41e:	f8 94       	cli
+ 420:	de bf       	out	0x3e, r29	; 62
+ 422:	0f be       	out	0x3f, r0	; 63
+ 424:	cd bf       	out	0x3d, r28	; 61
+	PORTB = 0xFF;
+ 426:	88 e3       	ldi	r24, 0x38	; 56
+ 428:	90 e0       	ldi	r25, 0x00	; 0
+ 42a:	2f ef       	ldi	r18, 0xFF	; 255
+ 42c:	fc 01       	movw	r30, r24
+ 42e:	20 83       	st	Z, r18
+	int dec = seconds / 10;
+ 430:	80 91 72 00 	lds	r24, 0x0072
+ 434:	90 91 73 00 	lds	r25, 0x0073
+ 438:	2a e0       	ldi	r18, 0x0A	; 10
+ 43a:	30 e0       	ldi	r19, 0x00	; 0
+ 43c:	b9 01       	movw	r22, r18
+ 43e:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 442:	9b 01       	movw	r18, r22
+ 444:	3a 83       	std	Y+2, r19	; 0x02
+ 446:	29 83       	std	Y+1, r18	; 0x01
+	int one = seconds % 10;
+ 448:	80 91 72 00 	lds	r24, 0x0072
+ 44c:	90 91 73 00 	lds	r25, 0x0073
+ 450:	2a e0       	ldi	r18, 0x0A	; 10
+ 452:	30 e0       	ldi	r19, 0x00	; 0
+ 454:	b9 01       	movw	r22, r18
+ 456:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 45a:	9c 83       	std	Y+4, r25	; 0x04
+ 45c:	8b 83       	std	Y+3, r24	; 0x03
+	int minDec = minutes / 10;
+ 45e:	80 91 74 00 	lds	r24, 0x0074
+ 462:	90 91 75 00 	lds	r25, 0x0075
+ 466:	2a e0       	ldi	r18, 0x0A	; 10
+ 468:	30 e0       	ldi	r19, 0x00	; 0
+ 46a:	b9 01       	movw	r22, r18
+ 46c:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 470:	9b 01       	movw	r18, r22
+ 472:	3e 83       	std	Y+6, r19	; 0x06
+ 474:	2d 83       	std	Y+5, r18	; 0x05
+	int minOne = minutes % 10;
+ 476:	80 91 74 00 	lds	r24, 0x0074
+ 47a:	90 91 75 00 	lds	r25, 0x0075
+ 47e:	2a e0       	ldi	r18, 0x0A	; 10
+ 480:	30 e0       	ldi	r19, 0x00	; 0
+ 482:	b9 01       	movw	r22, r18
+ 484:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 488:	98 87       	std	Y+8, r25	; 0x08
+ 48a:	8f 83       	std	Y+7, r24	; 0x07
+	if(j == 0){
+ 48c:	80 91 7c 00 	lds	r24, 0x007C
+ 490:	90 91 7d 00 	lds	r25, 0x007D
+ 494:	00 97       	sbiw	r24, 0x00	; 0
+ 496:	89 f4       	brne	.+34     	; 0x4ba <displayMinutesAndSeconds+0xa8>
+		PORTB = Column[0];
+ 498:	88 e3       	ldi	r24, 0x38	; 56
+ 49a:	90 e0       	ldi	r25, 0x00	; 0
+ 49c:	20 91 6c 00 	lds	r18, 0x006C
+ 4a0:	fc 01       	movw	r30, r24
+ 4a2:	20 83       	st	Z, r18
+		PORTA = Digits[one];
+ 4a4:	8b e3       	ldi	r24, 0x3B	; 59
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	2b 81       	ldd	r18, Y+3	; 0x03
+ 4aa:	3c 81       	ldd	r19, Y+4	; 0x04
+ 4ac:	2e 59       	subi	r18, 0x9E	; 158
+ 4ae:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4b0:	f9 01       	movw	r30, r18
+ 4b2:	20 81       	ld	r18, Z
+ 4b4:	fc 01       	movw	r30, r24
+ 4b6:	20 83       	st	Z, r18
+ 4b8:	47 c0       	rjmp	.+142    	; 0x548 <displayMinutesAndSeconds+0x136>
+	}
+	else if(j == 1){
+ 4ba:	80 91 7c 00 	lds	r24, 0x007C
+ 4be:	90 91 7d 00 	lds	r25, 0x007D
+ 4c2:	81 30       	cpi	r24, 0x01	; 1
+ 4c4:	91 05       	cpc	r25, r1
+ 4c6:	89 f4       	brne	.+34     	; 0x4ea <displayMinutesAndSeconds+0xd8>
+		PORTB = Column[1];
+ 4c8:	88 e3       	ldi	r24, 0x38	; 56
+ 4ca:	90 e0       	ldi	r25, 0x00	; 0
+ 4cc:	20 91 6d 00 	lds	r18, 0x006D
+ 4d0:	fc 01       	movw	r30, r24
+ 4d2:	20 83       	st	Z, r18
+		PORTA = Digits[dec];
+ 4d4:	8b e3       	ldi	r24, 0x3B	; 59
+ 4d6:	90 e0       	ldi	r25, 0x00	; 0
+ 4d8:	29 81       	ldd	r18, Y+1	; 0x01
+ 4da:	3a 81       	ldd	r19, Y+2	; 0x02
+ 4dc:	2e 59       	subi	r18, 0x9E	; 158
+ 4de:	3f 4f       	sbci	r19, 0xFF	; 255
+ 4e0:	f9 01       	movw	r30, r18
+ 4e2:	20 81       	ld	r18, Z
+ 4e4:	fc 01       	movw	r30, r24
+ 4e6:	20 83       	st	Z, r18
+ 4e8:	2f c0       	rjmp	.+94     	; 0x548 <displayMinutesAndSeconds+0x136>
+	}
+	else if(j == 2){
+ 4ea:	80 91 7c 00 	lds	r24, 0x007C
+ 4ee:	90 91 7d 00 	lds	r25, 0x007D
+ 4f2:	82 30       	cpi	r24, 0x02	; 2
+ 4f4:	91 05       	cpc	r25, r1
+ 4f6:	89 f4       	brne	.+34     	; 0x51a <displayMinutesAndSeconds+0x108>
+		PORTB = Column[2];
+ 4f8:	88 e3       	ldi	r24, 0x38	; 56
+ 4fa:	90 e0       	ldi	r25, 0x00	; 0
+ 4fc:	20 91 6e 00 	lds	r18, 0x006E
+ 500:	fc 01       	movw	r30, r24
+ 502:	20 83       	st	Z, r18
+		PORTA = Digits[minOne];
+ 504:	8b e3       	ldi	r24, 0x3B	; 59
+ 506:	90 e0       	ldi	r25, 0x00	; 0
+ 508:	2f 81       	ldd	r18, Y+7	; 0x07
+ 50a:	38 85       	ldd	r19, Y+8	; 0x08
+ 50c:	2e 59       	subi	r18, 0x9E	; 158
+ 50e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 510:	f9 01       	movw	r30, r18
+ 512:	20 81       	ld	r18, Z
+ 514:	fc 01       	movw	r30, r24
+ 516:	20 83       	st	Z, r18
+ 518:	17 c0       	rjmp	.+46     	; 0x548 <displayMinutesAndSeconds+0x136>
+	}
+	else if(j == 3){
+ 51a:	80 91 7c 00 	lds	r24, 0x007C
+ 51e:	90 91 7d 00 	lds	r25, 0x007D
+ 522:	83 30       	cpi	r24, 0x03	; 3
+ 524:	91 05       	cpc	r25, r1
+ 526:	81 f4       	brne	.+32     	; 0x548 <displayMinutesAndSeconds+0x136>
+		PORTB = Column[3];
+ 528:	88 e3       	ldi	r24, 0x38	; 56
+ 52a:	90 e0       	ldi	r25, 0x00	; 0
+ 52c:	20 91 6f 00 	lds	r18, 0x006F
+ 530:	fc 01       	movw	r30, r24
+ 532:	20 83       	st	Z, r18
+		PORTA = Digits[minDec];
+ 534:	8b e3       	ldi	r24, 0x3B	; 59
+ 536:	90 e0       	ldi	r25, 0x00	; 0
+ 538:	2d 81       	ldd	r18, Y+5	; 0x05
+ 53a:	3e 81       	ldd	r19, Y+6	; 0x06
+ 53c:	2e 59       	subi	r18, 0x9E	; 158
+ 53e:	3f 4f       	sbci	r19, 0xFF	; 255
+ 540:	f9 01       	movw	r30, r18
+ 542:	20 81       	ld	r18, Z
+ 544:	fc 01       	movw	r30, r24
+ 546:	20 83       	st	Z, r18
+	}
+
+	i++;
+ 548:	80 91 7a 00 	lds	r24, 0x007A
+ 54c:	90 91 7b 00 	lds	r25, 0x007B
+ 550:	01 96       	adiw	r24, 0x01	; 1
+ 552:	90 93 7b 00 	sts	0x007B, r25
+ 556:	80 93 7a 00 	sts	0x007A, r24
+	i = i % 10;
+ 55a:	80 91 7a 00 	lds	r24, 0x007A
+ 55e:	90 91 7b 00 	lds	r25, 0x007B
+ 562:	2a e0       	ldi	r18, 0x0A	; 10
+ 564:	30 e0       	ldi	r19, 0x00	; 0
+ 566:	b9 01       	movw	r22, r18
+ 568:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 56c:	90 93 7b 00 	sts	0x007B, r25
+ 570:	80 93 7a 00 	sts	0x007A, r24
+	j++;
+ 574:	80 91 7c 00 	lds	r24, 0x007C
+ 578:	90 91 7d 00 	lds	r25, 0x007D
+ 57c:	01 96       	adiw	r24, 0x01	; 1
+ 57e:	90 93 7d 00 	sts	0x007D, r25
+ 582:	80 93 7c 00 	sts	0x007C, r24
+	j = j % 4;
+ 586:	80 91 7c 00 	lds	r24, 0x007C
+ 58a:	90 91 7d 00 	lds	r25, 0x007D
+ 58e:	83 70       	andi	r24, 0x03	; 3
+ 590:	90 78       	andi	r25, 0x80	; 128
+ 592:	99 23       	and	r25, r25
+ 594:	24 f4       	brge	.+8      	; 0x59e <displayMinutesAndSeconds+0x18c>
+ 596:	01 97       	sbiw	r24, 0x01	; 1
+ 598:	8c 6f       	ori	r24, 0xFC	; 252
+ 59a:	9f 6f       	ori	r25, 0xFF	; 255
+ 59c:	01 96       	adiw	r24, 0x01	; 1
+ 59e:	90 93 7d 00 	sts	0x007D, r25
+ 5a2:	80 93 7c 00 	sts	0x007C, r24
+}
+ 5a6:	28 96       	adiw	r28, 0x08	; 8
+ 5a8:	0f b6       	in	r0, 0x3f	; 63
+ 5aa:	f8 94       	cli
+ 5ac:	de bf       	out	0x3e, r29	; 62
+ 5ae:	0f be       	out	0x3f, r0	; 63
+ 5b0:	cd bf       	out	0x3d, r28	; 61
+ 5b2:	df 91       	pop	r29
+ 5b4:	cf 91       	pop	r28
+ 5b6:	08 95       	ret
+
+000005b8 <displayHoursAndMinutes>:
+
+void displayHoursAndMinutes(){
+ 5b8:	cf 93       	push	r28
+ 5ba:	df 93       	push	r29
+ 5bc:	cd b7       	in	r28, 0x3d	; 61
+ 5be:	de b7       	in	r29, 0x3e	; 62
+ 5c0:	28 97       	sbiw	r28, 0x08	; 8
+ 5c2:	0f b6       	in	r0, 0x3f	; 63
+ 5c4:	f8 94       	cli
+ 5c6:	de bf       	out	0x3e, r29	; 62
+ 5c8:	0f be       	out	0x3f, r0	; 63
+ 5ca:	cd bf       	out	0x3d, r28	; 61
+	PORTB = 0xFF;
+ 5cc:	88 e3       	ldi	r24, 0x38	; 56
+ 5ce:	90 e0       	ldi	r25, 0x00	; 0
+ 5d0:	2f ef       	ldi	r18, 0xFF	; 255
+ 5d2:	fc 01       	movw	r30, r24
+ 5d4:	20 83       	st	Z, r18
+	int dec = minutes / 10;
+ 5d6:	80 91 74 00 	lds	r24, 0x0074
+ 5da:	90 91 75 00 	lds	r25, 0x0075
+ 5de:	2a e0       	ldi	r18, 0x0A	; 10
+ 5e0:	30 e0       	ldi	r19, 0x00	; 0
+ 5e2:	b9 01       	movw	r22, r18
+ 5e4:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 5e8:	9b 01       	movw	r18, r22
+ 5ea:	3a 83       	std	Y+2, r19	; 0x02
+ 5ec:	29 83       	std	Y+1, r18	; 0x01
+	int one = minutes % 10;
+ 5ee:	80 91 74 00 	lds	r24, 0x0074
+ 5f2:	90 91 75 00 	lds	r25, 0x0075
+ 5f6:	2a e0       	ldi	r18, 0x0A	; 10
+ 5f8:	30 e0       	ldi	r19, 0x00	; 0
+ 5fa:	b9 01       	movw	r22, r18
+ 5fc:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 600:	9c 83       	std	Y+4, r25	; 0x04
+ 602:	8b 83       	std	Y+3, r24	; 0x03
+	int HrsDec = hours / 10;
+ 604:	80 91 76 00 	lds	r24, 0x0076
+ 608:	90 91 77 00 	lds	r25, 0x0077
+ 60c:	2a e0       	ldi	r18, 0x0A	; 10
+ 60e:	30 e0       	ldi	r19, 0x00	; 0
+ 610:	b9 01       	movw	r22, r18
+ 612:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 616:	9b 01       	movw	r18, r22
+ 618:	3e 83       	std	Y+6, r19	; 0x06
+ 61a:	2d 83       	std	Y+5, r18	; 0x05
+	int HrsOne = hours % 10;
+ 61c:	80 91 76 00 	lds	r24, 0x0076
+ 620:	90 91 77 00 	lds	r25, 0x0077
+ 624:	2a e0       	ldi	r18, 0x0A	; 10
+ 626:	30 e0       	ldi	r19, 0x00	; 0
+ 628:	b9 01       	movw	r22, r18
+ 62a:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 62e:	98 87       	std	Y+8, r25	; 0x08
+ 630:	8f 83       	std	Y+7, r24	; 0x07
+	if(j == 0){
+ 632:	80 91 7c 00 	lds	r24, 0x007C
+ 636:	90 91 7d 00 	lds	r25, 0x007D
+ 63a:	00 97       	sbiw	r24, 0x00	; 0
+ 63c:	89 f4       	brne	.+34     	; 0x660 <displayHoursAndMinutes+0xa8>
+		PORTB = Column[0];
+ 63e:	88 e3       	ldi	r24, 0x38	; 56
+ 640:	90 e0       	ldi	r25, 0x00	; 0
+ 642:	20 91 6c 00 	lds	r18, 0x006C
+ 646:	fc 01       	movw	r30, r24
+ 648:	20 83       	st	Z, r18
+		PORTA = Digits[one];
+ 64a:	8b e3       	ldi	r24, 0x3B	; 59
+ 64c:	90 e0       	ldi	r25, 0x00	; 0
+ 64e:	2b 81       	ldd	r18, Y+3	; 0x03
+ 650:	3c 81       	ldd	r19, Y+4	; 0x04
+ 652:	2e 59       	subi	r18, 0x9E	; 158
+ 654:	3f 4f       	sbci	r19, 0xFF	; 255
+ 656:	f9 01       	movw	r30, r18
+ 658:	20 81       	ld	r18, Z
+ 65a:	fc 01       	movw	r30, r24
+ 65c:	20 83       	st	Z, r18
+ 65e:	47 c0       	rjmp	.+142    	; 0x6ee <displayHoursAndMinutes+0x136>
+	}
+	else if(j == 1){
+ 660:	80 91 7c 00 	lds	r24, 0x007C
+ 664:	90 91 7d 00 	lds	r25, 0x007D
+ 668:	81 30       	cpi	r24, 0x01	; 1
+ 66a:	91 05       	cpc	r25, r1
+ 66c:	89 f4       	brne	.+34     	; 0x690 <displayHoursAndMinutes+0xd8>
+		PORTB = Column[1];
+ 66e:	88 e3       	ldi	r24, 0x38	; 56
+ 670:	90 e0       	ldi	r25, 0x00	; 0
+ 672:	20 91 6d 00 	lds	r18, 0x006D
+ 676:	fc 01       	movw	r30, r24
+ 678:	20 83       	st	Z, r18
+		PORTA = Digits[dec];
+ 67a:	8b e3       	ldi	r24, 0x3B	; 59
+ 67c:	90 e0       	ldi	r25, 0x00	; 0
+ 67e:	29 81       	ldd	r18, Y+1	; 0x01
+ 680:	3a 81       	ldd	r19, Y+2	; 0x02
+ 682:	2e 59       	subi	r18, 0x9E	; 158
+ 684:	3f 4f       	sbci	r19, 0xFF	; 255
+ 686:	f9 01       	movw	r30, r18
+ 688:	20 81       	ld	r18, Z
+ 68a:	fc 01       	movw	r30, r24
+ 68c:	20 83       	st	Z, r18
+ 68e:	2f c0       	rjmp	.+94     	; 0x6ee <displayHoursAndMinutes+0x136>
+	}
+	else if(j == 2){
+ 690:	80 91 7c 00 	lds	r24, 0x007C
+ 694:	90 91 7d 00 	lds	r25, 0x007D
+ 698:	82 30       	cpi	r24, 0x02	; 2
+ 69a:	91 05       	cpc	r25, r1
+ 69c:	89 f4       	brne	.+34     	; 0x6c0 <displayHoursAndMinutes+0x108>
+		PORTB = Column[2];
+ 69e:	88 e3       	ldi	r24, 0x38	; 56
+ 6a0:	90 e0       	ldi	r25, 0x00	; 0
+ 6a2:	20 91 6e 00 	lds	r18, 0x006E
+ 6a6:	fc 01       	movw	r30, r24
+ 6a8:	20 83       	st	Z, r18
+		PORTA = Digits[HrsOne];
+ 6aa:	8b e3       	ldi	r24, 0x3B	; 59
+ 6ac:	90 e0       	ldi	r25, 0x00	; 0
+ 6ae:	2f 81       	ldd	r18, Y+7	; 0x07
+ 6b0:	38 85       	ldd	r19, Y+8	; 0x08
+ 6b2:	2e 59       	subi	r18, 0x9E	; 158
+ 6b4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 6b6:	f9 01       	movw	r30, r18
+ 6b8:	20 81       	ld	r18, Z
+ 6ba:	fc 01       	movw	r30, r24
+ 6bc:	20 83       	st	Z, r18
+ 6be:	17 c0       	rjmp	.+46     	; 0x6ee <displayHoursAndMinutes+0x136>
+	}
+	else if(j == 3){
+ 6c0:	80 91 7c 00 	lds	r24, 0x007C
+ 6c4:	90 91 7d 00 	lds	r25, 0x007D
+ 6c8:	83 30       	cpi	r24, 0x03	; 3
+ 6ca:	91 05       	cpc	r25, r1
+ 6cc:	81 f4       	brne	.+32     	; 0x6ee <displayHoursAndMinutes+0x136>
+		PORTB = Column[3];
+ 6ce:	88 e3       	ldi	r24, 0x38	; 56
+ 6d0:	90 e0       	ldi	r25, 0x00	; 0
+ 6d2:	20 91 6f 00 	lds	r18, 0x006F
+ 6d6:	fc 01       	movw	r30, r24
+ 6d8:	20 83       	st	Z, r18
+		PORTA = Digits[HrsDec];
+ 6da:	8b e3       	ldi	r24, 0x3B	; 59
+ 6dc:	90 e0       	ldi	r25, 0x00	; 0
+ 6de:	2d 81       	ldd	r18, Y+5	; 0x05
+ 6e0:	3e 81       	ldd	r19, Y+6	; 0x06
+ 6e2:	2e 59       	subi	r18, 0x9E	; 158
+ 6e4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 6e6:	f9 01       	movw	r30, r18
+ 6e8:	20 81       	ld	r18, Z
+ 6ea:	fc 01       	movw	r30, r24
+ 6ec:	20 83       	st	Z, r18
+	}
+
+	i++;
+ 6ee:	80 91 7a 00 	lds	r24, 0x007A
+ 6f2:	90 91 7b 00 	lds	r25, 0x007B
+ 6f6:	01 96       	adiw	r24, 0x01	; 1
+ 6f8:	90 93 7b 00 	sts	0x007B, r25
+ 6fc:	80 93 7a 00 	sts	0x007A, r24
+	i = i % 10;
+ 700:	80 91 7a 00 	lds	r24, 0x007A
+ 704:	90 91 7b 00 	lds	r25, 0x007B
+ 708:	2a e0       	ldi	r18, 0x0A	; 10
+ 70a:	30 e0       	ldi	r19, 0x00	; 0
+ 70c:	b9 01       	movw	r22, r18
+ 70e:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 712:	90 93 7b 00 	sts	0x007B, r25
+ 716:	80 93 7a 00 	sts	0x007A, r24
+	j++;
+ 71a:	80 91 7c 00 	lds	r24, 0x007C
+ 71e:	90 91 7d 00 	lds	r25, 0x007D
+ 722:	01 96       	adiw	r24, 0x01	; 1
+ 724:	90 93 7d 00 	sts	0x007D, r25
+ 728:	80 93 7c 00 	sts	0x007C, r24
+	j = j % 4;
+ 72c:	80 91 7c 00 	lds	r24, 0x007C
+ 730:	90 91 7d 00 	lds	r25, 0x007D
+ 734:	83 70       	andi	r24, 0x03	; 3
+ 736:	90 78       	andi	r25, 0x80	; 128
+ 738:	99 23       	and	r25, r25
+ 73a:	24 f4       	brge	.+8      	; 0x744 <displayHoursAndMinutes+0x18c>
+ 73c:	01 97       	sbiw	r24, 0x01	; 1
+ 73e:	8c 6f       	ori	r24, 0xFC	; 252
+ 740:	9f 6f       	ori	r25, 0xFF	; 255
+ 742:	01 96       	adiw	r24, 0x01	; 1
+ 744:	90 93 7d 00 	sts	0x007D, r25
+ 748:	80 93 7c 00 	sts	0x007C, r24
+}
+ 74c:	28 96       	adiw	r28, 0x08	; 8
+ 74e:	0f b6       	in	r0, 0x3f	; 63
+ 750:	f8 94       	cli
+ 752:	de bf       	out	0x3e, r29	; 62
+ 754:	0f be       	out	0x3f, r0	; 63
+ 756:	cd bf       	out	0x3d, r28	; 61
+ 758:	df 91       	pop	r29
+ 75a:	cf 91       	pop	r28
+ 75c:	08 95       	ret
+
+0000075e <displayClock>:
+
+void displayClock(){
+ 75e:	cf 93       	push	r28
+ 760:	df 93       	push	r29
+ 762:	cd b7       	in	r28, 0x3d	; 61
+ 764:	de b7       	in	r29, 0x3e	; 62
+	if(displayMode == 1){
+ 766:	80 91 60 00 	lds	r24, 0x0060
+ 76a:	90 91 61 00 	lds	r25, 0x0061
+ 76e:	81 30       	cpi	r24, 0x01	; 1
+ 770:	91 05       	cpc	r25, r1
+ 772:	11 f4       	brne	.+4      	; 0x778 <displayClock+0x1a>
+		displayMinutesAndSeconds();
+ 774:	0e 94 09 02 	call	0x412	; 0x412 <displayMinutesAndSeconds>
+	}
+	if(displayMode == 0){
+ 778:	80 91 60 00 	lds	r24, 0x0060
+ 77c:	90 91 61 00 	lds	r25, 0x0061
+ 780:	00 97       	sbiw	r24, 0x00	; 0
+ 782:	11 f4       	brne	.+4      	; 0x788 <displayClock+0x2a>
+		displayHoursAndMinutes();
+ 784:	0e 94 dc 02 	call	0x5b8	; 0x5b8 <displayHoursAndMinutes>
+	}
+}
+ 788:	df 91       	pop	r29
+ 78a:	cf 91       	pop	r28
+ 78c:	08 95       	ret
+
+0000078e <manageClock>:
+
+void manageClock(){
+ 78e:	cf 93       	push	r28
+ 790:	df 93       	push	r29
+ 792:	cd b7       	in	r28, 0x3d	; 61
+ 794:	de b7       	in	r29, 0x3e	; 62
+	if(stopClock == 0){ //jesli zegar ma chodzic to dodaj sekunde
+ 796:	80 91 78 00 	lds	r24, 0x0078
+ 79a:	90 91 79 00 	lds	r25, 0x0079
+ 79e:	00 97       	sbiw	r24, 0x00	; 0
+ 7a0:	09 f0       	breq	.+2      	; 0x7a4 <manageClock+0x16>
+ 7a2:	57 c0       	rjmp	.+174    	; 0x852 <manageClock+0xc4>
+		seconds++;
+ 7a4:	80 91 72 00 	lds	r24, 0x0072
+ 7a8:	90 91 73 00 	lds	r25, 0x0073
+ 7ac:	01 96       	adiw	r24, 0x01	; 1
+ 7ae:	90 93 73 00 	sts	0x0073, r25
+ 7b2:	80 93 72 00 	sts	0x0072, r24
+		if(seconds > 59){
+ 7b6:	80 91 72 00 	lds	r24, 0x0072
+ 7ba:	90 91 73 00 	lds	r25, 0x0073
+ 7be:	8c 33       	cpi	r24, 0x3C	; 60
+ 7c0:	91 05       	cpc	r25, r1
+ 7c2:	b4 f0       	brlt	.+44     	; 0x7f0 <manageClock+0x62>
+			minutes++;
+ 7c4:	80 91 74 00 	lds	r24, 0x0074
+ 7c8:	90 91 75 00 	lds	r25, 0x0075
+ 7cc:	01 96       	adiw	r24, 0x01	; 1
+ 7ce:	90 93 75 00 	sts	0x0075, r25
+ 7d2:	80 93 74 00 	sts	0x0074, r24
+			seconds = seconds % 60;
+ 7d6:	80 91 72 00 	lds	r24, 0x0072
+ 7da:	90 91 73 00 	lds	r25, 0x0073
+ 7de:	2c e3       	ldi	r18, 0x3C	; 60
+ 7e0:	30 e0       	ldi	r19, 0x00	; 0
+ 7e2:	b9 01       	movw	r22, r18
+ 7e4:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 7e8:	90 93 73 00 	sts	0x0073, r25
+ 7ec:	80 93 72 00 	sts	0x0072, r24
+		}
+		if(minutes > 59){
+ 7f0:	80 91 74 00 	lds	r24, 0x0074
+ 7f4:	90 91 75 00 	lds	r25, 0x0075
+ 7f8:	8c 33       	cpi	r24, 0x3C	; 60
+ 7fa:	91 05       	cpc	r25, r1
+ 7fc:	b4 f0       	brlt	.+44     	; 0x82a <manageClock+0x9c>
+			hours++;
+ 7fe:	80 91 76 00 	lds	r24, 0x0076
+ 802:	90 91 77 00 	lds	r25, 0x0077
+ 806:	01 96       	adiw	r24, 0x01	; 1
+ 808:	90 93 77 00 	sts	0x0077, r25
+ 80c:	80 93 76 00 	sts	0x0076, r24
+			minutes = minutes % 60;
+ 810:	80 91 74 00 	lds	r24, 0x0074
+ 814:	90 91 75 00 	lds	r25, 0x0075
+ 818:	2c e3       	ldi	r18, 0x3C	; 60
+ 81a:	30 e0       	ldi	r19, 0x00	; 0
+ 81c:	b9 01       	movw	r22, r18
+ 81e:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 822:	90 93 75 00 	sts	0x0075, r25
+ 826:	80 93 74 00 	sts	0x0074, r24
+		}
+		if(hours > 23){
+ 82a:	80 91 76 00 	lds	r24, 0x0076
+ 82e:	90 91 77 00 	lds	r25, 0x0077
+ 832:	88 31       	cpi	r24, 0x18	; 24
+ 834:	91 05       	cpc	r25, r1
+ 836:	6c f0       	brlt	.+26     	; 0x852 <manageClock+0xc4>
+			hours = hours % 24;
+ 838:	80 91 76 00 	lds	r24, 0x0076
+ 83c:	90 91 77 00 	lds	r25, 0x0077
+ 840:	28 e1       	ldi	r18, 0x18	; 24
+ 842:	30 e0       	ldi	r19, 0x00	; 0
+ 844:	b9 01       	movw	r22, r18
+ 846:	0e 94 0e 07 	call	0xe1c	; 0xe1c <__divmodhi4>
+ 84a:	90 93 77 00 	sts	0x0077, r25
+ 84e:	80 93 76 00 	sts	0x0076, r24
+		}				
+	}
+ 852:	df 91       	pop	r29
+ 854:	cf 91       	pop	r28
+ 856:	08 95       	ret
+
+00000858 <main>:
+
+#include "Scheduler.h"
+#include "Clock.h"
+
+int main(void)
+{
+ 858:	cf 93       	push	r28
+ 85a:	df 93       	push	r29
+ 85c:	cd b7       	in	r28, 0x3d	; 61
+ 85e:	de b7       	in	r29, 0x3e	; 62
+
+
+        init();
+ 860:	0e 94 5c 04 	call	0x8b8	; 0x8b8 <init>
+		initCounter();
+ 864:	0e 94 b3 04 	call	0x966	; 0x966 <initCounter>
+
+        addTask(getKeyNumber, 1000); //task do wykrywania nacisnietego klawisza
+ 868:	68 ee       	ldi	r22, 0xE8	; 232
+ 86a:	73 e0       	ldi	r23, 0x03	; 3
+ 86c:	85 e9       	ldi	r24, 0x95	; 149
+ 86e:	90 e0       	ldi	r25, 0x00	; 0
+ 870:	0e 94 db 04 	call	0x9b6	; 0x9b6 <addTask>
+        addTask(manageClock, 1000); //task odpowiadajacy za odliczanie czasu
+ 874:	68 ee       	ldi	r22, 0xE8	; 232
+ 876:	73 e0       	ldi	r23, 0x03	; 3
+ 878:	87 ec       	ldi	r24, 0xC7	; 199
+ 87a:	93 e0       	ldi	r25, 0x03	; 3
+ 87c:	0e 94 db 04 	call	0x9b6	; 0x9b6 <addTask>
+        addTask(displayClock, 5); //task wyswietlajacy na wyswietlaczu 7-segm.
+ 880:	65 e0       	ldi	r22, 0x05	; 5
+ 882:	70 e0       	ldi	r23, 0x00	; 0
+ 884:	8f ea       	ldi	r24, 0xAF	; 175
+ 886:	93 e0       	ldi	r25, 0x03	; 3
+ 888:	0e 94 db 04 	call	0x9b6	; 0x9b6 <addTask>
+        addTask(changeMode, 1000); //task do zmiany trybu wyswietlania HH:MM / MM:SS
+ 88c:	68 ee       	ldi	r22, 0xE8	; 232
+ 88e:	73 e0       	ldi	r23, 0x03	; 3
+ 890:	81 e2       	ldi	r24, 0x21	; 33
+ 892:	91 e0       	ldi	r25, 0x01	; 1
+ 894:	0e 94 db 04 	call	0x9b6	; 0x9b6 <addTask>
+		addTask(setMinsAndSecs, 200); //*task do zmiany minut i sekund
+ 898:	68 ec       	ldi	r22, 0xC8	; 200
+ 89a:	70 e0       	ldi	r23, 0x00	; 0
+ 89c:	88 ea       	ldi	r24, 0xA8	; 168
+ 89e:	91 e0       	ldi	r25, 0x01	; 1
+ 8a0:	0e 94 db 04 	call	0x9b6	; 0x9b6 <addTask>
+		addTask(setHoursAndMins, 200); //*task do zmiany godzin i minut
+ 8a4:	68 ec       	ldi	r22, 0xC8	; 200
+ 8a6:	70 e0       	ldi	r23, 0x00	; 0
+ 8a8:	88 e4       	ldi	r24, 0x48	; 72
+ 8aa:	91 e0       	ldi	r25, 0x01	; 1
+ 8ac:	0e 94 db 04 	call	0x9b6	; 0x9b6 <addTask>
+        sei();
+ 8b0:	78 94       	sei
+        while(1){
+                execute();
+ 8b2:	0e 94 32 06 	call	0xc64	; 0xc64 <execute>
+        }
+ 8b6:	fd cf       	rjmp	.-6      	; 0x8b2 <__stack+0x53>
+
+000008b8 <init>:
+
+#include "Scheduler.h"
+
+int tasks_num = 0;
+
+void init(){
+ 8b8:	cf 93       	push	r28
+ 8ba:	df 93       	push	r29
+ 8bc:	00 d0       	rcall	.+0      	; 0x8be <init+0x6>
+ 8be:	cd b7       	in	r28, 0x3d	; 61
+ 8c0:	de b7       	in	r29, 0x3e	; 62
+
+	for(int i = 0; i < MAX_TASKS; i++){
+ 8c2:	1a 82       	std	Y+2, r1	; 0x02
+ 8c4:	19 82       	std	Y+1, r1	; 0x01
+ 8c6:	44 c0       	rjmp	.+136    	; 0x950 <init+0x98>
+		tasks[i].Interval = 0;
+ 8c8:	29 81       	ldd	r18, Y+1	; 0x01
+ 8ca:	3a 81       	ldd	r19, Y+2	; 0x02
+ 8cc:	c9 01       	movw	r24, r18
+ 8ce:	88 0f       	add	r24, r24
+ 8d0:	99 1f       	adc	r25, r25
+ 8d2:	88 0f       	add	r24, r24
+ 8d4:	99 1f       	adc	r25, r25
+ 8d6:	88 0f       	add	r24, r24
+ 8d8:	99 1f       	adc	r25, r25
+ 8da:	82 1b       	sub	r24, r18
+ 8dc:	93 0b       	sbc	r25, r19
+ 8de:	8c 57       	subi	r24, 0x7C	; 124
+ 8e0:	9f 4f       	sbci	r25, 0xFF	; 255
+ 8e2:	fc 01       	movw	r30, r24
+ 8e4:	11 82       	std	Z+1, r1	; 0x01
+ 8e6:	10 82       	st	Z, r1
+		tasks[i].ready = 0;
+ 8e8:	29 81       	ldd	r18, Y+1	; 0x01
+ 8ea:	3a 81       	ldd	r19, Y+2	; 0x02
+ 8ec:	c9 01       	movw	r24, r18
+ 8ee:	88 0f       	add	r24, r24
+ 8f0:	99 1f       	adc	r25, r25
+ 8f2:	88 0f       	add	r24, r24
+ 8f4:	99 1f       	adc	r25, r25
+ 8f6:	88 0f       	add	r24, r24
+ 8f8:	99 1f       	adc	r25, r25
+ 8fa:	82 1b       	sub	r24, r18
+ 8fc:	93 0b       	sbc	r25, r19
+ 8fe:	8a 57       	subi	r24, 0x7A	; 122
+ 900:	9f 4f       	sbci	r25, 0xFF	; 255
+ 902:	fc 01       	movw	r30, r24
+ 904:	10 82       	st	Z, r1
+		tasks[i].t = 0;
+ 906:	29 81       	ldd	r18, Y+1	; 0x01
+ 908:	3a 81       	ldd	r19, Y+2	; 0x02
+ 90a:	c9 01       	movw	r24, r18
+ 90c:	88 0f       	add	r24, r24
+ 90e:	99 1f       	adc	r25, r25
+ 910:	88 0f       	add	r24, r24
+ 912:	99 1f       	adc	r25, r25
+ 914:	88 0f       	add	r24, r24
+ 916:	99 1f       	adc	r25, r25
+ 918:	82 1b       	sub	r24, r18
+ 91a:	93 0b       	sbc	r25, r19
+ 91c:	80 58       	subi	r24, 0x80	; 128
+ 91e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 920:	fc 01       	movw	r30, r24
+ 922:	11 82       	std	Z+1, r1	; 0x01
+ 924:	10 82       	st	Z, r1
+		tasks[i].ToGo = 0;
+ 926:	29 81       	ldd	r18, Y+1	; 0x01
+ 928:	3a 81       	ldd	r19, Y+2	; 0x02
+ 92a:	c9 01       	movw	r24, r18
+ 92c:	88 0f       	add	r24, r24
+ 92e:	99 1f       	adc	r25, r25
+ 930:	88 0f       	add	r24, r24
+ 932:	99 1f       	adc	r25, r25
+ 934:	88 0f       	add	r24, r24
+ 936:	99 1f       	adc	r25, r25
+ 938:	82 1b       	sub	r24, r18
+ 93a:	93 0b       	sbc	r25, r19
+ 93c:	8e 57       	subi	r24, 0x7E	; 126
+ 93e:	9f 4f       	sbci	r25, 0xFF	; 255
+ 940:	fc 01       	movw	r30, r24
+ 942:	11 82       	std	Z+1, r1	; 0x01
+ 944:	10 82       	st	Z, r1
+
+int tasks_num = 0;
+
+void init(){
+
+	for(int i = 0; i < MAX_TASKS; i++){
+ 946:	89 81       	ldd	r24, Y+1	; 0x01
+ 948:	9a 81       	ldd	r25, Y+2	; 0x02
+ 94a:	01 96       	adiw	r24, 0x01	; 1
+ 94c:	9a 83       	std	Y+2, r25	; 0x02
+ 94e:	89 83       	std	Y+1, r24	; 0x01
+ 950:	89 81       	ldd	r24, Y+1	; 0x01
+ 952:	9a 81       	ldd	r25, Y+2	; 0x02
+ 954:	8a 30       	cpi	r24, 0x0A	; 10
+ 956:	91 05       	cpc	r25, r1
+ 958:	0c f4       	brge	.+2      	; 0x95c <init+0xa4>
+ 95a:	b6 cf       	rjmp	.-148    	; 0x8c8 <init+0x10>
+		tasks[i].Interval = 0;
+		tasks[i].ready = 0;
+		tasks[i].t = 0;
+		tasks[i].ToGo = 0;
+	}
+}
+ 95c:	0f 90       	pop	r0
+ 95e:	0f 90       	pop	r0
+ 960:	df 91       	pop	r29
+ 962:	cf 91       	pop	r28
+ 964:	08 95       	ret
+
+00000966 <initCounter>:
+
+void initCounter(){
+ 966:	cf 93       	push	r28
+ 968:	df 93       	push	r29
+ 96a:	cd b7       	in	r28, 0x3d	; 61
+ 96c:	de b7       	in	r29, 0x3e	; 62
+		// prescaler na 64
+		OCR0 = 250;
+ 96e:	8c e5       	ldi	r24, 0x5C	; 92
+ 970:	90 e0       	ldi	r25, 0x00	; 0
+ 972:	2a ef       	ldi	r18, 0xFA	; 250
+ 974:	fc 01       	movw	r30, r24
+ 976:	20 83       	st	Z, r18
+		TCCR0 |= (0 << WGM00) | (1 << WGM01) | (0 << CS02) | (1 << CS01) | (1 << CS00) | (0 << COM01) | (0 << COM00);
+ 978:	83 e5       	ldi	r24, 0x53	; 83
+ 97a:	90 e0       	ldi	r25, 0x00	; 0
+ 97c:	23 e5       	ldi	r18, 0x53	; 83
+ 97e:	30 e0       	ldi	r19, 0x00	; 0
+ 980:	f9 01       	movw	r30, r18
+ 982:	20 81       	ld	r18, Z
+ 984:	2b 60       	ori	r18, 0x0B	; 11
+ 986:	fc 01       	movw	r30, r24
+ 988:	20 83       	st	Z, r18
+		TIMSK |= (1 << TOIE0) | (1 << OCIE0);
+ 98a:	89 e5       	ldi	r24, 0x59	; 89
+ 98c:	90 e0       	ldi	r25, 0x00	; 0
+ 98e:	29 e5       	ldi	r18, 0x59	; 89
+ 990:	30 e0       	ldi	r19, 0x00	; 0
+ 992:	f9 01       	movw	r30, r18
+ 994:	20 81       	ld	r18, Z
+ 996:	23 60       	ori	r18, 0x03	; 3
+ 998:	fc 01       	movw	r30, r24
+ 99a:	20 83       	st	Z, r18
+
+		DDRA = 0xFF;
+ 99c:	8a e3       	ldi	r24, 0x3A	; 58
+ 99e:	90 e0       	ldi	r25, 0x00	; 0
+ 9a0:	2f ef       	ldi	r18, 0xFF	; 255
+ 9a2:	fc 01       	movw	r30, r24
+ 9a4:	20 83       	st	Z, r18
+		DDRB = 0xFF;
+ 9a6:	87 e3       	ldi	r24, 0x37	; 55
+ 9a8:	90 e0       	ldi	r25, 0x00	; 0
+ 9aa:	2f ef       	ldi	r18, 0xFF	; 255
+ 9ac:	fc 01       	movw	r30, r24
+ 9ae:	20 83       	st	Z, r18
+		//PORTC = 0b000000100; //to niepotrzebne
+}
+ 9b0:	df 91       	pop	r29
+ 9b2:	cf 91       	pop	r28
+ 9b4:	08 95       	ret
+
+000009b6 <addTask>:
+
+void addTask(TASK_PTR task, uint16_t period){
+ 9b6:	cf 93       	push	r28
+ 9b8:	df 93       	push	r29
+ 9ba:	00 d0       	rcall	.+0      	; 0x9bc <addTask+0x6>
+ 9bc:	00 d0       	rcall	.+0      	; 0x9be <addTask+0x8>
+ 9be:	cd b7       	in	r28, 0x3d	; 61
+ 9c0:	de b7       	in	r29, 0x3e	; 62
+ 9c2:	9a 83       	std	Y+2, r25	; 0x02
+ 9c4:	89 83       	std	Y+1, r24	; 0x01
+ 9c6:	7c 83       	std	Y+4, r23	; 0x04
+ 9c8:	6b 83       	std	Y+3, r22	; 0x03
+	if(tasks_num < MAX_TASKS){
+ 9ca:	80 91 7e 00 	lds	r24, 0x007E
+ 9ce:	90 91 7f 00 	lds	r25, 0x007F
+ 9d2:	8a 30       	cpi	r24, 0x0A	; 10
+ 9d4:	91 05       	cpc	r25, r1
+ 9d6:	0c f0       	brlt	.+2      	; 0x9da <addTask+0x24>
+ 9d8:	45 c0       	rjmp	.+138    	; 0xa64 <addTask+0xae>
+		tasks[tasks_num].Interval = period;
+ 9da:	20 91 7e 00 	lds	r18, 0x007E
+ 9de:	30 91 7f 00 	lds	r19, 0x007F
+ 9e2:	c9 01       	movw	r24, r18
+ 9e4:	88 0f       	add	r24, r24
+ 9e6:	99 1f       	adc	r25, r25
+ 9e8:	88 0f       	add	r24, r24
+ 9ea:	99 1f       	adc	r25, r25
+ 9ec:	88 0f       	add	r24, r24
+ 9ee:	99 1f       	adc	r25, r25
+ 9f0:	82 1b       	sub	r24, r18
+ 9f2:	93 0b       	sbc	r25, r19
+ 9f4:	8c 57       	subi	r24, 0x7C	; 124
+ 9f6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 9f8:	2b 81       	ldd	r18, Y+3	; 0x03
+ 9fa:	3c 81       	ldd	r19, Y+4	; 0x04
+ 9fc:	fc 01       	movw	r30, r24
+ 9fe:	31 83       	std	Z+1, r19	; 0x01
+ a00:	20 83       	st	Z, r18
+		tasks[tasks_num].ToGo = period;
+ a02:	20 91 7e 00 	lds	r18, 0x007E
+ a06:	30 91 7f 00 	lds	r19, 0x007F
+ a0a:	c9 01       	movw	r24, r18
+ a0c:	88 0f       	add	r24, r24
+ a0e:	99 1f       	adc	r25, r25
+ a10:	88 0f       	add	r24, r24
+ a12:	99 1f       	adc	r25, r25
+ a14:	88 0f       	add	r24, r24
+ a16:	99 1f       	adc	r25, r25
+ a18:	82 1b       	sub	r24, r18
+ a1a:	93 0b       	sbc	r25, r19
+ a1c:	8e 57       	subi	r24, 0x7E	; 126
+ a1e:	9f 4f       	sbci	r25, 0xFF	; 255
+ a20:	2b 81       	ldd	r18, Y+3	; 0x03
+ a22:	3c 81       	ldd	r19, Y+4	; 0x04
+ a24:	fc 01       	movw	r30, r24
+ a26:	31 83       	std	Z+1, r19	; 0x01
+ a28:	20 83       	st	Z, r18
+		tasks[tasks_num].t = task;
+ a2a:	20 91 7e 00 	lds	r18, 0x007E
+ a2e:	30 91 7f 00 	lds	r19, 0x007F
+ a32:	c9 01       	movw	r24, r18
+ a34:	88 0f       	add	r24, r24
+ a36:	99 1f       	adc	r25, r25
+ a38:	88 0f       	add	r24, r24
+ a3a:	99 1f       	adc	r25, r25
+ a3c:	88 0f       	add	r24, r24
+ a3e:	99 1f       	adc	r25, r25
+ a40:	82 1b       	sub	r24, r18
+ a42:	93 0b       	sbc	r25, r19
+ a44:	80 58       	subi	r24, 0x80	; 128
+ a46:	9f 4f       	sbci	r25, 0xFF	; 255
+ a48:	29 81       	ldd	r18, Y+1	; 0x01
+ a4a:	3a 81       	ldd	r19, Y+2	; 0x02
+ a4c:	fc 01       	movw	r30, r24
+ a4e:	31 83       	std	Z+1, r19	; 0x01
+ a50:	20 83       	st	Z, r18
+		tasks_num++;
+ a52:	80 91 7e 00 	lds	r24, 0x007E
+ a56:	90 91 7f 00 	lds	r25, 0x007F
+ a5a:	01 96       	adiw	r24, 0x01	; 1
+ a5c:	90 93 7f 00 	sts	0x007F, r25
+ a60:	80 93 7e 00 	sts	0x007E, r24
+	}
+}
+ a64:	0f 90       	pop	r0
+ a66:	0f 90       	pop	r0
+ a68:	0f 90       	pop	r0
+ a6a:	0f 90       	pop	r0
+ a6c:	df 91       	pop	r29
+ a6e:	cf 91       	pop	r28
+ a70:	08 95       	ret
+
+00000a72 <schedule>:
+		tasks_num++;
+	}
+}
+
+//wykonywana w przerwaniu
+void schedule(){
+ a72:	cf 93       	push	r28
+ a74:	df 93       	push	r29
+ a76:	00 d0       	rcall	.+0      	; 0xa78 <schedule+0x6>
+ a78:	cd b7       	in	r28, 0x3d	; 61
+ a7a:	de b7       	in	r29, 0x3e	; 62
+	//int i = 0;
+	for(int i = 0; i < MAX_TASKS; i++){
+ a7c:	1a 82       	std	Y+2, r1	; 0x02
+ a7e:	19 82       	std	Y+1, r1	; 0x01
+ a80:	e6 c0       	rjmp	.+460    	; 0xc4e <schedule+0x1dc>
+		//jesli task nie jest pusty zmiejszamy ToGo
+		if(tasks[i].t != 0){
+ a82:	29 81       	ldd	r18, Y+1	; 0x01
+ a84:	3a 81       	ldd	r19, Y+2	; 0x02
+ a86:	c9 01       	movw	r24, r18
+ a88:	88 0f       	add	r24, r24
+ a8a:	99 1f       	adc	r25, r25
+ a8c:	88 0f       	add	r24, r24
+ a8e:	99 1f       	adc	r25, r25
+ a90:	88 0f       	add	r24, r24
+ a92:	99 1f       	adc	r25, r25
+ a94:	82 1b       	sub	r24, r18
+ a96:	93 0b       	sbc	r25, r19
+ a98:	80 58       	subi	r24, 0x80	; 128
+ a9a:	9f 4f       	sbci	r25, 0xFF	; 255
+ a9c:	fc 01       	movw	r30, r24
+ a9e:	80 81       	ld	r24, Z
+ aa0:	91 81       	ldd	r25, Z+1	; 0x01
+ aa2:	00 97       	sbiw	r24, 0x00	; 0
+ aa4:	09 f4       	brne	.+2      	; 0xaa8 <schedule+0x36>
+ aa6:	ce c0       	rjmp	.+412    	; 0xc44 <schedule+0x1d2>
+			tasks[i].ToGo--;
+ aa8:	29 81       	ldd	r18, Y+1	; 0x01
+ aaa:	3a 81       	ldd	r19, Y+2	; 0x02
+ aac:	c9 01       	movw	r24, r18
+ aae:	88 0f       	add	r24, r24
+ ab0:	99 1f       	adc	r25, r25
+ ab2:	88 0f       	add	r24, r24
+ ab4:	99 1f       	adc	r25, r25
+ ab6:	88 0f       	add	r24, r24
+ ab8:	99 1f       	adc	r25, r25
+ aba:	82 1b       	sub	r24, r18
+ abc:	93 0b       	sbc	r25, r19
+ abe:	8e 57       	subi	r24, 0x7E	; 126
+ ac0:	9f 4f       	sbci	r25, 0xFF	; 255
+ ac2:	fc 01       	movw	r30, r24
+ ac4:	80 81       	ld	r24, Z
+ ac6:	91 81       	ldd	r25, Z+1	; 0x01
+ ac8:	ac 01       	movw	r20, r24
+ aca:	41 50       	subi	r20, 0x01	; 1
+ acc:	51 09       	sbc	r21, r1
+ ace:	29 81       	ldd	r18, Y+1	; 0x01
+ ad0:	3a 81       	ldd	r19, Y+2	; 0x02
+ ad2:	c9 01       	movw	r24, r18
+ ad4:	88 0f       	add	r24, r24
+ ad6:	99 1f       	adc	r25, r25
  ad8:	88 0f       	add	r24, r24
  ada:	99 1f       	adc	r25, r25
  adc:	88 0f       	add	r24, r24
  ade:	99 1f       	adc	r25, r25
- ae0:	88 0f       	add	r24, r24
- ae2:	99 1f       	adc	r25, r25
- ae4:	82 1b       	sub	r24, r18
- ae6:	93 0b       	sbc	r25, r19
- ae8:	82 58       	subi	r24, 0x82	; 130
- aea:	9f 4f       	sbci	r25, 0xFF	; 255
- aec:	fc 01       	movw	r30, r24
- aee:	80 81       	ld	r24, Z
- af0:	91 81       	ldd	r25, Z+1	; 0x01
- af2:	fc 01       	movw	r30, r24
- af4:	09 95       	icall
-			tasks[i].ready--;
- af6:	29 81       	ldd	r18, Y+1	; 0x01
- af8:	3a 81       	ldd	r19, Y+2	; 0x02
- afa:	c9 01       	movw	r24, r18
+ ae0:	82 1b       	sub	r24, r18
+ ae2:	93 0b       	sbc	r25, r19
+ ae4:	8e 57       	subi	r24, 0x7E	; 126
+ ae6:	9f 4f       	sbci	r25, 0xFF	; 255
+ ae8:	fc 01       	movw	r30, r24
+ aea:	51 83       	std	Z+1, r21	; 0x01
+ aec:	40 83       	st	Z, r20
+			//jesli ToGo = 0 zwiekszamy ready (periodyczny)
+			if(tasks[i].ToGo == 0 && tasks[i].Interval != 0){
+ aee:	29 81       	ldd	r18, Y+1	; 0x01
+ af0:	3a 81       	ldd	r19, Y+2	; 0x02
+ af2:	c9 01       	movw	r24, r18
+ af4:	88 0f       	add	r24, r24
+ af6:	99 1f       	adc	r25, r25
+ af8:	88 0f       	add	r24, r24
+ afa:	99 1f       	adc	r25, r25
  afc:	88 0f       	add	r24, r24
  afe:	99 1f       	adc	r25, r25
- b00:	88 0f       	add	r24, r24
- b02:	99 1f       	adc	r25, r25
- b04:	88 0f       	add	r24, r24
- b06:	99 1f       	adc	r25, r25
- b08:	82 1b       	sub	r24, r18
- b0a:	93 0b       	sbc	r25, r19
- b0c:	8c 57       	subi	r24, 0x7C	; 124
- b0e:	9f 4f       	sbci	r25, 0xFF	; 255
- b10:	fc 01       	movw	r30, r24
- b12:	80 81       	ld	r24, Z
- b14:	48 2f       	mov	r20, r24
- b16:	41 50       	subi	r20, 0x01	; 1
- b18:	29 81       	ldd	r18, Y+1	; 0x01
- b1a:	3a 81       	ldd	r19, Y+2	; 0x02
- b1c:	c9 01       	movw	r24, r18
+ b00:	82 1b       	sub	r24, r18
+ b02:	93 0b       	sbc	r25, r19
+ b04:	8e 57       	subi	r24, 0x7E	; 126
+ b06:	9f 4f       	sbci	r25, 0xFF	; 255
+ b08:	fc 01       	movw	r30, r24
+ b0a:	80 81       	ld	r24, Z
+ b0c:	91 81       	ldd	r25, Z+1	; 0x01
+ b0e:	00 97       	sbiw	r24, 0x00	; 0
+ b10:	09 f0       	breq	.+2      	; 0xb14 <schedule+0xa2>
+ b12:	54 c0       	rjmp	.+168    	; 0xbbc <schedule+0x14a>
+ b14:	29 81       	ldd	r18, Y+1	; 0x01
+ b16:	3a 81       	ldd	r19, Y+2	; 0x02
+ b18:	c9 01       	movw	r24, r18
+ b1a:	88 0f       	add	r24, r24
+ b1c:	99 1f       	adc	r25, r25
  b1e:	88 0f       	add	r24, r24
  b20:	99 1f       	adc	r25, r25
  b22:	88 0f       	add	r24, r24
  b24:	99 1f       	adc	r25, r25
- b26:	88 0f       	add	r24, r24
- b28:	99 1f       	adc	r25, r25
- b2a:	82 1b       	sub	r24, r18
- b2c:	93 0b       	sbc	r25, r19
- b2e:	8c 57       	subi	r24, 0x7C	; 124
- b30:	9f 4f       	sbci	r25, 0xFF	; 255
- b32:	fc 01       	movw	r30, r24
- b34:	40 83       	st	Z, r20
-			//usuwanie taska jesli zostal wykonany i nie jest periodyczny
-			if(tasks[i].ready == 0 && tasks[i].Interval == 0){
- b36:	29 81       	ldd	r18, Y+1	; 0x01
- b38:	3a 81       	ldd	r19, Y+2	; 0x02
- b3a:	c9 01       	movw	r24, r18
- b3c:	88 0f       	add	r24, r24
- b3e:	99 1f       	adc	r25, r25
+ b26:	82 1b       	sub	r24, r18
+ b28:	93 0b       	sbc	r25, r19
+ b2a:	8c 57       	subi	r24, 0x7C	; 124
+ b2c:	9f 4f       	sbci	r25, 0xFF	; 255
+ b2e:	fc 01       	movw	r30, r24
+ b30:	80 81       	ld	r24, Z
+ b32:	91 81       	ldd	r25, Z+1	; 0x01
+ b34:	00 97       	sbiw	r24, 0x00	; 0
+ b36:	09 f4       	brne	.+2      	; 0xb3a <schedule+0xc8>
+ b38:	41 c0       	rjmp	.+130    	; 0xbbc <schedule+0x14a>
+				tasks[i].ready++;
+ b3a:	29 81       	ldd	r18, Y+1	; 0x01
+ b3c:	3a 81       	ldd	r19, Y+2	; 0x02
+ b3e:	c9 01       	movw	r24, r18
  b40:	88 0f       	add	r24, r24
  b42:	99 1f       	adc	r25, r25
  b44:	88 0f       	add	r24, r24
  b46:	99 1f       	adc	r25, r25
- b48:	82 1b       	sub	r24, r18
- b4a:	93 0b       	sbc	r25, r19
- b4c:	8c 57       	subi	r24, 0x7C	; 124
- b4e:	9f 4f       	sbci	r25, 0xFF	; 255
- b50:	fc 01       	movw	r30, r24
- b52:	80 81       	ld	r24, Z
- b54:	88 23       	and	r24, r24
- b56:	09 f0       	breq	.+2      	; 0xb5a <execute+0xbc>
- b58:	42 c0       	rjmp	.+132    	; 0xbde <execute+0x140>
- b5a:	29 81       	ldd	r18, Y+1	; 0x01
- b5c:	3a 81       	ldd	r19, Y+2	; 0x02
- b5e:	c9 01       	movw	r24, r18
- b60:	88 0f       	add	r24, r24
- b62:	99 1f       	adc	r25, r25
- b64:	88 0f       	add	r24, r24
- b66:	99 1f       	adc	r25, r25
- b68:	88 0f       	add	r24, r24
- b6a:	99 1f       	adc	r25, r25
- b6c:	82 1b       	sub	r24, r18
- b6e:	93 0b       	sbc	r25, r19
- b70:	8e 57       	subi	r24, 0x7E	; 126
- b72:	9f 4f       	sbci	r25, 0xFF	; 255
- b74:	fc 01       	movw	r30, r24
- b76:	80 81       	ld	r24, Z
- b78:	91 81       	ldd	r25, Z+1	; 0x01
- b7a:	00 97       	sbiw	r24, 0x00	; 0
- b7c:	81 f5       	brne	.+96     	; 0xbde <execute+0x140>
-				tasks[i].Interval = 0;
- b7e:	29 81       	ldd	r18, Y+1	; 0x01
- b80:	3a 81       	ldd	r19, Y+2	; 0x02
- b82:	c9 01       	movw	r24, r18
+ b48:	88 0f       	add	r24, r24
+ b4a:	99 1f       	adc	r25, r25
+ b4c:	82 1b       	sub	r24, r18
+ b4e:	93 0b       	sbc	r25, r19
+ b50:	8a 57       	subi	r24, 0x7A	; 122
+ b52:	9f 4f       	sbci	r25, 0xFF	; 255
+ b54:	fc 01       	movw	r30, r24
+ b56:	80 81       	ld	r24, Z
+ b58:	48 2f       	mov	r20, r24
+ b5a:	4f 5f       	subi	r20, 0xFF	; 255
+ b5c:	29 81       	ldd	r18, Y+1	; 0x01
+ b5e:	3a 81       	ldd	r19, Y+2	; 0x02
+ b60:	c9 01       	movw	r24, r18
+ b62:	88 0f       	add	r24, r24
+ b64:	99 1f       	adc	r25, r25
+ b66:	88 0f       	add	r24, r24
+ b68:	99 1f       	adc	r25, r25
+ b6a:	88 0f       	add	r24, r24
+ b6c:	99 1f       	adc	r25, r25
+ b6e:	82 1b       	sub	r24, r18
+ b70:	93 0b       	sbc	r25, r19
+ b72:	8a 57       	subi	r24, 0x7A	; 122
+ b74:	9f 4f       	sbci	r25, 0xFF	; 255
+ b76:	fc 01       	movw	r30, r24
+ b78:	40 83       	st	Z, r20
+				tasks[i].ToGo = tasks[i].Interval;
+ b7a:	29 81       	ldd	r18, Y+1	; 0x01
+ b7c:	3a 81       	ldd	r19, Y+2	; 0x02
+ b7e:	c9 01       	movw	r24, r18
+ b80:	88 0f       	add	r24, r24
+ b82:	99 1f       	adc	r25, r25
  b84:	88 0f       	add	r24, r24
  b86:	99 1f       	adc	r25, r25
  b88:	88 0f       	add	r24, r24
  b8a:	99 1f       	adc	r25, r25
- b8c:	88 0f       	add	r24, r24
- b8e:	99 1f       	adc	r25, r25
- b90:	82 1b       	sub	r24, r18
- b92:	93 0b       	sbc	r25, r19
- b94:	8e 57       	subi	r24, 0x7E	; 126
- b96:	9f 4f       	sbci	r25, 0xFF	; 255
- b98:	fc 01       	movw	r30, r24
- b9a:	11 82       	std	Z+1, r1	; 0x01
- b9c:	10 82       	st	Z, r1
-				tasks[i].ToGo = 0;
- b9e:	29 81       	ldd	r18, Y+1	; 0x01
- ba0:	3a 81       	ldd	r19, Y+2	; 0x02
- ba2:	c9 01       	movw	r24, r18
+ b8c:	82 1b       	sub	r24, r18
+ b8e:	93 0b       	sbc	r25, r19
+ b90:	8c 57       	subi	r24, 0x7C	; 124
+ b92:	9f 4f       	sbci	r25, 0xFF	; 255
+ b94:	fc 01       	movw	r30, r24
+ b96:	40 81       	ld	r20, Z
+ b98:	51 81       	ldd	r21, Z+1	; 0x01
+ b9a:	29 81       	ldd	r18, Y+1	; 0x01
+ b9c:	3a 81       	ldd	r19, Y+2	; 0x02
+ b9e:	c9 01       	movw	r24, r18
+ ba0:	88 0f       	add	r24, r24
+ ba2:	99 1f       	adc	r25, r25
  ba4:	88 0f       	add	r24, r24
  ba6:	99 1f       	adc	r25, r25
  ba8:	88 0f       	add	r24, r24
  baa:	99 1f       	adc	r25, r25
- bac:	88 0f       	add	r24, r24
- bae:	99 1f       	adc	r25, r25
- bb0:	82 1b       	sub	r24, r18
- bb2:	93 0b       	sbc	r25, r19
- bb4:	80 58       	subi	r24, 0x80	; 128
- bb6:	9f 4f       	sbci	r25, 0xFF	; 255
- bb8:	fc 01       	movw	r30, r24
- bba:	11 82       	std	Z+1, r1	; 0x01
- bbc:	10 82       	st	Z, r1
+ bac:	82 1b       	sub	r24, r18
+ bae:	93 0b       	sbc	r25, r19
+ bb0:	8e 57       	subi	r24, 0x7E	; 126
+ bb2:	9f 4f       	sbci	r25, 0xFF	; 255
+ bb4:	fc 01       	movw	r30, r24
+ bb6:	51 83       	std	Z+1, r21	; 0x01
+ bb8:	40 83       	st	Z, r20
+ bba:	44 c0       	rjmp	.+136    	; 0xc44 <schedule+0x1d2>
+			}
+			//(nie jest periodyczny)
+			else if(tasks[i].ToGo == 0 && tasks[i].Interval == 0){
+ bbc:	29 81       	ldd	r18, Y+1	; 0x01
+ bbe:	3a 81       	ldd	r19, Y+2	; 0x02
+ bc0:	c9 01       	movw	r24, r18
+ bc2:	88 0f       	add	r24, r24
+ bc4:	99 1f       	adc	r25, r25
+ bc6:	88 0f       	add	r24, r24
+ bc8:	99 1f       	adc	r25, r25
+ bca:	88 0f       	add	r24, r24
+ bcc:	99 1f       	adc	r25, r25
+ bce:	82 1b       	sub	r24, r18
+ bd0:	93 0b       	sbc	r25, r19
+ bd2:	8e 57       	subi	r24, 0x7E	; 126
+ bd4:	9f 4f       	sbci	r25, 0xFF	; 255
+ bd6:	fc 01       	movw	r30, r24
+ bd8:	80 81       	ld	r24, Z
+ bda:	91 81       	ldd	r25, Z+1	; 0x01
+ bdc:	00 97       	sbiw	r24, 0x00	; 0
+ bde:	91 f5       	brne	.+100    	; 0xc44 <schedule+0x1d2>
+ be0:	29 81       	ldd	r18, Y+1	; 0x01
+ be2:	3a 81       	ldd	r19, Y+2	; 0x02
+ be4:	c9 01       	movw	r24, r18
+ be6:	88 0f       	add	r24, r24
+ be8:	99 1f       	adc	r25, r25
+ bea:	88 0f       	add	r24, r24
+ bec:	99 1f       	adc	r25, r25
+ bee:	88 0f       	add	r24, r24
+ bf0:	99 1f       	adc	r25, r25
+ bf2:	82 1b       	sub	r24, r18
+ bf4:	93 0b       	sbc	r25, r19
+ bf6:	8c 57       	subi	r24, 0x7C	; 124
+ bf8:	9f 4f       	sbci	r25, 0xFF	; 255
+ bfa:	fc 01       	movw	r30, r24
+ bfc:	80 81       	ld	r24, Z
+ bfe:	91 81       	ldd	r25, Z+1	; 0x01
+ c00:	00 97       	sbiw	r24, 0x00	; 0
+ c02:	01 f5       	brne	.+64     	; 0xc44 <schedule+0x1d2>
+				tasks[i].ready++;
+ c04:	29 81       	ldd	r18, Y+1	; 0x01
+ c06:	3a 81       	ldd	r19, Y+2	; 0x02
+ c08:	c9 01       	movw	r24, r18
+ c0a:	88 0f       	add	r24, r24
+ c0c:	99 1f       	adc	r25, r25
+ c0e:	88 0f       	add	r24, r24
+ c10:	99 1f       	adc	r25, r25
+ c12:	88 0f       	add	r24, r24
+ c14:	99 1f       	adc	r25, r25
+ c16:	82 1b       	sub	r24, r18
+ c18:	93 0b       	sbc	r25, r19
+ c1a:	8a 57       	subi	r24, 0x7A	; 122
+ c1c:	9f 4f       	sbci	r25, 0xFF	; 255
+ c1e:	fc 01       	movw	r30, r24
+ c20:	80 81       	ld	r24, Z
+ c22:	48 2f       	mov	r20, r24
+ c24:	4f 5f       	subi	r20, 0xFF	; 255
+ c26:	29 81       	ldd	r18, Y+1	; 0x01
+ c28:	3a 81       	ldd	r19, Y+2	; 0x02
+ c2a:	c9 01       	movw	r24, r18
+ c2c:	88 0f       	add	r24, r24
+ c2e:	99 1f       	adc	r25, r25
+ c30:	88 0f       	add	r24, r24
+ c32:	99 1f       	adc	r25, r25
+ c34:	88 0f       	add	r24, r24
+ c36:	99 1f       	adc	r25, r25
+ c38:	82 1b       	sub	r24, r18
+ c3a:	93 0b       	sbc	r25, r19
+ c3c:	8a 57       	subi	r24, 0x7A	; 122
+ c3e:	9f 4f       	sbci	r25, 0xFF	; 255
+ c40:	fc 01       	movw	r30, r24
+ c42:	40 83       	st	Z, r20
+}
+
+//wykonywana w przerwaniu
+void schedule(){
+	//int i = 0;
+	for(int i = 0; i < MAX_TASKS; i++){
+ c44:	89 81       	ldd	r24, Y+1	; 0x01
+ c46:	9a 81       	ldd	r25, Y+2	; 0x02
+ c48:	01 96       	adiw	r24, 0x01	; 1
+ c4a:	9a 83       	std	Y+2, r25	; 0x02
+ c4c:	89 83       	std	Y+1, r24	; 0x01
+ c4e:	89 81       	ldd	r24, Y+1	; 0x01
+ c50:	9a 81       	ldd	r25, Y+2	; 0x02
+ c52:	8a 30       	cpi	r24, 0x0A	; 10
+ c54:	91 05       	cpc	r25, r1
+ c56:	0c f4       	brge	.+2      	; 0xc5a <schedule+0x1e8>
+ c58:	14 cf       	rjmp	.-472    	; 0xa82 <schedule+0x10>
+			else if(tasks[i].ToGo == 0 && tasks[i].Interval == 0){
+				tasks[i].ready++;
+			}
+		}
+	}
+}
+ c5a:	0f 90       	pop	r0
+ c5c:	0f 90       	pop	r0
+ c5e:	df 91       	pop	r29
+ c60:	cf 91       	pop	r28
+ c62:	08 95       	ret
+
+00000c64 <execute>:
+
+void execute(){
+ c64:	cf 93       	push	r28
+ c66:	df 93       	push	r29
+ c68:	00 d0       	rcall	.+0      	; 0xc6a <execute+0x6>
+ c6a:	cd b7       	in	r28, 0x3d	; 61
+ c6c:	de b7       	in	r29, 0x3e	; 62
+	for(int i=0; i < MAX_TASKS; i++){
+ c6e:	1a 82       	std	Y+2, r1	; 0x02
+ c70:	19 82       	std	Y+1, r1	; 0x01
+ c72:	9d c0       	rjmp	.+314    	; 0xdae <execute+0x14a>
+		if(tasks[i].ready > 0){
+ c74:	29 81       	ldd	r18, Y+1	; 0x01
+ c76:	3a 81       	ldd	r19, Y+2	; 0x02
+ c78:	c9 01       	movw	r24, r18
+ c7a:	88 0f       	add	r24, r24
+ c7c:	99 1f       	adc	r25, r25
+ c7e:	88 0f       	add	r24, r24
+ c80:	99 1f       	adc	r25, r25
+ c82:	88 0f       	add	r24, r24
+ c84:	99 1f       	adc	r25, r25
+ c86:	82 1b       	sub	r24, r18
+ c88:	93 0b       	sbc	r25, r19
+ c8a:	8a 57       	subi	r24, 0x7A	; 122
+ c8c:	9f 4f       	sbci	r25, 0xFF	; 255
+ c8e:	fc 01       	movw	r30, r24
+ c90:	80 81       	ld	r24, Z
+ c92:	88 23       	and	r24, r24
+ c94:	09 f4       	brne	.+2      	; 0xc98 <execute+0x34>
+ c96:	86 c0       	rjmp	.+268    	; 0xda4 <execute+0x140>
+			tasks[i].t();
+ c98:	29 81       	ldd	r18, Y+1	; 0x01
+ c9a:	3a 81       	ldd	r19, Y+2	; 0x02
+ c9c:	c9 01       	movw	r24, r18
+ c9e:	88 0f       	add	r24, r24
+ ca0:	99 1f       	adc	r25, r25
+ ca2:	88 0f       	add	r24, r24
+ ca4:	99 1f       	adc	r25, r25
+ ca6:	88 0f       	add	r24, r24
+ ca8:	99 1f       	adc	r25, r25
+ caa:	82 1b       	sub	r24, r18
+ cac:	93 0b       	sbc	r25, r19
+ cae:	80 58       	subi	r24, 0x80	; 128
+ cb0:	9f 4f       	sbci	r25, 0xFF	; 255
+ cb2:	fc 01       	movw	r30, r24
+ cb4:	80 81       	ld	r24, Z
+ cb6:	91 81       	ldd	r25, Z+1	; 0x01
+ cb8:	fc 01       	movw	r30, r24
+ cba:	09 95       	icall
+			tasks[i].ready--;
+ cbc:	29 81       	ldd	r18, Y+1	; 0x01
+ cbe:	3a 81       	ldd	r19, Y+2	; 0x02
+ cc0:	c9 01       	movw	r24, r18
+ cc2:	88 0f       	add	r24, r24
+ cc4:	99 1f       	adc	r25, r25
+ cc6:	88 0f       	add	r24, r24
+ cc8:	99 1f       	adc	r25, r25
+ cca:	88 0f       	add	r24, r24
+ ccc:	99 1f       	adc	r25, r25
+ cce:	82 1b       	sub	r24, r18
+ cd0:	93 0b       	sbc	r25, r19
+ cd2:	8a 57       	subi	r24, 0x7A	; 122
+ cd4:	9f 4f       	sbci	r25, 0xFF	; 255
+ cd6:	fc 01       	movw	r30, r24
+ cd8:	80 81       	ld	r24, Z
+ cda:	48 2f       	mov	r20, r24
+ cdc:	41 50       	subi	r20, 0x01	; 1
+ cde:	29 81       	ldd	r18, Y+1	; 0x01
+ ce0:	3a 81       	ldd	r19, Y+2	; 0x02
+ ce2:	c9 01       	movw	r24, r18
+ ce4:	88 0f       	add	r24, r24
+ ce6:	99 1f       	adc	r25, r25
+ ce8:	88 0f       	add	r24, r24
+ cea:	99 1f       	adc	r25, r25
+ cec:	88 0f       	add	r24, r24
+ cee:	99 1f       	adc	r25, r25
+ cf0:	82 1b       	sub	r24, r18
+ cf2:	93 0b       	sbc	r25, r19
+ cf4:	8a 57       	subi	r24, 0x7A	; 122
+ cf6:	9f 4f       	sbci	r25, 0xFF	; 255
+ cf8:	fc 01       	movw	r30, r24
+ cfa:	40 83       	st	Z, r20
+			//usuwanie taska jesli zostal wykonany i nie jest periodyczny
+			if(tasks[i].ready == 0 && tasks[i].Interval == 0){
+ cfc:	29 81       	ldd	r18, Y+1	; 0x01
+ cfe:	3a 81       	ldd	r19, Y+2	; 0x02
+ d00:	c9 01       	movw	r24, r18
+ d02:	88 0f       	add	r24, r24
+ d04:	99 1f       	adc	r25, r25
+ d06:	88 0f       	add	r24, r24
+ d08:	99 1f       	adc	r25, r25
+ d0a:	88 0f       	add	r24, r24
+ d0c:	99 1f       	adc	r25, r25
+ d0e:	82 1b       	sub	r24, r18
+ d10:	93 0b       	sbc	r25, r19
+ d12:	8a 57       	subi	r24, 0x7A	; 122
+ d14:	9f 4f       	sbci	r25, 0xFF	; 255
+ d16:	fc 01       	movw	r30, r24
+ d18:	80 81       	ld	r24, Z
+ d1a:	88 23       	and	r24, r24
+ d1c:	09 f0       	breq	.+2      	; 0xd20 <execute+0xbc>
+ d1e:	42 c0       	rjmp	.+132    	; 0xda4 <execute+0x140>
+ d20:	29 81       	ldd	r18, Y+1	; 0x01
+ d22:	3a 81       	ldd	r19, Y+2	; 0x02
+ d24:	c9 01       	movw	r24, r18
+ d26:	88 0f       	add	r24, r24
+ d28:	99 1f       	adc	r25, r25
+ d2a:	88 0f       	add	r24, r24
+ d2c:	99 1f       	adc	r25, r25
+ d2e:	88 0f       	add	r24, r24
+ d30:	99 1f       	adc	r25, r25
+ d32:	82 1b       	sub	r24, r18
+ d34:	93 0b       	sbc	r25, r19
+ d36:	8c 57       	subi	r24, 0x7C	; 124
+ d38:	9f 4f       	sbci	r25, 0xFF	; 255
+ d3a:	fc 01       	movw	r30, r24
+ d3c:	80 81       	ld	r24, Z
+ d3e:	91 81       	ldd	r25, Z+1	; 0x01
+ d40:	00 97       	sbiw	r24, 0x00	; 0
+ d42:	81 f5       	brne	.+96     	; 0xda4 <execute+0x140>
+				tasks[i].Interval = 0;
+ d44:	29 81       	ldd	r18, Y+1	; 0x01
+ d46:	3a 81       	ldd	r19, Y+2	; 0x02
+ d48:	c9 01       	movw	r24, r18
+ d4a:	88 0f       	add	r24, r24
+ d4c:	99 1f       	adc	r25, r25
+ d4e:	88 0f       	add	r24, r24
+ d50:	99 1f       	adc	r25, r25
+ d52:	88 0f       	add	r24, r24
+ d54:	99 1f       	adc	r25, r25
+ d56:	82 1b       	sub	r24, r18
+ d58:	93 0b       	sbc	r25, r19
+ d5a:	8c 57       	subi	r24, 0x7C	; 124
+ d5c:	9f 4f       	sbci	r25, 0xFF	; 255
+ d5e:	fc 01       	movw	r30, r24
+ d60:	11 82       	std	Z+1, r1	; 0x01
+ d62:	10 82       	st	Z, r1
+				tasks[i].ToGo = 0;
+ d64:	29 81       	ldd	r18, Y+1	; 0x01
+ d66:	3a 81       	ldd	r19, Y+2	; 0x02
+ d68:	c9 01       	movw	r24, r18
+ d6a:	88 0f       	add	r24, r24
+ d6c:	99 1f       	adc	r25, r25
+ d6e:	88 0f       	add	r24, r24
+ d70:	99 1f       	adc	r25, r25
+ d72:	88 0f       	add	r24, r24
+ d74:	99 1f       	adc	r25, r25
+ d76:	82 1b       	sub	r24, r18
+ d78:	93 0b       	sbc	r25, r19
+ d7a:	8e 57       	subi	r24, 0x7E	; 126
+ d7c:	9f 4f       	sbci	r25, 0xFF	; 255
+ d7e:	fc 01       	movw	r30, r24
+ d80:	11 82       	std	Z+1, r1	; 0x01
+ d82:	10 82       	st	Z, r1
 				tasks[i].t = 0;
- bbe:	29 81       	ldd	r18, Y+1	; 0x01
- bc0:	3a 81       	ldd	r19, Y+2	; 0x02
- bc2:	c9 01       	movw	r24, r18
- bc4:	88 0f       	add	r24, r24
- bc6:	99 1f       	adc	r25, r25
- bc8:	88 0f       	add	r24, r24
- bca:	99 1f       	adc	r25, r25
- bcc:	88 0f       	add	r24, r24
- bce:	99 1f       	adc	r25, r25
- bd0:	82 1b       	sub	r24, r18
- bd2:	93 0b       	sbc	r25, r19
- bd4:	82 58       	subi	r24, 0x82	; 130
- bd6:	9f 4f       	sbci	r25, 0xFF	; 255
- bd8:	fc 01       	movw	r30, r24
- bda:	11 82       	std	Z+1, r1	; 0x01
- bdc:	10 82       	st	Z, r1
+ d84:	29 81       	ldd	r18, Y+1	; 0x01
+ d86:	3a 81       	ldd	r19, Y+2	; 0x02
+ d88:	c9 01       	movw	r24, r18
+ d8a:	88 0f       	add	r24, r24
+ d8c:	99 1f       	adc	r25, r25
+ d8e:	88 0f       	add	r24, r24
+ d90:	99 1f       	adc	r25, r25
+ d92:	88 0f       	add	r24, r24
+ d94:	99 1f       	adc	r25, r25
+ d96:	82 1b       	sub	r24, r18
+ d98:	93 0b       	sbc	r25, r19
+ d9a:	80 58       	subi	r24, 0x80	; 128
+ d9c:	9f 4f       	sbci	r25, 0xFF	; 255
+ d9e:	fc 01       	movw	r30, r24
+ da0:	11 82       	std	Z+1, r1	; 0x01
+ da2:	10 82       	st	Z, r1
 		}
 	}
 }
 
 void execute(){
 	for(int i=0; i < MAX_TASKS; i++){
- bde:	89 81       	ldd	r24, Y+1	; 0x01
- be0:	9a 81       	ldd	r25, Y+2	; 0x02
- be2:	01 96       	adiw	r24, 0x01	; 1
- be4:	9a 83       	std	Y+2, r25	; 0x02
- be6:	89 83       	std	Y+1, r24	; 0x01
- be8:	89 81       	ldd	r24, Y+1	; 0x01
- bea:	9a 81       	ldd	r25, Y+2	; 0x02
- bec:	8a 30       	cpi	r24, 0x0A	; 10
- bee:	91 05       	cpc	r25, r1
- bf0:	0c f4       	brge	.+2      	; 0xbf4 <execute+0x156>
- bf2:	5d cf       	rjmp	.-326    	; 0xaae <execute+0x10>
+ da4:	89 81       	ldd	r24, Y+1	; 0x01
+ da6:	9a 81       	ldd	r25, Y+2	; 0x02
+ da8:	01 96       	adiw	r24, 0x01	; 1
+ daa:	9a 83       	std	Y+2, r25	; 0x02
+ dac:	89 83       	std	Y+1, r24	; 0x01
+ dae:	89 81       	ldd	r24, Y+1	; 0x01
+ db0:	9a 81       	ldd	r25, Y+2	; 0x02
+ db2:	8a 30       	cpi	r24, 0x0A	; 10
+ db4:	91 05       	cpc	r25, r1
+ db6:	0c f4       	brge	.+2      	; 0xdba <execute+0x156>
+ db8:	5d cf       	rjmp	.-326    	; 0xc74 <execute+0x10>
 				tasks[i].ToGo = 0;
 				tasks[i].t = 0;
 			}
 		}
 	}
 }
- bf4:	0f 90       	pop	r0
- bf6:	0f 90       	pop	r0
- bf8:	df 91       	pop	r29
- bfa:	cf 91       	pop	r28
- bfc:	08 95       	ret
+ dba:	0f 90       	pop	r0
+ dbc:	0f 90       	pop	r0
+ dbe:	df 91       	pop	r29
+ dc0:	cf 91       	pop	r28
+ dc2:	08 95       	ret
 
-00000bfe <__vector_10>:
+00000dc4 <__vector_10>:
 
 
 ISR(TIMER0_COMP_vect){
- bfe:	1f 92       	push	r1
- c00:	0f 92       	push	r0
- c02:	00 90 5f 00 	lds	r0, 0x005F
- c06:	0f 92       	push	r0
- c08:	11 24       	eor	r1, r1
- c0a:	2f 93       	push	r18
- c0c:	3f 93       	push	r19
- c0e:	4f 93       	push	r20
- c10:	5f 93       	push	r21
- c12:	6f 93       	push	r22
- c14:	7f 93       	push	r23
- c16:	8f 93       	push	r24
- c18:	9f 93       	push	r25
- c1a:	af 93       	push	r26
- c1c:	bf 93       	push	r27
- c1e:	ef 93       	push	r30
- c20:	ff 93       	push	r31
- c22:	cf 93       	push	r28
- c24:	df 93       	push	r29
- c26:	cd b7       	in	r28, 0x3d	; 61
- c28:	de b7       	in	r29, 0x3e	; 62
+ dc4:	1f 92       	push	r1
+ dc6:	0f 92       	push	r0
+ dc8:	00 90 5f 00 	lds	r0, 0x005F
+ dcc:	0f 92       	push	r0
+ dce:	11 24       	eor	r1, r1
+ dd0:	2f 93       	push	r18
+ dd2:	3f 93       	push	r19
+ dd4:	4f 93       	push	r20
+ dd6:	5f 93       	push	r21
+ dd8:	6f 93       	push	r22
+ dda:	7f 93       	push	r23
+ ddc:	8f 93       	push	r24
+ dde:	9f 93       	push	r25
+ de0:	af 93       	push	r26
+ de2:	bf 93       	push	r27
+ de4:	ef 93       	push	r30
+ de6:	ff 93       	push	r31
+ de8:	cf 93       	push	r28
+ dea:	df 93       	push	r29
+ dec:	cd b7       	in	r28, 0x3d	; 61
+ dee:	de b7       	in	r29, 0x3e	; 62
 	schedule();
- c2a:	0e 94 56 04 	call	0x8ac	; 0x8ac <schedule>
- c2e:	df 91       	pop	r29
- c30:	cf 91       	pop	r28
- c32:	ff 91       	pop	r31
- c34:	ef 91       	pop	r30
- c36:	bf 91       	pop	r27
- c38:	af 91       	pop	r26
- c3a:	9f 91       	pop	r25
- c3c:	8f 91       	pop	r24
- c3e:	7f 91       	pop	r23
- c40:	6f 91       	pop	r22
- c42:	5f 91       	pop	r21
- c44:	4f 91       	pop	r20
- c46:	3f 91       	pop	r19
- c48:	2f 91       	pop	r18
- c4a:	0f 90       	pop	r0
- c4c:	00 92 5f 00 	sts	0x005F, r0
- c50:	0f 90       	pop	r0
- c52:	1f 90       	pop	r1
- c54:	18 95       	reti
+ df0:	0e 94 39 05 	call	0xa72	; 0xa72 <schedule>
+ df4:	df 91       	pop	r29
+ df6:	cf 91       	pop	r28
+ df8:	ff 91       	pop	r31
+ dfa:	ef 91       	pop	r30
+ dfc:	bf 91       	pop	r27
+ dfe:	af 91       	pop	r26
+ e00:	9f 91       	pop	r25
+ e02:	8f 91       	pop	r24
+ e04:	7f 91       	pop	r23
+ e06:	6f 91       	pop	r22
+ e08:	5f 91       	pop	r21
+ e0a:	4f 91       	pop	r20
+ e0c:	3f 91       	pop	r19
+ e0e:	2f 91       	pop	r18
+ e10:	0f 90       	pop	r0
+ e12:	00 92 5f 00 	sts	0x005F, r0
+ e16:	0f 90       	pop	r0
+ e18:	1f 90       	pop	r1
+ e1a:	18 95       	reti
 
-00000c56 <__divmodhi4>:
- c56:	97 fb       	bst	r25, 7
- c58:	07 2e       	mov	r0, r23
- c5a:	16 f4       	brtc	.+4      	; 0xc60 <__divmodhi4+0xa>
- c5c:	00 94       	com	r0
- c5e:	07 d0       	rcall	.+14     	; 0xc6e <__divmodhi4_neg1>
- c60:	77 fd       	sbrc	r23, 7
- c62:	09 d0       	rcall	.+18     	; 0xc76 <__divmodhi4_neg2>
- c64:	0e 94 3f 06 	call	0xc7e	; 0xc7e <__udivmodhi4>
- c68:	07 fc       	sbrc	r0, 7
- c6a:	05 d0       	rcall	.+10     	; 0xc76 <__divmodhi4_neg2>
- c6c:	3e f4       	brtc	.+14     	; 0xc7c <__divmodhi4_exit>
+00000e1c <__divmodhi4>:
+ e1c:	97 fb       	bst	r25, 7
+ e1e:	07 2e       	mov	r0, r23
+ e20:	16 f4       	brtc	.+4      	; 0xe26 <__divmodhi4+0xa>
+ e22:	00 94       	com	r0
+ e24:	07 d0       	rcall	.+14     	; 0xe34 <__divmodhi4_neg1>
+ e26:	77 fd       	sbrc	r23, 7
+ e28:	09 d0       	rcall	.+18     	; 0xe3c <__divmodhi4_neg2>
+ e2a:	0e 94 22 07 	call	0xe44	; 0xe44 <__udivmodhi4>
+ e2e:	07 fc       	sbrc	r0, 7
+ e30:	05 d0       	rcall	.+10     	; 0xe3c <__divmodhi4_neg2>
+ e32:	3e f4       	brtc	.+14     	; 0xe42 <__divmodhi4_exit>
 
-00000c6e <__divmodhi4_neg1>:
- c6e:	90 95       	com	r25
- c70:	81 95       	neg	r24
- c72:	9f 4f       	sbci	r25, 0xFF	; 255
- c74:	08 95       	ret
+00000e34 <__divmodhi4_neg1>:
+ e34:	90 95       	com	r25
+ e36:	81 95       	neg	r24
+ e38:	9f 4f       	sbci	r25, 0xFF	; 255
+ e3a:	08 95       	ret
 
-00000c76 <__divmodhi4_neg2>:
- c76:	70 95       	com	r23
- c78:	61 95       	neg	r22
- c7a:	7f 4f       	sbci	r23, 0xFF	; 255
+00000e3c <__divmodhi4_neg2>:
+ e3c:	70 95       	com	r23
+ e3e:	61 95       	neg	r22
+ e40:	7f 4f       	sbci	r23, 0xFF	; 255
 
-00000c7c <__divmodhi4_exit>:
- c7c:	08 95       	ret
+00000e42 <__divmodhi4_exit>:
+ e42:	08 95       	ret
 
-00000c7e <__udivmodhi4>:
- c7e:	aa 1b       	sub	r26, r26
- c80:	bb 1b       	sub	r27, r27
- c82:	51 e1       	ldi	r21, 0x11	; 17
- c84:	07 c0       	rjmp	.+14     	; 0xc94 <__udivmodhi4_ep>
+00000e44 <__udivmodhi4>:
+ e44:	aa 1b       	sub	r26, r26
+ e46:	bb 1b       	sub	r27, r27
+ e48:	51 e1       	ldi	r21, 0x11	; 17
+ e4a:	07 c0       	rjmp	.+14     	; 0xe5a <__udivmodhi4_ep>
 
-00000c86 <__udivmodhi4_loop>:
- c86:	aa 1f       	adc	r26, r26
- c88:	bb 1f       	adc	r27, r27
- c8a:	a6 17       	cp	r26, r22
- c8c:	b7 07       	cpc	r27, r23
- c8e:	10 f0       	brcs	.+4      	; 0xc94 <__udivmodhi4_ep>
- c90:	a6 1b       	sub	r26, r22
- c92:	b7 0b       	sbc	r27, r23
+00000e4c <__udivmodhi4_loop>:
+ e4c:	aa 1f       	adc	r26, r26
+ e4e:	bb 1f       	adc	r27, r27
+ e50:	a6 17       	cp	r26, r22
+ e52:	b7 07       	cpc	r27, r23
+ e54:	10 f0       	brcs	.+4      	; 0xe5a <__udivmodhi4_ep>
+ e56:	a6 1b       	sub	r26, r22
+ e58:	b7 0b       	sbc	r27, r23
 
-00000c94 <__udivmodhi4_ep>:
- c94:	88 1f       	adc	r24, r24
- c96:	99 1f       	adc	r25, r25
- c98:	5a 95       	dec	r21
- c9a:	a9 f7       	brne	.-22     	; 0xc86 <__udivmodhi4_loop>
- c9c:	80 95       	com	r24
- c9e:	90 95       	com	r25
- ca0:	bc 01       	movw	r22, r24
- ca2:	cd 01       	movw	r24, r26
- ca4:	08 95       	ret
+00000e5a <__udivmodhi4_ep>:
+ e5a:	88 1f       	adc	r24, r24
+ e5c:	99 1f       	adc	r25, r25
+ e5e:	5a 95       	dec	r21
+ e60:	a9 f7       	brne	.-22     	; 0xe4c <__udivmodhi4_loop>
+ e62:	80 95       	com	r24
+ e64:	90 95       	com	r25
+ e66:	bc 01       	movw	r22, r24
+ e68:	cd 01       	movw	r24, r26
+ e6a:	08 95       	ret
 
-00000ca6 <_exit>:
- ca6:	f8 94       	cli
+00000e6c <_exit>:
+ e6c:	f8 94       	cli
 
-00000ca8 <__stop_program>:
- ca8:	ff cf       	rjmp	.-2      	; 0xca8 <__stop_program>
+00000e6e <__stop_program>:
+ e6e:	ff cf       	rjmp	.-2      	; 0xe6e <__stop_program>
