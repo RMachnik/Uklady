@@ -27,7 +27,7 @@ void initCounter(){
 
 		DDRA = 0xFF;
 		DDRB = 0xFF;
-		PORTC = 0b000000100;
+		//PORTC = 0b000000100; //to niepotrzebne
 }
 
 void addTask(TASK_PTR task, uint16_t period){

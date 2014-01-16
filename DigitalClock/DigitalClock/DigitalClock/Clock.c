@@ -7,22 +7,24 @@
 
 
 #include "Clock.h"
-int keyPressed = 0;
+int keyPressed = 0; //ostatnio wcisniety klawisz
 int displayMode = 1; //0 - godzina, 1 - minuty i sekundy
 int seconds = 0;
 int minutes = 0;
 int hours = 0;
+int stopClock = 0; //zmienna mowiaca czy zegar ma chodzic (0) czy sie zatrzymac (1)
 uint8_t Digits[] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000010, 0b11111000, 0b10000000, 0b10010000};
 uint8_t Column[] = {0b11111110, 0b11111101, 0b11111011, 0b11111011};
 
-int i = 0;
-int j = 0;
+int i = 0; //obecna pozycja w tablicy cyfr
+int j = 0; //numer obecnej kolumny na wyswietlaczu 7-segm.
 
 int isPowerOfTwo(unsigned n)
 {
 	return n && (! (n & (n-1)) );
 	
 }
+//sprawdza na ktorej pozycji w podanym bajcie bit jest niezerowy, jesli jest wiecej niz 1 niezerowy bit zwraca 0
 int findPosition(unsigned n)
 {
 
@@ -37,7 +39,6 @@ int findPosition(unsigned n)
 	}
 	return count;
 }
-
 
 void getKeyNumber(){
 	int i=0;
@@ -68,6 +69,44 @@ void changeMode(){
 	}
 }
 
+void setHoursAndMins(){ //zmiana czasu na ekranie HH:MM
+	stopClock = 1; //zatrzymaj odliczanie zegara
+	if(displayMode == 0){ //jesli wyswietlane jest HH:MM
+		if(keyPressed == 3){ //zwieksz godziny
+			hours++;
+			if(hours > 23){
+				hours = hours % 24;
+			}
+		}
+		if(keyPressed == 2){ //zwieksz minuty
+			minutes++;
+			if(minutes > 59){
+				minutes = minutes % 60;
+			}
+		}
+	}	
+	stopClock = 0; //wznow prace zegara
+}
+
+void setMinsAndSecs(){ //zmiana czasu na ekranie MM:SS
+	stopClock = 1; //zatrzymaj odliczanie zegara
+	if(displayMode == 1){ //jesli wyswietlane jest MM:SS
+		if(keyPressed == 3){ //zwieksz minuty
+			minutes++;
+			if(minutes > 59){
+				minutes = minutes % 60;
+			}
+		}
+		if(keyPressed == 2){ //zwieksz sekundy
+			seconds++;
+			if(seconds > 59){
+				seconds = seconds % 60;
+			}
+		}
+	}
+	stopClock = 0; //wznow prace zegara
+}
+
 void displayKey(){
 	PORTB = 0xFF;
 	PORTA = Digits[keyPressed];
@@ -77,8 +116,6 @@ void displayKey(){
 	j++;
 	j = j % 4;
 }
-
-
 
 void displayMinutesAndSeconds(){
 	PORTB = 0xFF;
@@ -148,13 +185,18 @@ void displayClock(){
 }
 
 void manageClock(){
-	seconds++;
-	if(seconds > 59){
-		minutes++;
-		seconds = seconds % 60;
-	}
-	if(minutes > 59){
-		hours++;
-		minutes = minutes % 60;
+	if(stopClock == 0){ //jesli zegar ma chodzic to dodaj sekunde
+		seconds++;
+		if(seconds > 59){
+			minutes++;
+			seconds = seconds % 60;
+		}
+		if(minutes > 59){
+			hours++;
+			minutes = minutes % 60;
+		}
+		if(hours > 23){
+			hours = hours % 24;
+		}				
 	}
 }
