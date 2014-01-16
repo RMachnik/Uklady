@@ -24,6 +24,7 @@ void displayClock();
 void manageClock();
 void setMinsAndSecs();
 void setHoursAndMins();
-
+void displayHoursAndMinutesWithHighlight();
+void displayMinutesAndSecondswithHighlight();
 
 #endif /* CLOCK_H_ */
