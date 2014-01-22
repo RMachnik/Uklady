@@ -16,15 +16,14 @@
 int isPowerOfTwo(unsigned n);
 int findPosition(unsigned n);
 void getKeyNumber();
-void changeMode();
 void displayKey();
 void displayMinutesAndSeconds();
 void displayHoursAndMinutes();
 void displayClock();
 void manageClock();
-void setMinsAndSecs();
-void setHoursAndMins();
-void displayHoursAndMinutesWithHighlight();
-void displayMinutesAndSecondswithHighlight();
+void changeDisplayMode();
+void displayMinutesAndSecondsWithChangingValueMode();
+void displayHoursAndMinutesWithChangingValueMode();
+void handleAddValue();
 
 #endif /* CLOCK_H_ */
